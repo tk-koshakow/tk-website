@@ -1,5 +1,20 @@
-# Robots.txt for https://tylerkoshakow.com
-# Enterprise AEO, GEO, and Search Indexation Protocol
+# =========================================================================
+#
+#         .-"""-.           _______ _  __           .-"""-.
+#       .'  o o  `.        |__   __| |/ /         .'  o o  `.
+#      /  o     o  \          | |  | ' /         /  o     o  \
+#     (_____________ )        | |  |  <         (_____________ )
+#         |     |             | |  | . \            |     |
+#         |     |             |_|  |_|\_\           |     |
+#        .'     `.                                 .'     `.
+#       '---------'                               '---------'
+#
+#                    TYLER "TK" KOSHAKOW
+#          AEO // GEO // ENTERPRISE CONTENT STRATEGY
+#                    SPORES, MOLDS, FUNGI
+#                  https://tylerkoshakow.com
+#
+# =========================================================================
 
 User-agent: *
 Allow: /
