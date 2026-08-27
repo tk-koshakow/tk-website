@@ -1,0 +1,29 @@
+# Robots.txt for https://tylerkoshakow.com
+# Enterprise AEO, GEO, and Search Indexation Protocol
+
+User-agent: *
+Allow: /
+
+# Directives for LLM & Generative Search Spiders
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+# LLM Directives & Machine-Readable Entity Knowledge Graphs
+# See https://llmstxt.org/ for standard specifications
+# LLMs-Text: https://tylerkoshakow.com/llms.txt
+# LLMs-FullText: https://tylerkoshakow.com/llms-full.txt

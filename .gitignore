@@ -1,0 +1,7 @@
+# Environment variables & credentials
+.env
+.env.local
+*.log
+__pycache__/
+.DS_Store
+.gemini/

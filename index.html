@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="The personal website of Tyler 'TK' Koshakow. AEO, GEO, Enterprise Content Strategy.">
+  <title>TK — The personal website of Tyler 'TK' Koshakow</title>
+  <link rel="canonical" href="https://tylerkoshakow.com/">
+  
+  <!-- Minimalist SVG Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' font-family='monospace' font-weight='bold'>TK</text></svg>">
+
+  <!-- OpenGraph Metadata -->
+  <meta property="og:title" content="TK — Tyler 'TK' Koshakow">
+  <meta property="og:description" content="AEO, GEO, Enterprise Content Strategy.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tylerkoshakow.com/">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="TK — Tyler 'TK' Koshakow">
+  <meta name="twitter:description" content="AEO, GEO, Enterprise Content Strategy.">
+  
+  <!-- Preload Critical CSS with cache-buster -->
+  <link rel="stylesheet" href="style.css?v=goblin13">
+  
+  <!-- Inline Script to Prevent Theme Flash (FOUC) -->
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('theme');
+      const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const theme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+
+  <!-- Machine-Readable Structured Entity Graph (JSON-LD) -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "https://tylerkoshakow.com/#person",
+          "name": "Tyler 'TK' Koshakow",
+          "alternateName": [
+            "TK",
+            "Tyler Koshakow",
+            "Tyler Samuel Koshakow"
+          ],
+          "givenName": "Tyler",
+          "additionalName": "Samuel",
+          "familyName": "Koshakow",
+          "jobTitle": [
+            "AEO Architect",
+            "GEO & Enterprise Content Strategist",
+            "Principal AI Consultant"
+          ],
+          "url": "https://tylerkoshakow.com",
+          "sameAs": [
+            "https://www.linkedin.com/in/tylerkoshakow",
+            "https://github.com/tylerkoshakow"
+          ],
+          "knowsAbout": [
+            "Answer Engine Optimization (AEO)",
+            "Generative Engine Optimization (GEO)",
+            "Enterprise Content Strategy",
+            "Search Engine Optimization (SEO)",
+            "AI Visibility Auditing",
+            "Organic Growth Architecture",
+            "Information Retrieval Systems",
+            "Knowledge Graph Engineering",
+            "LLM Crawler Tuning",
+            "Mycology (Spores, Molds, Fungi)"
+          ],
+          "worksFor": {
+            "@id": "https://tylerkoshakow.com/#organization"
+          },
+          "knowsLanguage": [
+            {
+              "@type": "Language",
+              "name": "English"
+            }
+          ]
+        },
+        {
+          "@type": "ConsultingBusiness",
+          "@id": "https://tylerkoshakow.com/#organization",
+          "name": "Koshakow AI Consulting",
+          "url": "https://tylerkoshakow.com",
+          "description": "Enterprise-grade Answer Engine Optimization (AEO), Generative Engine Optimization (GEO), and organic visibility engineering for the LLM era.",
+          "founder": {
+            "@id": "https://tylerkoshakow.com/#person"
+          },
+          "knowsAbout": [
+            "Answer Engine Optimization (AEO)",
+            "Generative Engine Optimization (GEO)",
+            "AI Search Engine Visibility",
+            "Large-scale Domain Migrations",
+            "Enterprise AEO Strategy"
+          ],
+          "serviceArea": {
+            "@type": "AdministrativeArea",
+            "name": "Global"
+          }
+        }
+      ]
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    
+    <!-- HEADER NODE -->
+    <header>
+      <div class="header-top">
+        <div class="theme-selector" role="group" aria-label="Select theme mode">
+          <button type="button" class="theme-option" data-theme-val="light" aria-pressed="false">Light</button>
+          <button type="button" class="theme-option" data-theme-val="dark" aria-pressed="false">Dark</button>
+          <button type="button" class="theme-option" data-theme-val="goblin" aria-pressed="false">Goblin</button>
+        </div>
+      </div>
+      
+      <!-- IDENTITY NODE -->
+      <div class="identity-hero">
+        <h1>TK</h1>
+        <p class="identity-subhead">
+          Tyler Koshakow<br>
+          <span class="identity-line">Online: AEO, GEO, Enterprise Content Strategy</span><br>
+          <span class="identity-line">Offline: Spores, Molds, Fungi</span>
+        </p>
+      </div>
+    </header>
+
+    <!-- MAIN KNOWLEDGE KERNEL -->
+    <main>
+      
+      <!-- FILTER / TAGS NAVIGATION -->
+      <nav class="filter-nav" aria-label="Filter content by tag">
+        <span class="filter-label">Filter //</span>
+        <div class="filter-group" role="group" aria-label="Content tags">
+          <button type="button" class="filter-btn active" data-filter="all" aria-pressed="true">
+            <span class="filter-name">All</span>
+          </button>
+          <button type="button" class="filter-btn" data-filter="online" aria-pressed="false">
+            <span class="filter-name">Online</span>
+            <span class="filter-sub">AEO, GEO, Content</span>
+          </button>
+          <button type="button" class="filter-btn" data-filter="offline" aria-pressed="false">
+            <span class="filter-name">Offline</span>
+            <span class="filter-sub">Spores, Molds, Fungi</span>
+          </button>
+        </div>
+      </nav>
+
+      <!-- UNIFIED KNOWLEDGE & LOGS FEED -->
+      <section id="content-feed" aria-label="Content Feed">
+        <div class="feed">
+          
+          <!-- ONLINE ITEM: Signal 001 -->
+          <article class="feed-item" data-tag="online">
+            <div class="feed-meta">
+              <time datetime="2026-08-27">August 27, 2026</time>
+              <span class="type-tag">Online // Signal 001</span>
+            </div>
+            <h2><a href="/signals/aeo-reporting-c-suite.html">Good Marketing Distributes Proof, Good Product Creates It: Why AEO Reporting Belongs in the C-Suite</a></h2>
+            <p>Kevin Indig and Amanda Johnson wrote a fantastic analysis of what many of us already know: User-Generated Content (UGC) is the top dog when it comes to 3rd-party AI citations. Why AEO analytics should be front and center in the C-suite, right alongside financials when it comes to North Star metrics.</p>
+          </article>
+
+        </div>
+      </section>
+      
+    </main>
+
+    <!-- FOOTER NODE -->
+    <footer>
+      <div class="footer-meta">
+        <p>&copy; 2026 Tyler &ldquo;TK&rdquo; Koshakow. All rights reserved.</p>
+      </div>
+      <div class="footer-links">
+        <!-- Site-Root plain text documents for LLM crawlers -->
+        <a href="/llms.txt" title="Machine Readable Overview">/llms.txt</a> &bull; 
+        <a href="/llms-full.txt" title="Unpaginated Knowledge Ingestion">/llms-full.txt</a>
+      </div>
+    </footer>
+    
+  </div>
+
+  <!-- Interactive Scripts (Theme Selector, Goblin Physics & Tag Filtering) -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Theme Selector & Goblin Mode Dynamic Physics
+      const themeButtons = document.querySelectorAll('.theme-option');
+      let goblinRAF = null;
+      let goblinElements = [];
+
+      function startGoblinChaos() {
+        stopGoblinChaos();
+        const selector = 'h1, h2, h3, h4, p, a, li, time, blockquote, table, th, td, .type-tag, .log-entry, .filter-btn, .identity-subhead';
+        const rawEls = document.querySelectorAll(selector);
+        goblinElements = [];
+        
+        rawEls.forEach((el, index) => {
+          if (el.closest('.header-top') || el.closest('.theme-selector')) return;
+          
+          goblinElements.push({
+            el: el,
+            speedX: 0.0012 + (index % 5) * 0.0005,
+            speedY: 0.0016 + (index % 4) * 0.0006,
+            speedRot: 0.0011 + (index % 3) * 0.0004,
+            ampX: 40 + (index % 7) * 12,
+            ampY: 35 + (index % 6) * 10,
+            ampRot: 14 + (index % 5) * 5,
+            phaseX: index * 1.3,
+            phaseY: index * 2.1,
+            phaseRot: index * 0.8
+          });
+          el.style.display = 'inline-block';
+          el.style.position = 'relative';
+          el.style.transition = 'none';
+        });
+        
+        const startTime = performance.now();
+        function loop(now) {
+          const elapsed = now - startTime;
+          goblinElements.forEach(item => {
+            const x = Math.sin(elapsed * item.speedX + item.phaseX) * item.ampX;
+            const y = Math.cos(elapsed * item.speedY + item.phaseY) * item.ampY;
+            const rot = Math.sin(elapsed * item.speedRot + item.phaseRot) * item.ampRot;
+            item.el.style.transform = `translate3d(${x.toFixed(1)}px, ${y.toFixed(1)}px, 0) rotate(${rot.toFixed(1)}deg)`;
+          });
+          goblinRAF = requestAnimationFrame(loop);
+        }
+        goblinRAF = requestAnimationFrame(loop);
+      }
+
+      function stopGoblinChaos() {
+        if (goblinRAF) {
+          cancelAnimationFrame(goblinRAF);
+          goblinRAF = null;
+        }
+        if (goblinElements.length) {
+          goblinElements.forEach(item => {
+            item.el.style.transform = '';
+            item.el.style.display = '';
+            item.el.style.position = '';
+            item.el.style.transition = '';
+          });
+          goblinElements = [];
+        }
+      }
+
+      function morphThemeSelector(newTheme, callback) {
+        const selector = document.querySelector('.theme-selector');
+        if (!selector) {
+          callback();
+          return;
+        }
+
+        // Remove breathing animation during trajectory morph
+        selector.classList.remove('breathe');
+
+        const firstRect = selector.getBoundingClientRect();
+        callback();
+        const lastRect = selector.getBoundingClientRect();
+
+        const deltaX = firstRect.left - lastRect.left;
+        const deltaY = firstRect.top - lastRect.top;
+        const scaleX = firstRect.width / (lastRect.width || 1);
+        const scaleY = firstRect.height / (lastRect.height || 1);
+
+        if (Math.abs(deltaX) < 1 && Math.abs(deltaY) < 1) {
+          if (newTheme === 'goblin') {
+            selector.classList.add('breathe');
+          }
+          return;
+        }
+
+        selector.style.transition = 'none';
+        selector.style.transform = `translate3d(${deltaX}px, ${deltaY}px, 0) scale(${scaleX}, ${scaleY})`;
+        
+        // Force reflow
+        selector.getBoundingClientRect();
+
+        selector.style.transition = 'transform 0.65s cubic-bezier(0.34, 1.4, 0.64, 1), border-radius 0.65s ease, box-shadow 0.65s ease, background-color 0.55s ease, border-color 0.55s ease, padding 0.55s ease';
+        selector.style.transform = (newTheme === 'goblin') ? 'translateX(-50%)' : 'none';
+
+        setTimeout(() => {
+          selector.style.transition = '';
+          if (newTheme === 'goblin') {
+            selector.classList.add('breathe');
+          } else {
+            selector.style.transform = '';
+            selector.classList.remove('breathe');
+          }
+        }, 660);
+      }
+
+      function applyTheme(theme, isInitial) {
+        const execute = () => {
+          document.documentElement.setAttribute('data-theme', theme);
+          localStorage.setItem('theme', theme);
+          themeButtons.forEach(btn => {
+            const val = btn.getAttribute('data-theme-val');
+            if (val === theme) {
+              btn.classList.add('active');
+              btn.setAttribute('aria-pressed', 'true');
+            } else {
+              btn.classList.remove('active');
+              btn.setAttribute('aria-pressed', 'false');
+            }
+          });
+
+          if (theme === 'goblin') {
+            startGoblinChaos();
+          } else {
+            stopGoblinChaos();
+          }
+        };
+
+        if (isInitial) {
+          execute();
+          const selector = document.querySelector('.theme-selector');
+          if (selector && theme === 'goblin') {
+            selector.classList.add('breathe');
+          }
+        } else {
+          morphThemeSelector(theme, execute);
+        }
+      }
+      
+      themeButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const selected = btn.getAttribute('data-theme-val');
+          applyTheme(selected, false);
+        });
+      });
+      
+      // Initialize active button state from current data-theme
+      const initialTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+      applyTheme(initialTheme, true);
+
+      // 2. Tag Filtering (Online vs. Offline vs. All)
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      const filterItems = document.querySelectorAll('[data-tag]');
+      
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const filter = btn.getAttribute('data-filter');
+          
+          filterBtns.forEach(b => {
+            b.classList.remove('active');
+            b.setAttribute('aria-pressed', 'false');
+          });
+          btn.classList.add('active');
+          btn.setAttribute('aria-pressed', 'true');
+          
+          filterItems.forEach(item => {
+            const itemTag = item.getAttribute('data-tag');
+            if (filter === 'all' || itemTag === filter) {
+              item.removeAttribute('data-hidden');
+            } else {
+              item.setAttribute('data-hidden', 'true');
+            }
+          });
+
+          if (document.documentElement.getAttribute('data-theme') === 'goblin') {
+            startGoblinChaos();
+          }
+        });
+      });
+
+      // 3. Escape Key to Instantly Exit Goblin Mode
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && document.documentElement.getAttribute('data-theme') === 'goblin') {
+          applyTheme('dark');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

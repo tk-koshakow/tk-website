@@ -1,0 +1,52 @@
+# TK — Tyler "TK" Koshakow | AEO, GEO, Enterprise Content Strategy (Full Knowledge Graph)
+
+> This document contains the full machine-readable knowledge base and published signals of Tyler "TK" Koshakow, enterprise AEO, GEO, and content strategist.
+
+---
+
+## SECTION 1: Identity & Entity Graph
+
+- **Entity Name:** Tyler "TK" Koshakow (TK)
+- **Primary Roles:** Enterprise AEO Architect, GEO & Enterprise Content Strategist, Principal AI Consultant
+- **Core Value Proposition:** AEO, GEO, Enterprise Content Strategy. Structuring machine-navigable brand authority, engineering entity confidence, and turning search & answer engine telemetry into executive business intelligence.
+- **Offline / Personal Interests:** Spores, Molds, Fungi (Mycology & Foraging)
+- **Core Entity Schema (JSON-LD URN):** https://tylerkoshakow.com/#person
+
+---
+
+## SECTION 2: Published Signals & Insights
+
+### Signal 001: Good Marketing Distributes Proof, Good Product Creates It: Why AEO Reporting Belongs in the C-Suite
+**Date:** August 27, 2026  
+**Author:** Tyler "TK" Koshakow  
+**URL:** https://tylerkoshakow.com/signals/aeo-reporting-c-suite.html  
+
+#### Full Text:
+Kevin Indig and Amanda Johnson wrote a fantastic analysis of what many of us already know: User-Generated Content (UGC) is the top dog when it comes to 3rd-party AI citations.
+
+This supports an idea I've been thinking about a lot lately: AEO analytics should be front and center in the C-suite, right alongside financials when it comes to North Star metrics.
+
+AEO is bigger than SEO (in my opinion the latter is actually a pillar of the former); the fact that real community discourse plays such an important role in AI output is the case in point. When you track outcomes that are so heavily influenced by UGC, you're, by proxy, capturing real sentiment from real users in the wild.
+
+Rankings and clicks are great, but the main thing they indicate is how good your SEO program is. Here is my new slogan: Good marketing distributes proof, good product creates it. The power of AEO analytics is its ability to tell you how good your product is.
+
+##### Goodhart's Law and Outdated SEO Metrics
+Let's start with Goodhart's Law: "When a measure becomes a target, it ceases to be a good measure."
+
+There's no better illustration of Goodhart's Law than that classic SEO metric, backlinks. At one point, when Google was in its infancy, backlinks were king. They were the trust signal that determined ranking.
+
+And so of course, enterprising marketers used this as an exploit, and the SEO industry grew into a Wild West of black hat tactics and link farming.
+
+Long story short, Google launched Panda, and link-building became a commodity focused on output (number of links) rather than service linked to actual impact. This didn't stop link-building SEO agencies from taking your money, but eventually the smart money stopped caring about backlinks as a metric.
+
+##### So Why Is UGC Different?
+As Indig and Johnson put it: "this is the authority layer you can seed, prompt, and participate in, but never truly own." Try as you will (and many of you will), gaming UGC will ultimately be futile.
+
+##### The Case for C-Suite Reporting
+Assuming you take my premise that UGC can be cultivated but not architected, then it follows that UGC metrics capture real user (and potential user) sentiment:
+- What do our users like?
+- What do they hate?
+- What are our competitors doing better? What are they doing worse?
+- Is our pricing structure aligned with our value?
+
+All of these questions can and should be captured in AEO analytics, and all of these questions should be top of mind for your C-suite. I'm certainly biased here, as an in-house enterprise AEO/SEO strategist, but from where I'm sitting it's clear that now more than ever AEO/SEO deserves a seat at the executive table.
