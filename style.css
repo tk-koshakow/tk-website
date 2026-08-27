@@ -4,15 +4,15 @@
    ========================================================================== */
 
 :root {
-  /* Color Scheme: Default Light Mode */
+  /* Color Scheme: Default Light Mode (High Contrast WCAG AAA Compliant) */
   --bg: #ffffff;
   --fg: #111111;
-  --fg-secondary: #555555;
-  --fg-muted: #727275;
+  --fg-secondary: #3b3b3e;
+  --fg-muted: #555558;
   --focus-ring: #0050ff;
-  --code-bg: #f6f6f6;
-  --table-header-bg: #fafafa;
-  --border-subtle: #eaeaea;
+  --code-bg: #f4f4f5;
+  --table-header-bg: #eeeeef;
+  --border-subtle: #d6d6d8;
 
   /* Typography Scale (Strict Proportional) */
   --text-xs: 0.75rem;
@@ -41,41 +41,41 @@
   --container-width: 44rem; /* Ultra-readable text width (~70 characters) */
 }
 
-/* User-controlled Dark Mode overrides */
+/* User-controlled Dark Mode overrides (WCAG AAA Compliant) */
 [data-theme="dark"] {
   --bg: #0c0c0d;
-  --fg: #f3f3f3;
-  --fg-secondary: #a0a0a5;
-  --fg-muted: #8e8e93;
+  --fg: #f5f5f7;
+  --fg-secondary: #c2c2c7;
+  --fg-muted: #a6a6ac;
   --focus-ring: #3b82f6;
   --code-bg: #161618;
-  --table-header-bg: #111112;
-  --border-subtle: #222225;
+  --table-header-bg: #141416;
+  --border-subtle: #333338;
 }
 
 /* Goblin Mode Theme Overrides */
 [data-theme="goblin"] {
   --bg: #061109;
   --fg: #39ff14;
-  --fg-secondary: #5dfc6d;
-  --fg-muted: #1e8236;
+  --fg-secondary: #74ff83;
+  --fg-muted: #39ff14;
   --focus-ring: #ff0055;
   --code-bg: #0b1f11;
   --table-header-bg: #09170d;
-  --border-subtle: #16401e;
+  --border-subtle: #1e8738;
 }
 
 /* System preferences fallback if no preference is saved */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme]) {
     --bg: #0c0c0d;
-    --fg: #f3f3f3;
-    --fg-secondary: #a0a0a5;
-    --fg-muted: #8e8e93;
+    --fg: #f5f5f7;
+    --fg-secondary: #c2c2c7;
+    --fg-muted: #a6a6ac;
     --focus-ring: #3b82f6;
     --code-bg: #161618;
-    --table-header-bg: #111112;
-    --border-subtle: #222225;
+    --table-header-bg: #141416;
+    --border-subtle: #333338;
   }
 }
 
@@ -176,7 +176,8 @@ header {
 .theme-option {
   background: transparent;
   border: 1px solid var(--border-subtle);
-  color: var(--fg-muted);
+  color: var(--fg-secondary);
+  font-weight: 500;
   font-family: var(--font-mono);
   font-size: var(--text-xs);
   padding: 0.25rem 0.6rem;
@@ -529,13 +530,15 @@ p.lead {
 }
 
 .filter-btn .filter-sub {
-  font-size: 10px;
-  opacity: 0.75;
+  font-size: 11px;
+  color: var(--fg-muted);
+  font-weight: 500;
   letter-spacing: 0.02em;
 }
 
 .filter-btn.active .filter-sub {
-  opacity: 0.9;
+  color: var(--bg);
+  font-weight: 600;
 }
 
 /* Filtering visibility state */
