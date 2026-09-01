@@ -806,6 +806,41 @@ footer {
   font-style: normal !important;
 }
 
+/* Editorial Specimen & Figure Imagery (AEO/SEO Optimized) */
+.article-image {
+  margin: var(--space-xl) 0;
+  padding: var(--space-xs);
+  background: var(--code-bg);
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  transition: border-color 0.3s ease;
+}
+
+.article-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  display: block;
+}
+
+.article-image figcaption {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--fg-muted);
+  line-height: 1.4;
+  text-align: center;
+  padding: var(--space-xs) var(--space-xs) 0 var(--space-xs);
+}
+
+.article-image figcaption em {
+  font-style: italic;
+  color: var(--fg-secondary);
+}
+
+.article-image figcaption strong {
+  color: var(--fg);
+}
+
 /* ==========================================================================
    Abstract Minimalist HTML/SVG Diagram Component
    ========================================================================== */
@@ -859,6 +894,44 @@ footer {
 }
 
 .diagram-node .node-highlight {
+  stroke: var(--fg);
+  stroke-width: 2;
+}
+
+/* Venn Diagram Shading Tones */
+.diagram-node .venn-hates-ai {
+  fill: var(--bg);
+  stroke: var(--border-subtle);
+  stroke-width: 1.5;
+}
+
+.diagram-node .venn-overlap {
+  fill: currentColor;
+  fill-opacity: 0.08;
+  stroke: var(--border-subtle);
+  stroke-width: 1.5;
+}
+
+.diagram-node .venn-sliver {
+  fill: currentColor;
+  fill-opacity: 0.16;
+  stroke: var(--border-subtle);
+  stroke-width: 1.5;
+}
+
+.diagram-node:hover .venn-hates-ai {
+  stroke: var(--fg);
+  stroke-width: 2;
+}
+
+.diagram-node:hover .venn-overlap {
+  fill-opacity: 0.14;
+  stroke: var(--fg);
+  stroke-width: 2;
+}
+
+.diagram-node:hover .venn-sliver {
+  fill-opacity: 0.26;
   stroke: var(--fg);
   stroke-width: 2;
 }
@@ -940,10 +1013,32 @@ html[data-theme="goblin"] .diagram-node .amp-triangle {
   stroke: #1e8738;
 }
 
+html[data-theme="goblin"] .diagram-node .venn-hates-ai {
+  fill: #39ff14;
+  fill-opacity: 0.05;
+  stroke: #1e8738;
+}
+
+html[data-theme="goblin"] .diagram-node .venn-overlap {
+  fill: #39ff14;
+  fill-opacity: 0.13;
+  stroke: #1e8738;
+}
+
+html[data-theme="goblin"] .diagram-node .venn-sliver {
+  fill: #39ff14;
+  fill-opacity: 0.25;
+  stroke: #1e8738;
+}
+
 html[data-theme="goblin"] .diagram-node:hover .node-box,
 html[data-theme="goblin"] .diagram-node:hover .amp-triangle,
-html[data-theme="goblin"] .diagram-node .node-highlight {
+html[data-theme="goblin"] .diagram-node:hover .node-highlight,
+html[data-theme="goblin"] .diagram-node:hover .venn-hates-ai,
+html[data-theme="goblin"] .diagram-node:hover .venn-overlap,
+html[data-theme="goblin"] .diagram-node:hover .venn-sliver {
   stroke: #39ff14;
+  stroke-width: 2;
   filter: drop-shadow(0 0 10px rgba(57, 255, 20, 0.8));
 }
 

@@ -8,4 +8,4 @@
 
 ## Offline (Spores, Molds, Fungi)
 
-- Content coming soon.
+- [Tricholomopsis sulphureoides: A Case Study in AI's Terribleness and Amazingness](https://tylerkoshakow.com/signals/tricholomopsis-sulphureoides-ai-mycology.html): How a wild foraging find, an initial AI hallucination, a white spore print, and Michael Kuo's analog dichotomous keys illustrate the necessity of human-in-the-loop AI systems—especially when death is on the line.
