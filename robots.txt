@@ -19,6 +19,8 @@
 User-agent: *
 Allow: /
 
+Sitemap: https://tylerkoshakow.com/sitemap.xml
+
 # Directives for LLM & Generative Search Spiders
 User-agent: GPTBot
 Allow: /

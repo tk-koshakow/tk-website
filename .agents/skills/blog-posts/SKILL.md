@@ -166,7 +166,8 @@ Whenever a new post is published:
 3. **Update Machine Knowledge Graphs:**
    - Add entry to `/llms.txt`.
    - Concatenate complete article text to `/llms-full.txt`.
-4. **Bump Stylesheet Cache-Buster:** Increment `style.css?v=...` across all HTML files.
+4. **Update XML Sitemap:** Run `python3 scripts/generate_sitemap.py` (or let the git pre-commit hook automatically re-generate and stage `sitemap.xml`).
+5. **Bump Stylesheet Cache-Buster:** Increment `style.css?v=...` across all HTML files.
 
 ---
 
@@ -182,6 +183,7 @@ Whenever a new post is published:
   <title>POST_TITLE — Tyler 'TK' Koshakow</title>
   <meta name="description" content="POST_SUMMARY">
   <link rel="canonical" href="https://tylerkoshakow.com/signals/POST_SLUG.html">
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
   
   <!-- OpenGraph Meta Tags -->
   <meta property="og:title" content="POST_TITLE">
@@ -335,7 +337,8 @@ Whenever a new post is published:
       <div class="footer-links">
         <a href="/" title="Home">/home</a> &bull;
         <a href="/llms.txt" title="Machine Readable Overview">/llms.txt</a> &bull; 
-        <a href="/llms-full.txt" title="Unpaginated Knowledge Ingestion">/llms-full.txt</a>
+        <a href="/llms-full.txt" title="Unpaginated Knowledge Ingestion">/llms-full.txt</a> &bull; 
+        <a href="/sitemap.xml" title="XML Sitemap">/sitemap.xml</a>
       </div>
     </footer>
     
