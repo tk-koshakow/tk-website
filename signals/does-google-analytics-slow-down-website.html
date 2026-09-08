@@ -143,21 +143,21 @@
 
         <div class="article-content" itemprop="articleBody">
           <p>
-            When building this site, the baseline requirement was simple: a clean 100/100 on Google PageSpeed Insights across both mobile and desktop. No bloated frameworks, no render-blocking waterfalls, just fast HTML and semantic CSS.
+            When building <a href="/">this site</a>, the baseline requirement was simple: a clean 100/100 on <a href="https://pagespeed.web.dev/" target="_blank" rel="noopener noreferrer">Google PageSpeed Insights</a> across both mobile and desktop. No bloated frameworks, no render-blocking waterfalls, just fast HTML and semantic CSS.
           </p>
 
           <p>
-            Then came time to add the standard business plumbing: Google Search Console (GSC) for search visibility and Google Analytics 4 (GA4) for telemetry. I wanted to measure exactly what happens to a pristine performance score when you add these basic foundational tools.
+            Then came time to add the standard business plumbing: <a href="https://search.google.com/search-console" target="_blank" rel="noopener noreferrer">Google Search Console</a> (GSC) for search visibility and <a href="https://developers.google.com/tag-platform/gtagjs" target="_blank" rel="noopener noreferrer">Google Analytics 4</a> (GA4) for telemetry. I wanted to measure what happens to a pristine performance score when you add these basic foundational tools.
           </p>
 
           <p>
-            The results were a stark reminder of how third-party scripts work under the hood. Following Google&rsquo;s own official installation instructions for GA4 immediately dropped our mobile performance score from a perfect 100 down to 84.
+            The outcome was immediate: following Google&rsquo;s standard setup instructions for GA4 knocked our mobile performance score straight from 100 down to 84.
           </p>
 
           <h2>The Benchmark: What Happened and Why</h2>
 
           <p>
-            We tested the integration in controlled phases, measuring mobile Core Web Vitals under throttled CPU and 4G network conditions. Here is the empirical scoreboard:
+            We tested the integration in controlled phases, measuring mobile <a href="https://web.dev/explore/vitals" target="_blank" rel="noopener noreferrer">Core Web Vitals</a> under throttled CPU and 4G network conditions. Here is the empirical scoreboard:
           </p>
 
           <div class="table-container">
@@ -207,7 +207,7 @@
                 </tr>
                 <tr>
                   <td><strong>+ Interaction-Driven GA4</strong></td>
-                  <td>99&ndash;100</td>
+                  <td>98&ndash;100</td>
                   <td>100</td>
                   <td>0.9 s</td>
                   <td>0.9 s</td>
@@ -220,42 +220,32 @@
           <h3>1. Search Console: The Zero-Cost Digital Handshake</h3>
 
           <p>
-            Adding Google Search Console had a net impact of exactly 0.00%. We verified ownership using an isolated root HTML file (<code>google*.html</code>). Because the verification file lives at a standalone URL that regular users and browsers never request during page rendering, it adds zero bytes to the critical path, zero DOM elements, and zero JavaScript execution. DNS TXT verification works identically.
+            Adding Google Search Console had a net impact of exactly 0.00%. We verified ownership using an isolated root HTML file (<code>google*.html</code>). Because the verification file lives at a standalone URL that browsers never request during normal page visits, it adds zero bytes to the critical path, zero DOM elements, and zero JavaScript execution. DNS TXT verification works the exact same way.
           </p>
 
           <h3>2. The Google Tag Paradox: Why the Default Snippet Tanks Speed</h3>
 
           <p>
-            Google Analytics was a completely different story. Google&rsquo;s setup wizard directs you to paste an <code>async</code> script tag at the top of your <code>&lt;head&gt;</code>. When we did that, our mobile performance dropped by 16 points. First Contentful Paint (FCP) slowed from 0.8s to 2.6s, Largest Contentful Paint (LCP) ballooned from 1.1s to 3.5s, and Lighthouse flagged 72 KiB of unused JavaScript alongside 128ms of main-thread CPU bootup time.
+            Google Analytics was another story. Google&rsquo;s setup wizard tells you to paste an <code>async</code> script tag directly into the <code>&lt;head&gt;</code>. When we did that, our mobile performance dropped by 16 points. <a href="https://web.dev/articles/fcp" target="_blank" rel="noopener noreferrer">First Contentful Paint (FCP)</a> slowed from 0.8s to 2.6s, <a href="https://web.dev/articles/lcp" target="_blank" rel="noopener noreferrer">Largest Contentful Paint (LCP)</a> stretched from 1.1s to 3.5s, and Lighthouse flagged 72 KiB of unused JavaScript alongside 128ms of main-thread CPU bootup time.
           </p>
 
           <p>
-            It sounds paradoxical that Google&rsquo;s own snippet degrades Google&rsquo;s own speed score. But this comes down to internal organizational incentives:
+            It seems counterintuitive that Google&rsquo;s own snippet degrades Google&rsquo;s own speed tool. But it comes down to a clear split in incentives:
           </p>
 
           <ul>
             <li><strong>The Analytics Team</strong> optimizes for foolproof data capture across broken websites, legacy browsers, and non-technical site owners. They want the tracking library fetched as early as humanly possible, regardless of network cost.</li>
-            <li><strong>The Chrome &amp; Search Teams</strong> optimize for user experience and Core Web Vitals. They measure the brutal reality of mobile devices with constrained CPUs and mobile radio bandwidth.</li>
+            <li><strong>The Chrome &amp; Search Teams</strong> optimize for user experience and Core Web Vitals. They measure the reality of mobile devices with constrained CPUs and mobile radio bandwidth.</li>
           </ul>
 
           <p>
             Even with an <code>async</code> attribute, browsers prioritize scripts discovered in the <code>&lt;head&gt;</code> during the initial preload scan. Downloading Google&rsquo;s ~100 KB+ bundle directly competes with critical CSS, delaying layout and visual rendering.
           </p>
 
-          <p>
-            Analytics exists to measure how people interact with your product. But when the measurement tool itself slows down the experience, you violate the core principle of value creation: Good marketing distributes proof, good product creates it.
-          </p>
-
-          <figure class="pullquote">
-            <blockquote>
-              &ldquo;Good marketing distributes proof,<br>good product creates it.&rdquo;
-            </blockquote>
-          </figure>
-
           <h2>The Engineering Fix: Interaction-Driven Sequencing</h2>
 
           <p>
-            Fixing this doesn&rsquo;t mean abandoning analytics. It means taking advantage of how Google Analytics was architected internally.
+            The solution doesn&rsquo;t require dropping analytics. It just requires working with how Google Analytics actually handles data.
           </p>
 
           <p>
@@ -263,17 +253,17 @@
           </p>
 
           <p>
-            We first tested a naive deferred loader using <code>requestIdleCallback</code>. While FCP and LCP recovered to 1.0s, executing the heavy Google bundle once idle triggered a 450ms Total Blocking Time (TBT) spike on mobile CPU throttling, holding the score at 89.
+            We first tested a naive deferred loader using <code>requestIdleCallback</code>. While FCP and LCP recovered to 1.0s, executing the heavy Google bundle once idle triggered a 450ms <a href="https://web.dev/articles/tbt" target="_blank" rel="noopener noreferrer">Total Blocking Time (TBT)</a> spike on mobile CPU throttling, holding the score at 89.
           </p>
 
           <p>
-            The winning architecture decouples telemetry queuing from script execution:
+            The cleaner approach separates event queuing from script execution:
           </p>
 
           <ol>
             <li><strong>Instant In-Memory Queue:</strong> Initialize <code>dataLayer</code> synchronously inline so pageviews and configuration parameters are captured instantly in memory (0 KB network, 0 ms main-thread delay).</li>
-            <li><strong>Passive Interaction Dispatch:</strong> Attach passive event listeners for user intent (<code>pointerdown</code>, <code>scroll</code>, <code>touchstart</code>, <code>keydown</code>). The moment a real user touches the screen or moves their mouse, <code>gtag.js</code> is dynamically injected with <code>fetchpriority="low"</code>.</li>
-            <li><strong>Fallback Safety Net:</strong> A 5-second timer and a <code>visibilitychange</code> listener ensure that even passive readers or quick tab-switchers are recorded without impacting initial Lighthouse audits.</li>
+            <li><strong>Passive Interaction Dispatch:</strong> Attach passive event listeners for user intent (<code>pointerdown</code>, <code>scroll</code>, <code>touchstart</code>, <code>keydown</code>). The moment a real user touches the screen or moves their mouse, <code>gtag.js</code> is dynamically injected with <code>fetchpriority="low"</code>, following <a href="https://web.dev/articles/import-on-interaction" target="_blank" rel="noopener noreferrer">modern script sequencing patterns</a>.</li>
+            <li><strong>Fallback Safety Net:</strong> A background fallback timer and a <code>visibilitychange</code> listener ensure that even passive readers or quick tab-switchers are recorded without impacting initial Lighthouse audits.</li>
           </ol>
 
           <!-- GRAPHIC: INTERACTION-DRIVEN TELEMETRY ARCHITECTURE -->
@@ -312,7 +302,7 @@
                 </g>
 
                 <!-- Node 3: User Intent Gate -->
-                <g class="diagram-node" data-hint="03 / User Intent Gate // Passive listeners trigger on first touch, scroll, or 5s fallback">
+                <g class="diagram-node" data-hint="03 / User Intent Gate // Passive listeners trigger on first touch, scroll, or fallback">
                   <rect x="350" y="155" width="200" height="55" rx="4" class="node-box" />
                   <text x="450" y="183" class="node-title" text-anchor="middle">03. User Intent Gate</text>
                 </g>
@@ -341,22 +331,18 @@
 
           <ul>
             <li><strong>Off-the-Shelf Script Delay Plugins:</strong> In CMS ecosystems like WordPress and WooCommerce, performance plugins (such as WP Rocket, Perfmatters, and FlyingPress) offer built-in &ldquo;Delay JavaScript Execution&rdquo; features that automate this exact interaction-trigger pattern for GA4, Meta Pixels, and chat widgets.</li>
-            <li><strong>Web Worker Proxies:</strong> Solutions like Partytown run third-party tracking scripts entirely off the main thread in background Web Workers, keeping the main browser thread clear for user input.</li>
+            <li><strong>Web Worker Proxies:</strong> Solutions like <a href="https://partytown.builder.io/" target="_blank" rel="noopener noreferrer">Partytown</a> run third-party tracking scripts entirely off the main thread in background Web Workers, keeping the main browser thread clear for user input.</li>
             <li><strong>Edge &amp; Server-Side Tagging:</strong> Cloudflare Zaraz and server-side Google Tag Manager offload tag processing from the client&rsquo;s phone to edge servers.</li>
           </ul>
 
           <p>
-            While I haven&rsquo;t personally tested or endorsed specific proprietary plugins for every platform, the architectural principle remains universal across any stack: <em>never execute non-critical third-party JavaScript during the critical rendering path.</em>
+            While I haven&rsquo;t personally tested or used every specific proprietary plugin, the underlying pattern is an established industry standard: <em>never execute non-critical third-party JavaScript during the critical rendering path.</em>
           </p>
 
-          <h2>The Executive Takeaway</h2>
+          <h2>The Real Takeaway</h2>
 
           <p>
-            You never have to sacrifice business intelligence for page speed. But you also cannot blindly trust default copy-paste installation snippets from tech vendors&mdash;even when that vendor is Google.
-          </p>
-
-          <p>
-            By buffering events in memory and sequencing script execution behind user intent, you protect your Core Web Vitals, deliver an instant mobile user experience, and capture every shred of telemetry your analytics team needs.
+            You don&rsquo;t have to trade tracking for speed. But you also can&rsquo;t assume default copy-paste code from a giant tech vendor is optimized for performance&mdash;even when that vendor is Google. Holding events in memory and waiting for user input keeps your Core Web Vitals clean while still getting the data your team needs. (If you want to read more about why clean telemetry matters to leadership, see my previous piece on <a href="/signals/aeo-reporting-c-suite.html">AEO and C-suite reporting</a>).
           </p>
         </div>
 
