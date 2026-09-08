@@ -28,7 +28,7 @@
         window.addEventListener(e, loadGA, { passive: true, once: true });
       });
 
-      setTimeout(loadGA, 5000);
+      setTimeout(loadGA, 7000);
       document.addEventListener('visibilitychange', function() {
         if (document.visibilityState === 'hidden') loadGA();
       }, { once: true });
