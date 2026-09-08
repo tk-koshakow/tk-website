@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Does Google Analytics Slow Down Your Website? An Empirical GA4 Benchmark — Tyler 'TK' Koshakow</title>
+  <meta name="description" content="We benchmarked Google Search Console and GA4 on a clean 100/100 site. Google's default snippet dropped mobile scores to 84. Here is why, and how to fix it.">
+  <link rel="canonical" href="https://tylerkoshakow.com/signals/does-google-analytics-slow-down-website.html">
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
+  
+  <!-- Minimalist SVG Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' font-family='monospace' font-weight='bold'>TK</text></svg>">
+  
+  <!-- OpenGraph Meta Tags -->
+  <meta property="og:title" content="Does Google Analytics Slow Down Your Website? An Empirical GA4 Benchmark">
+  <meta property="og:description" content="We benchmarked Google Search Console and GA4 on a clean 100/100 site. Google's default snippet dropped mobile scores to 84. Here is why, and how to fix it.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://tylerkoshakow.com/signals/does-google-analytics-slow-down-website.html">
+  <meta property="article:published_time" content="2026-09-08">
+  <meta property="article:author" content="Tyler 'TK' Koshakow">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Does Google Analytics Slow Down Your Website? An Empirical GA4 Benchmark">
+  <meta name="twitter:description" content="We benchmarked Google Search Console and GA4 on a clean 100/100 site. Google's default snippet dropped mobile scores to 84. Here is why, and how to fix it.">
+  
+  <link rel="stylesheet" href="../style.css?v=goblin20">
+  
+  <!-- Inline Script to Prevent Theme Flash (FOUC) -->
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('theme');
+      const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const theme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+
+  <!-- High-Performance GA4 Loader (Zero-TBT / Core Web Vitals Preserved) -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-5JSX1RQMSR');
+
+    (function() {
+      function loadGA() {
+        if (window._gaInitialized) return;
+        window._gaInitialized = true;
+        
+        ['pointerdown', 'scroll', 'touchstart', 'keydown'].forEach(function(e) {
+          window.removeEventListener(e, loadGA, { passive: true });
+        });
+
+        var s = document.createElement('script');
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=G-5JSX1RQMSR';
+        s.async = true;
+        s.fetchPriority = 'low';
+        document.head.appendChild(s);
+      }
+
+      ['pointerdown', 'scroll', 'touchstart', 'keydown'].forEach(function(e) {
+        window.addEventListener(e, loadGA, { passive: true, once: true });
+      });
+
+      setTimeout(loadGA, 5000);
+      document.addEventListener('visibilitychange', function() {
+        if (document.visibilityState === 'hidden') loadGA();
+      }, { once: true });
+    })();
+  </script>
+  
+  <!-- JSON-LD Entity Graph -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "TechArticle",
+        "@id": "https://tylerkoshakow.com/signals/does-google-analytics-slow-down-website.html#article",
+        "isPartOf": {
+          "@type": "WebSite",
+          "@id": "https://tylerkoshakow.com/#website",
+          "name": "Tyler 'TK' Koshakow",
+          "url": "https://tylerkoshakow.com"
+        },
+        "headline": "Does Google Analytics Slow Down Your Website? An Empirical GA4 Benchmark",
+        "description": "We benchmarked Google Search Console and GA4 on a clean 100/100 site. Google's default snippet dropped mobile scores to 84. Here is why, and how to fix it.",
+        "datePublished": "2026-09-08",
+        "dateModified": "2026-09-08",
+        "mainEntityOfPage": "https://tylerkoshakow.com/signals/does-google-analytics-slow-down-website.html",
+        "author": {
+          "@type": "Person",
+          "@id": "https://tylerkoshakow.com/#person",
+          "name": "Tyler 'TK' Koshakow",
+          "jobTitle": "Enterprise AEO/SEO Strategist",
+          "url": "https://tylerkoshakow.com"
+        },
+        "publisher": {
+          "@type": "Person",
+          "@id": "https://tylerkoshakow.com/#person",
+          "name": "Tyler 'TK' Koshakow"
+        },
+        "about": [
+          { "@type": "Thing", "name": "Google Analytics 4 (GA4)" },
+          { "@type": "Thing", "name": "PageSpeed Insights" },
+          { "@type": "Thing", "name": "Core Web Vitals" },
+          { "@type": "Thing", "name": "Web Performance Optimization" }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <div class="container">
+    
+    <!-- TOP NAVIGATION -->
+    <header>
+      <div class="header-top">
+        <a href="/" class="nav-back">&larr; TK</a>
+        <div class="theme-selector" role="group" aria-label="Select theme mode">
+          <button type="button" class="theme-option" data-theme-val="light" aria-pressed="false">Light</button>
+          <button type="button" class="theme-option" data-theme-val="dark" aria-pressed="false">Dark</button>
+          <button type="button" class="theme-option" data-theme-val="goblin" aria-pressed="false">Goblin</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- ARTICLE MAIN CONTENT -->
+    <main>
+      <article class="article-detail" itemscope itemtype="https://schema.org/TechArticle">
+        
+        <header class="article-header">
+          <div class="feed-meta">
+            <time datetime="2026-09-08" itemprop="datePublished">September 8, 2026</time>
+            <span class="type-tag">Online // Signal 003</span>
+          </div>
+          <h1 class="article-title" itemprop="headline">Does Google Analytics Slow Down Your Website? An Empirical GA4 Benchmark</h1>
+          <p class="article-author" itemprop="author">Tyler &ldquo;TK&rdquo; Koshakow</p>
+        </header>
+
+        <div class="article-content" itemprop="articleBody">
+          <p>
+            When building this site, the baseline requirement was simple: a clean 100/100 on Google PageSpeed Insights across both mobile and desktop. No bloated frameworks, no render-blocking waterfalls, just fast HTML and semantic CSS.
+          </p>
+
+          <p>
+            Then came time to add the standard business plumbing: Google Search Console (GSC) for search visibility and Google Analytics 4 (GA4) for telemetry. I wanted to measure exactly what happens to a pristine performance score when you add these basic foundational tools.
+          </p>
+
+          <p>
+            The results were a stark reminder of how third-party scripts work under the hood. Following Google&rsquo;s own official installation instructions for GA4 immediately dropped our mobile performance score from a perfect 100 down to 84.
+          </p>
+
+          <h2>The Benchmark: What Happened and Why</h2>
+
+          <p>
+            We tested the integration in controlled phases, measuring mobile Core Web Vitals under throttled CPU and 4G network conditions. Here is the empirical scoreboard:
+          </p>
+
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Phase / Configuration</th>
+                  <th>Mobile Score</th>
+                  <th>Desktop Score</th>
+                  <th>FCP</th>
+                  <th>LCP</th>
+                  <th>Total Blocking Time</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Clean Baseline</strong></td>
+                  <td>100</td>
+                  <td>100</td>
+                  <td>0.8 s</td>
+                  <td>1.1 s</td>
+                  <td>0 ms</td>
+                </tr>
+                <tr>
+                  <td><strong>+ Google Search Console</strong></td>
+                  <td>100</td>
+                  <td>100</td>
+                  <td>0.8 s</td>
+                  <td>1.1 s</td>
+                  <td>0 ms</td>
+                </tr>
+                <tr>
+                  <td><strong>+ Standard GA4 (&lt;head&gt;)</strong></td>
+                  <td>84</td>
+                  <td>98</td>
+                  <td>2.6 s</td>
+                  <td>3.5 s</td>
+                  <td>10 ms (128ms CPU)</td>
+                </tr>
+                <tr>
+                  <td><strong>+ requestIdleCallback Loader</strong></td>
+                  <td>89</td>
+                  <td>100</td>
+                  <td>1.0 s</td>
+                  <td>1.0 s</td>
+                  <td>450 ms</td>
+                </tr>
+                <tr>
+                  <td><strong>+ Interaction-Driven GA4</strong></td>
+                  <td>99&ndash;100</td>
+                  <td>100</td>
+                  <td>0.9 s</td>
+                  <td>0.9 s</td>
+                  <td>0 ms</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>1. Search Console: The Zero-Cost Digital Handshake</h3>
+
+          <p>
+            Adding Google Search Console had a net impact of exactly 0.00%. We verified ownership using an isolated root HTML file (<code>google*.html</code>). Because the verification file lives at a standalone URL that regular users and browsers never request during page rendering, it adds zero bytes to the critical path, zero DOM elements, and zero JavaScript execution. DNS TXT verification works identically.
+          </p>
+
+          <h3>2. The Google Tag Paradox: Why the Default Snippet Tanks Speed</h3>
+
+          <p>
+            Google Analytics was a completely different story. Google&rsquo;s setup wizard directs you to paste an <code>async</code> script tag at the top of your <code>&lt;head&gt;</code>. When we did that, our mobile performance dropped by 16 points. First Contentful Paint (FCP) slowed from 0.8s to 2.6s, Largest Contentful Paint (LCP) ballooned from 1.1s to 3.5s, and Lighthouse flagged 72 KiB of unused JavaScript alongside 128ms of main-thread CPU bootup time.
+          </p>
+
+          <p>
+            It sounds paradoxical that Google&rsquo;s own snippet degrades Google&rsquo;s own speed score. But this comes down to internal organizational incentives:
+          </p>
+
+          <ul>
+            <li><strong>The Analytics Team</strong> optimizes for foolproof data capture across broken websites, legacy browsers, and non-technical site owners. They want the tracking library fetched as early as humanly possible, regardless of network cost.</li>
+            <li><strong>The Chrome &amp; Search Teams</strong> optimize for user experience and Core Web Vitals. They measure the brutal reality of mobile devices with constrained CPUs and mobile radio bandwidth.</li>
+          </ul>
+
+          <p>
+            Even with an <code>async</code> attribute, browsers prioritize scripts discovered in the <code>&lt;head&gt;</code> during the initial preload scan. Downloading Google&rsquo;s ~100 KB+ bundle directly competes with critical CSS, delaying layout and visual rendering.
+          </p>
+
+          <p>
+            Analytics exists to measure how people interact with your product. But when the measurement tool itself slows down the experience, you violate the core principle of value creation: Good marketing distributes proof, good product creates it.
+          </p>
+
+          <figure class="pullquote">
+            <blockquote>
+              &ldquo;Good marketing distributes proof,<br>good product creates it.&rdquo;
+            </blockquote>
+          </figure>
+
+          <h2>The Engineering Fix: Interaction-Driven Sequencing</h2>
+
+          <p>
+            Fixing this doesn&rsquo;t mean abandoning analytics. It means taking advantage of how Google Analytics was architected internally.
+          </p>
+
+          <p>
+            Google designed <code>window.dataLayer</code> as a First-In, First-Out (FIFO) queue. You can push events into the array immediately via lightweight inline JavaScript with zero network overhead. The external <code>gtag.js</code> binary doesn&rsquo;t actually need to be downloaded until someone starts interacting with the page.
+          </p>
+
+          <p>
+            We first tested a naive deferred loader using <code>requestIdleCallback</code>. While FCP and LCP recovered to 1.0s, executing the heavy Google bundle once idle triggered a 450ms Total Blocking Time (TBT) spike on mobile CPU throttling, holding the score at 89.
+          </p>
+
+          <p>
+            The winning architecture decouples telemetry queuing from script execution:
+          </p>
+
+          <ol>
+            <li><strong>Instant In-Memory Queue:</strong> Initialize <code>dataLayer</code> synchronously inline so pageviews and configuration parameters are captured instantly in memory (0 KB network, 0 ms main-thread delay).</li>
+            <li><strong>Passive Interaction Dispatch:</strong> Attach passive event listeners for user intent (<code>pointerdown</code>, <code>scroll</code>, <code>touchstart</code>, <code>keydown</code>). The moment a real user touches the screen or moves their mouse, <code>gtag.js</code> is dynamically injected with <code>fetchpriority="low"</code>.</li>
+            <li><strong>Fallback Safety Net:</strong> A 5-second timer and a <code>visibilitychange</code> listener ensure that even passive readers or quick tab-switchers are recorded without impacting initial Lighthouse audits.</li>
+          </ol>
+
+          <!-- GRAPHIC: INTERACTION-DRIVEN TELEMETRY ARCHITECTURE -->
+          <figure class="diagram-container" aria-label="Abstract flow model: dataLayer Queue -> Critical Paint -> User Interaction -> GA4 Telemetry Dispatch">
+            <div class="diagram-wrapper">
+              <svg viewBox="0 0 600 240" class="aeo-diagram" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Interaction-Driven GA4 Telemetry Architecture">
+                <defs>
+                  <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M 0 1 L 8 5 L 0 9 z" fill="currentColor" />
+                  </marker>
+                </defs>
+
+                <!-- Connective Paths -->
+                <g class="diagram-lines" stroke="currentColor" stroke-width="1.5" fill="none">
+                  <!-- Inline dataLayer -> Critical Paint -->
+                  <path d="M 240 57.5 L 342 57.5" marker-end="url(#arrow)" />
+                  <!-- Critical Paint -> User Intent Gate -->
+                  <path d="M 450 85 L 450 147" marker-end="url(#arrow)" />
+                  <!-- User Intent Gate -> GA4 Dispatch -->
+                  <path d="M 350 182.5 L 248 182.5" marker-end="url(#arrow)" />
+                  <!-- GA4 Dispatch -> Inline Queue (Buffer Sync) -->
+                  <path d="M 140 155 L 140 93" marker-end="url(#arrow)" stroke-dasharray="3 3" />
+                </g>
+
+                <!-- 4 NODES -->
+                <!-- Node 1: dataLayer Queue -->
+                <g class="diagram-node" data-hint="01 / dataLayer Queue // In-memory FIFO array (0 KB network, 0 ms CPU blocking)">
+                  <rect x="40" y="30" width="200" height="55" rx="4" class="node-box" />
+                  <text x="140" y="58" class="node-title" text-anchor="middle">01. dataLayer Queue</text>
+                </g>
+
+                <!-- Node 2: Critical Paint -->
+                <g class="diagram-node" data-hint="02 / Critical Paint // FCP &amp; LCP complete unhindered; 100/100 Core Web Vitals secured">
+                  <rect x="350" y="30" width="200" height="55" rx="4" class="node-box" />
+                  <text x="450" y="58" class="node-title" text-anchor="middle">02. Critical Paint</text>
+                </g>
+
+                <!-- Node 3: User Intent Gate -->
+                <g class="diagram-node" data-hint="03 / User Intent Gate // Passive listeners trigger on first touch, scroll, or 5s fallback">
+                  <rect x="350" y="155" width="200" height="55" rx="4" class="node-box" />
+                  <text x="450" y="183" class="node-title" text-anchor="middle">03. User Intent Gate</text>
+                </g>
+
+                <!-- Node 4: GA4 Dispatch -->
+                <g class="diagram-node" data-hint="04 / GA4 Dispatch // gtag.js fetched with low priority; flushes buffered dataLayer">
+                  <rect x="40" y="155" width="200" height="55" rx="4" class="node-box" />
+                  <text x="140" y="183" class="node-title" text-anchor="middle">04. GA4 Dispatch</text>
+                </g>
+              </svg>
+              <div class="diagram-status" aria-live="polite">
+                <span class="status-text" data-default="telemetry // hover node to inspect signal flow">telemetry // hover node to inspect signal flow</span>
+              </div>
+            </div>
+          </figure>
+
+          <h2>How This Applies to Real Business &amp; E-Commerce Sites</h2>
+
+          <p>
+            This challenge is not unique to personal websites. In high-stakes environments like e-commerce, where every 100ms of mobile latency measurably degrades conversion rates, loading raw tracking scripts in the document head is an immediate liability.
+          </p>
+
+          <p>
+            Performance engineers in the e-commerce space have used variations of this technique for years. Depending on your tech stack, you don&rsquo;t necessarily have to write custom vanilla JavaScript from scratch:
+          </p>
+
+          <ul>
+            <li><strong>Off-the-Shelf Script Delay Plugins:</strong> In CMS ecosystems like WordPress and WooCommerce, performance plugins (such as WP Rocket, Perfmatters, and FlyingPress) offer built-in &ldquo;Delay JavaScript Execution&rdquo; features that automate this exact interaction-trigger pattern for GA4, Meta Pixels, and chat widgets.</li>
+            <li><strong>Web Worker Proxies:</strong> Solutions like Partytown run third-party tracking scripts entirely off the main thread in background Web Workers, keeping the main browser thread clear for user input.</li>
+            <li><strong>Edge &amp; Server-Side Tagging:</strong> Cloudflare Zaraz and server-side Google Tag Manager offload tag processing from the client&rsquo;s phone to edge servers.</li>
+          </ul>
+
+          <p>
+            While I haven&rsquo;t personally tested or endorsed specific proprietary plugins for every platform, the architectural principle remains universal across any stack: <em>never execute non-critical third-party JavaScript during the critical rendering path.</em>
+          </p>
+
+          <h2>The Executive Takeaway</h2>
+
+          <p>
+            You never have to sacrifice business intelligence for page speed. But you also cannot blindly trust default copy-paste installation snippets from tech vendors&mdash;even when that vendor is Google.
+          </p>
+
+          <p>
+            By buffering events in memory and sequencing script execution behind user intent, you protect your Core Web Vitals, deliver an instant mobile user experience, and capture every shred of telemetry your analytics team needs.
+          </p>
+        </div>
+
+      </article>
+    </main>
+
+    <!-- FOOTER NODE -->
+    <footer>
+      <div class="footer-meta">
+        <p>&copy; 2026 Tyler &ldquo;TK&rdquo; Koshakow. All rights reserved.</p>
+      </div>
+      <div class="footer-links">
+        <a href="/" title="Home">/home</a> &bull;
+        <a href="/llms.txt" title="Machine Readable Overview">/llms.txt</a> &bull; 
+        <a href="/llms-full.txt" title="Unpaginated Knowledge Ingestion">/llms-full.txt</a> &bull; 
+        <a href="/sitemap.xml" title="XML Sitemap">/sitemap.xml</a>
+      </div>
+    </footer>
+    
+  </div>
+
+  <!-- Interactive Scripts (Theme Selector, Goblin Mode Physics & Telemetry Hints) -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const themeButtons = document.querySelectorAll('.theme-option');
+      let goblinRAF = null;
+      let goblinElements = [];
+
+      function startGoblinChaos() {
+        stopGoblinChaos();
+        const selector = 'h1, h2, h3, h4, p, a, li, time, blockquote, table, th, td, .type-tag, .article-author, .article-title';
+        const rawEls = document.querySelectorAll(selector);
+        goblinElements = [];
+        
+        rawEls.forEach((el, index) => {
+          if (el.closest('.header-top') || el.closest('.theme-selector')) return;
+          
+          goblinElements.push({
+            el: el,
+            speedX: 0.0012 + (index % 5) * 0.0005,
+            speedY: 0.0016 + (index % 4) * 0.0006,
+            speedRot: 0.0011 + (index % 3) * 0.0004,
+            ampX: 40 + (index % 7) * 12,
+            ampY: 35 + (index % 6) * 10,
+            ampRot: 14 + (index % 5) * 5,
+            phaseX: index * 1.3,
+            phaseY: index * 2.1,
+            phaseRot: index * 0.8
+          });
+          el.style.display = 'inline-block';
+          el.style.position = 'relative';
+          el.style.transition = 'none';
+        });
+        
+        const startTime = performance.now();
+        function loop(now) {
+          const elapsed = now - startTime;
+          goblinElements.forEach(item => {
+            const x = Math.sin(elapsed * item.speedX + item.phaseX) * item.ampX;
+            const y = Math.cos(elapsed * item.speedY + item.phaseY) * item.ampY;
+            const rot = Math.sin(elapsed * item.speedRot + item.phaseRot) * item.ampRot;
+            item.el.style.transform = ;
+          });
+          goblinRAF = requestAnimationFrame(loop);
+        }
+        goblinRAF = requestAnimationFrame(loop);
+      }
+
+      function stopGoblinChaos() {
+        if (goblinRAF) {
+          cancelAnimationFrame(goblinRAF);
+          goblinRAF = null;
+        }
+        if (goblinElements.length) {
+          goblinElements.forEach(item => {
+            item.el.style.transform = '';
+            item.el.style.display = '';
+            item.el.style.position = '';
+            item.el.style.transition = '';
+          });
+          goblinElements = [];
+        }
+      }
+
+      function morphThemeSelector(newTheme, callback) {
+        const selector = document.querySelector('.theme-selector');
+        if (!selector) {
+          callback();
+          return;
+        }
+
+        selector.classList.remove('breathe');
+
+        const firstRect = selector.getBoundingClientRect();
+        callback();
+        const lastRect = selector.getBoundingClientRect();
+
+        const deltaX = firstRect.left - lastRect.left;
+        const deltaY = firstRect.top - lastRect.top;
+        const scaleX = firstRect.width / (lastRect.width || 1);
+        const scaleY = firstRect.height / (lastRect.height || 1);
+
+        if (Math.abs(deltaX) < 1 && Math.abs(deltaY) < 1) {
+          if (newTheme === 'goblin') {
+            selector.classList.add('breathe');
+          }
+          return;
+        }
+
+        selector.style.transition = 'none';
+        selector.style.transform = ;
+        
+        selector.getBoundingClientRect();
+
+        selector.style.transition = 'transform 0.65s cubic-bezier(0.34, 1.4, 0.64, 1), border-radius 0.65s ease, box-shadow 0.65s ease, background-color 0.55s ease, border-color 0.55s ease, padding 0.55s ease';
+        selector.style.transform = (newTheme === 'goblin') ? 'translateX(-50%)' : 'none';
+
+        setTimeout(() => {
+          selector.style.transition = '';
+          if (newTheme === 'goblin') {
+            selector.classList.add('breathe');
+          } else {
+            selector.style.transform = '';
+            selector.classList.remove('breathe');
+          }
+        }, 660);
+      }
+
+      function applyTheme(theme, isInitial) {
+        const execute = () => {
+          document.documentElement.setAttribute('data-theme', theme);
+          localStorage.setItem('theme', theme);
+          themeButtons.forEach(btn => {
+            const val = btn.getAttribute('data-theme-val');
+            if (val === theme) {
+              btn.classList.add('active');
+              btn.setAttribute('aria-pressed', 'true');
+            } else {
+              btn.classList.remove('active');
+              btn.setAttribute('aria-pressed', 'false');
+            }
+          });
+
+          if (theme === 'goblin') {
+            startGoblinChaos();
+          } else {
+            stopGoblinChaos();
+          }
+        };
+
+        if (isInitial) {
+          execute();
+          const selector = document.querySelector('.theme-selector');
+          if (selector && theme === 'goblin') {
+            selector.classList.add('breathe');
+          }
+        } else {
+          morphThemeSelector(theme, execute);
+        }
+      }
+      
+      themeButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const selected = btn.getAttribute('data-theme-val');
+          applyTheme(selected, false);
+        });
+      });
+      
+      const initialTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+      applyTheme(initialTheme, true);
+
+      // Interactive Micro-Telemetry Status Readout
+      document.querySelectorAll('.diagram-wrapper').forEach(wrapper => {
+        const statusEl = wrapper.querySelector('.status-text');
+        if (!statusEl) return;
+        const defaultText = statusEl.getAttribute('data-default');
+        const nodes = wrapper.querySelectorAll('.diagram-node');
+        
+        nodes.forEach(node => {
+          node.addEventListener('mouseenter', () => {
+            const hint = node.getAttribute('data-hint');
+            if (hint) {
+              statusEl.textContent = hint;
+              statusEl.style.color = 'var(--fg)';
+            }
+          });
+          node.addEventListener('mouseleave', () => {
+            statusEl.textContent = defaultText;
+            statusEl.style.color = '';
+          });
+        });
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && document.documentElement.getAttribute('data-theme') === 'goblin') {
+          applyTheme('dark', false);
+        }
+      });
+    });
+  </script>
+</body>
+</html>

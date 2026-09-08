@@ -4,6 +4,7 @@
 
 ## Online (AEO, GEO, Content Strategy)
 
+- [Does Google Analytics Slow Down Your Website? An Empirical GA4 Benchmark](https://tylerkoshakow.com/signals/does-google-analytics-slow-down-website.html): Empirical Core Web Vitals benchmark demonstrating how default Google Analytics 4 (GA4) snippets tank mobile PageSpeed scores from 100 to 84, why Search Console has 0% impact, and how to sequence telemetry using interaction-driven execution to maintain 100/100 performance.
 - [Good Marketing Distributes Proof, Good Product Creates It: Why AEO Reporting Belongs in the C-Suite](https://tylerkoshakow.com/signals/aeo-reporting-c-suite.html): Why User-Generated Content (UGC) dominance in 3rd-party AI citations proves that AEO telemetry belongs in the C-suite alongside financials as a core proxy for product quality.
 
 ## Offline (Spores, Molds, Fungi)
