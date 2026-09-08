@@ -404,7 +404,7 @@
             const x = Math.sin(elapsed * item.speedX + item.phaseX) * item.ampX;
             const y = Math.cos(elapsed * item.speedY + item.phaseY) * item.ampY;
             const rot = Math.sin(elapsed * item.speedRot + item.phaseRot) * item.ampRot;
-            item.el.style.transform = ;
+            item.el.style.transform = `translate3d(${x.toFixed(1)}px, ${y.toFixed(1)}px, 0) rotate(${rot.toFixed(1)}deg)`;
           });
           goblinRAF = requestAnimationFrame(loop);
         }
@@ -453,7 +453,7 @@
         }
 
         selector.style.transition = 'none';
-        selector.style.transform = ;
+        selector.style.transform = `translate3d(${deltaX}px, ${deltaY}px, 0) scale(${scaleX}, ${scaleY})`;
         
         selector.getBoundingClientRect();
 
