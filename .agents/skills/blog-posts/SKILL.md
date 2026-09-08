@@ -158,16 +158,52 @@ Every new post must include comprehensive machine-readable metadata in the `<hea
 
 ---
 
-## 6. Multi-Channel Synchronization Checklist
+## 6. Two-Phase Publishing & Editorial Review Workflow
 
-Whenever a new post is published:
-1. **Create Standalone Page:** Save to `/signals/<slug>.html` using the template below.
-2. **Update Homepage Feed:** Add active post card to `index.html` under `<section id="content-feed">` as `Online // Signal XXX`.
-3. **Update Machine Knowledge Graphs:**
-   - Add entry to `/llms.txt`.
-   - Concatenate complete article text to `/llms-full.txt`.
-4. **Update XML Sitemap:** Run `python3 scripts/generate_sitemap.py` (or let the git pre-commit hook automatically re-generate and stage `sitemap.xml`).
-5. **Bump Stylesheet Cache-Buster:** Increment `style.css?v=...` across all HTML files.
+**MANDATORY RULE:** Never promote drafts directly to production or synchronize feeds without explicit human editorial sign-off.
+
+```
++-------------------------------------------------------------------------------+
+| PHASE 1: DRAFTING & REVIEW (Isolated / Staging)                               |
+|                                                                               |
+| 1. Author Draft -> Save to /drafts/<slug>.html (or .md)                       |
+|    - Excluded from sitemap.xml, index.html feed, and llms.txt                 |
+| 2. Export to Google Docs -> `python3 scripts/gdocs_review.py export <file>`   |
+|    - Or provide full in-chat markdown artifact for review                     |
+| 3. Human Editorial Review -> User leaves comments, notes & suggested edits    |
+| 4. Ingest Feedback -> `python3 scripts/gdocs_review.py pull <doc_id>`         |
+|    - Apply edits to local draft until human sign-off is given                 |
++-------------------------------------------------------------------------------+
+                                      |
+                       [Explicit Human "Publish" Approval]
+                                      v
++-------------------------------------------------------------------------------+
+| PHASE 2: PRODUCTION SYNCHRONIZATION & DEPLOYMENT                              |
+|                                                                               |
+| 1. Promote to Production: Move `/drafts/<slug>.html` to `/signals/<slug>.html`|
+| 2. Update Homepage Feed: Add entry to `index.html` under `#content-feed`      |
+| 3. Update Machine Knowledge Graphs: Update `llms.txt` and `llms-full.txt`     |
+| 4. Regenerate XML Sitemap: Run `python3 scripts/generate_sitemap.py`          |
+| 5. Run Pre-Publish QA: Run `python3 scripts/validate_site.py`                 |
+| 6. Bump Stylesheet Cache-Buster: Increment `style.css?v=...` across all HTML  |
+| 7. Commit & Push: Deploy live to Vercel                                       |
++-------------------------------------------------------------------------------+
+```
+
+---
+
+## 7. Pre-Publish Quality Assurance (`scripts/validate_site.py`)
+
+Before committing any published signal or draft:
+1. Always run the automated validator:
+   ```bash
+   python3 scripts/validate_site.py
+   ```
+2. The validator guarantees:
+   - All inline JavaScript blocks parse without syntax errors via `node --check`.
+   - No string interpolation bugs or empty template literals (e.g. `style.transform = ;`).
+   - JSON-LD structured data is 100% valid JSON.
+   - Canonical URLs and OpenGraph tags are present.
 
 ---
 
