@@ -110,6 +110,9 @@ When building this site (https://tylerkoshakow.com/), the baseline requirement w
 
 Then came time to add the standard business plumbing: Google Search Console (GSC) for search visibility and Google Analytics 4 (GA4) for telemetry. I wanted to measure what happens to a pristine performance score when you add these basic foundational tools.
 
+##### Does Google Analytics Slow Down Your Website?
+Yes, Google Analytics 4 (GA4) does slow down your website if you install it using Google's default setup snippet.
+
 The outcome was immediate: following Google's standard setup instructions for GA4 knocked our mobile performance score straight from 100 down to 84.
 
 ##### The Benchmark: What Happened and Why
@@ -154,6 +157,13 @@ Performance engineers in the e-commerce space have used variations of this techn
 - Edge & Server-Side Tagging: Cloudflare Zaraz and server-side Google Tag Manager offload tag processing from the client's phone to edge servers.
 
 While I haven't personally tested or used every specific proprietary plugin, the underlying pattern is an established industry standard: never execute non-critical third-party JavaScript during the critical rendering path.
+
+##### What Developers Are Saying in the Wild
+If you search developer forums and community threads, this frustration is everywhere. On Reddit (https://www.reddit.com/r/codestitch/comments/17nf19s/google_analytics_ruining_page_speed_performance/), web developers repeatedly share the exact same dilemma: "Before adding analytics code, the site speed will typically score between 95 and 98 on mobile. But after adding the code, it drops straight to the mid-80s... Why is Google's own analytics snippet tanking Google's own PageSpeed score?"
+
+On Stack Overflow (https://stackoverflow.com/questions/3743648/does-google-analytics-slow-down-my-website) and Netlify community threads (https://answers.netlify.com/t/website-speed-google-analytics-slowing-down-my-website/29297), the answers are all over the place. Half the replies insist that because the script tag is marked async, it cannot possibly slow down a page (which completely ignores main-thread CPU execution and mobile bandwidth contention). The other half suggest turning off basic features like enhanced measurement or simply accepting an 85 on mobile as the unavoidable price of doing business.
+
+Neither answer is satisfying. You don't need to settle for degraded Core Web Vitals, and you don't need to sacrifice essential analytics data to fix it.
 
 ##### The Real Takeaway
 You don't have to trade tracking for speed. But you also can't assume default copy-paste code from a giant tech vendor is optimized for performance—even when that vendor is Google. Holding events in memory and waiting for user input keeps your Core Web Vitals clean while still getting the data your team needs. (If you want to read more about why clean telemetry matters to leadership, see my previous piece on AEO and C-suite reporting at https://tylerkoshakow.com/signals/aeo-reporting-c-suite.html).

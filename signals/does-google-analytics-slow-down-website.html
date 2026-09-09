@@ -150,6 +150,12 @@
             Then came time to add the standard business plumbing: <a href="https://search.google.com/search-console" target="_blank" rel="noopener noreferrer">Google Search Console</a> (GSC) for search visibility and <a href="https://developers.google.com/tag-platform/gtagjs" target="_blank" rel="noopener noreferrer">Google Analytics 4</a> (GA4) for telemetry. I wanted to measure what happens to a pristine performance score when you add these basic foundational tools.
           </p>
 
+          <h2>Does Google Analytics Slow Down Your Website?</h2>
+
+          <p>
+            <strong>Yes, Google Analytics 4 (GA4) does slow down your website if you install it using Google&rsquo;s default setup snippet.</strong>
+          </p>
+
           <p>
             The outcome was immediate: following Google&rsquo;s standard setup instructions for GA4 knocked our mobile performance score straight from 100 down to 84.
           </p>
@@ -352,6 +358,26 @@
 
           <p>
             While I haven&rsquo;t personally tested or used every specific proprietary plugin, the underlying pattern is an established industry standard: <em>never execute non-critical third-party JavaScript during the critical rendering path.</em>
+          </p>
+
+          <h2>What Developers Are Saying in the Wild</h2>
+
+          <p>
+            If you search developer forums and community threads, this frustration is everywhere. On <a href="https://www.reddit.com/r/codestitch/comments/17nf19s/google_analytics_ruining_page_speed_performance/" target="_blank" rel="noopener noreferrer">Reddit</a>, web developers repeatedly share the exact same dilemma:
+          </p>
+
+          <blockquote>
+            <p>
+              &ldquo;Before adding analytics code, the site speed will typically score between 95 and 98 on mobile. But after adding the code, it drops straight to the mid-80s... Why is Google&rsquo;s own analytics snippet tanking Google&rsquo;s own PageSpeed score?&rdquo;
+            </p>
+          </blockquote>
+
+          <p>
+            On <a href="https://stackoverflow.com/questions/3743648/does-google-analytics-slow-down-my-website" target="_blank" rel="noopener noreferrer">Stack Overflow</a> and <a href="https://answers.netlify.com/t/website-speed-google-analytics-slowing-down-my-website/29297" target="_blank" rel="noopener noreferrer">Netlify community threads</a>, the answers are all over the place. Half the replies insist that because the script tag is marked <code>async</code>, it cannot possibly slow down a page (which completely ignores main-thread CPU execution and mobile bandwidth contention). The other half suggest turning off basic features like enhanced measurement or simply accepting an 85 on mobile as the unavoidable price of doing business.
+          </p>
+
+          <p>
+            Neither answer is satisfying. You don&rsquo;t need to settle for degraded Core Web Vitals, and you don&rsquo;t need to sacrifice essential analytics data to fix it.
           </p>
 
           <h2>The Real Takeaway</h2>
