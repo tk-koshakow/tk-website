@@ -115,14 +115,8 @@ Yes, Google Analytics 4 (GA4) does slow down your website if you install it usin
 
 The outcome was immediate: following Google's standard setup instructions for GA4 knocked our mobile performance score straight from 100 down to 84.
 
-##### The Benchmark: What Happened and Why
-We tested the integration in controlled phases, measuring mobile Core Web Vitals under throttled CPU and 4G network conditions. Here is the empirical scoreboard:
-
-- Clean Baseline: Mobile 100, Desktop 100, FCP 0.8s, LCP 1.1s, TBT 0ms
-- + Google Search Console: Mobile 100, Desktop 100, FCP 0.8s, LCP 1.1s, TBT 0ms
-- + Standard GA4 (<head>): Mobile 84, Desktop 98, FCP 2.6s, LCP 3.5s, TBT 10ms (128ms CPU bootup)
-- + requestIdleCallback Loader: Mobile 89, Desktop 100, FCP 1.0s, LCP 1.0s, TBT 450ms
-- + Interaction-Driven GA4: Mobile 98–100, Desktop 100, FCP 0.9s, LCP 0.9s, TBT 0ms
+##### What Happened and Why
+To understand where that 16-point mobile drop came from, we examined how each tracking integration interacts with the browser's critical rendering path under throttled CPU and mobile network conditions.
 
 ##### 1. Search Console: The Zero-Cost Digital Handshake
 Adding Google Search Console had a net impact of exactly 0.00%. We verified ownership using an isolated root HTML file (google*.html). Because the verification file lives at a standalone URL that browsers never request during normal page visits, it adds zero bytes to the critical path, zero DOM elements, and zero JavaScript execution. DNS TXT verification works the exact same way.
@@ -147,6 +141,15 @@ The cleaner approach separates event queuing from script execution:
 1. Instant In-Memory Queue: Initialize dataLayer synchronously inline so pageviews and configuration parameters are captured instantly in memory (0 KB network, 0 ms main-thread delay).
 2. Passive Interaction Dispatch: Attach passive event listeners for user intent (pointerdown, scroll, touchstart, keydown). The moment a real user touches the screen or moves their mouse, gtag.js is dynamically injected with fetchpriority="low", following modern script sequencing patterns.
 3. Fallback Safety Net: A background fallback timer and a visibilitychange listener ensure that even passive readers or quick tab-switchers are recorded without impacting initial Lighthouse audits.
+
+##### The Benchmark
+Here is the empirical scoreboard across each phase of our testing, measuring mobile Core Web Vitals under throttled CPU and 4G network conditions:
+
+- Clean Baseline: Mobile 100, Desktop 100, FCP 0.8s, LCP 1.1s, TBT 0ms
+- + Google Search Console: Mobile 100, Desktop 100, FCP 0.8s, LCP 1.1s, TBT 0ms
+- + Standard GA4 (<head>): Mobile 84, Desktop 98, FCP 2.6s, LCP 3.5s, TBT 10ms (128ms CPU bootup)
+- + requestIdleCallback Loader: Mobile 89, Desktop 100, FCP 1.0s, LCP 1.0s, TBT 450ms
+- + Interaction-Driven GA4: Mobile 98–100, Desktop 100, FCP 0.9s, LCP 0.9s, TBT 0ms
 
 ##### How This Applies to Real Business & E-Commerce Sites
 This challenge is not unique to personal websites. In high-stakes environments like e-commerce, where every 100ms of mobile latency measurably degrades conversion rates, loading raw tracking scripts in the document head is an immediate liability.

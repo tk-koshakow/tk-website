@@ -160,83 +160,26 @@
             The outcome was immediate: following Google&rsquo;s standard setup instructions for GA4 knocked our mobile performance score straight from 100 down to 84.
           </p>
 
-          <h2>The Benchmark: What Happened and Why</h2>
-
-          <p>
-            We tested the integration in controlled phases, measuring mobile <a href="https://web.dev/explore/vitals" target="_blank" rel="noopener noreferrer">Core Web Vitals</a> under throttled CPU and 4G network conditions. Here is the empirical scoreboard:
-          </p>
-
-          <div class="table-container">
-            <table>
-              <thead>
-                <tr>
-                  <th>Phase / Configuration</th>
-                  <th>Mobile Score</th>
-                  <th>Desktop Score</th>
-                  <th>FCP</th>
-                  <th>LCP</th>
-                  <th>Total Blocking Time</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><strong>Clean Baseline</strong></td>
-                  <td>100</td>
-                  <td>100</td>
-                  <td>0.8 s</td>
-                  <td>1.1 s</td>
-                  <td>0 ms</td>
-                </tr>
-                <tr>
-                  <td><strong>+ Google Search Console</strong></td>
-                  <td>100</td>
-                  <td>100</td>
-                  <td>0.8 s</td>
-                  <td>1.1 s</td>
-                  <td>0 ms</td>
-                </tr>
-                <tr>
-                  <td><strong>+ Standard GA4 (&lt;head&gt;)</strong></td>
-                  <td>84</td>
-                  <td>98</td>
-                  <td>2.6 s</td>
-                  <td>3.5 s</td>
-                  <td>10 ms (128ms CPU)</td>
-                </tr>
-                <tr>
-                  <td><strong>+ requestIdleCallback Loader</strong></td>
-                  <td>89</td>
-                  <td>100</td>
-                  <td>1.0 s</td>
-                  <td>1.0 s</td>
-                  <td>450 ms</td>
-                </tr>
-                <tr>
-                  <td><strong>+ Interaction-Driven GA4</strong></td>
-                  <td>98&ndash;100</td>
-                  <td>100</td>
-                  <td>0.9 s</td>
-                  <td>0.9 s</td>
-                  <td>0 ms</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
           <figure class="article-image" itemscope itemtype="https://schema.org/ImageObject">
             <img 
-              src="../images/pagespeed-100-mobile-audit.png" 
-              alt="Google PageSpeed Insights mobile audit report showing 100 Performance, 100 Accessibility, 100 Best Practices, and 100 SEO with 0 ms Total Blocking Time" 
-              width="1150" 
-              height="1111" 
+              src="../images/pagespeed-ga4-score-drop.gif" 
+              alt="PageSpeed Insights mobile audit showing score drop from 100 to 88 when adding Google Analytics default snippet" 
+              width="600" 
+              height="492" 
               loading="lazy" 
               decoding="async" 
               itemprop="contentUrl"
             />
             <figcaption itemprop="caption">
-              <strong>Empirical Verification:</strong> Google PageSpeed Insights mobile audit showing a 100 Performance score with 0ms Total Blocking Time (TBT) and 0.8s First Contentful Paint under throttled mobile conditions while executing interaction-sequenced GA4 telemetry.
+              <strong>The Performance Penalty:</strong> Google PageSpeed Insights mobile audit transitioning from the clean 100 baseline down to 88 immediately after injecting Google&rsquo;s default <code>gtag.js</code> snippet into the <code>&lt;head&gt;</code>.
             </figcaption>
           </figure>
+
+          <h2>What Happened and Why</h2>
+
+          <p>
+            To understand where that 16-point mobile drop came from, we examined how each tracking integration interacts with the browser&rsquo;s critical rendering path under throttled CPU and mobile network conditions.
+          </p>
 
           <h3>1. Search Console: The Zero-Cost Digital Handshake</h3>
 
@@ -340,6 +283,69 @@
             </div>
           </figure>
 
+          <h2>The Benchmark</h2>
+
+          <p>
+            Here is the empirical scoreboard across each phase of our testing, measuring mobile <a href="https://web.dev/explore/vitals" target="_blank" rel="noopener noreferrer">Core Web Vitals</a> under throttled CPU and 4G network conditions:
+          </p>
+
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Phase / Configuration</th>
+                  <th>Mobile Score</th>
+                  <th>Desktop Score</th>
+                  <th>FCP</th>
+                  <th>LCP</th>
+                  <th>Total Blocking Time</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Clean Baseline</strong></td>
+                  <td>100</td>
+                  <td>100</td>
+                  <td>0.8 s</td>
+                  <td>1.1 s</td>
+                  <td>0 ms</td>
+                </tr>
+                <tr>
+                  <td><strong>+ Google Search Console</strong></td>
+                  <td>100</td>
+                  <td>100</td>
+                  <td>0.8 s</td>
+                  <td>1.1 s</td>
+                  <td>0 ms</td>
+                </tr>
+                <tr>
+                  <td><strong>+ Standard GA4 (&lt;head&gt;)</strong></td>
+                  <td>84</td>
+                  <td>98</td>
+                  <td>2.6 s</td>
+                  <td>3.5 s</td>
+                  <td>10 ms (128ms CPU)</td>
+                </tr>
+                <tr>
+                  <td><strong>+ requestIdleCallback Loader</strong></td>
+                  <td>89</td>
+                  <td>100</td>
+                  <td>1.0 s</td>
+                  <td>1.0 s</td>
+                  <td>450 ms</td>
+                </tr>
+                <tr>
+                  <td><strong>+ Interaction-Driven GA4</strong></td>
+                  <td>98&ndash;100</td>
+                  <td>100</td>
+                  <td>0.9 s</td>
+                  <td>0.9 s</td>
+                  <td>0 ms</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
           <h2>How This Applies to Real Business &amp; E-Commerce Sites</h2>
 
           <p>
@@ -379,6 +385,21 @@
           <p>
             Neither answer is satisfying. You don&rsquo;t need to settle for degraded Core Web Vitals, and you don&rsquo;t need to sacrifice essential analytics data to fix it.
           </p>
+
+          <figure class="article-image" itemscope itemtype="https://schema.org/ImageObject">
+            <img 
+              src="../images/pagespeed-ga4-score-recovery.gif" 
+              alt="PageSpeed Insights mobile audit showing score recovery from 88 back to 100 after implementing interaction-sequenced GA4 loading" 
+              width="600" 
+              height="492" 
+              loading="lazy" 
+              decoding="async" 
+              itemprop="contentUrl"
+            />
+            <figcaption itemprop="caption">
+              <strong>The Recovery:</strong> Mobile performance restored back to a clean 100 with 0ms Total Blocking Time after shifting from eager script execution to interaction-driven sequencing with in-memory <code>dataLayer</code> buffering.
+            </figcaption>
+          </figure>
 
           <h2>The Real Takeaway</h2>
 
