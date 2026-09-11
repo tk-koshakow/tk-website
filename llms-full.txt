@@ -142,6 +142,36 @@ The cleaner approach separates event queuing from script execution:
 2. Passive Interaction Dispatch: Attach passive event listeners for user intent (pointerdown, scroll, touchstart, keydown). The moment a real user touches the screen or moves their mouse, gtag.js is dynamically injected with fetchpriority="low", following modern script sequencing patterns.
 3. Fallback Safety Net: A background fallback timer and a visibilitychange listener ensure that even passive readers or quick tab-switchers are recorded without impacting initial Lighthouse audits.
 
+```javascript
+// High-Performance GA4 Interaction Loader
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-XXXXXXXXXX');
+
+(function() {
+  function loadGA() {
+    if (window._gaInitialized) return;
+    window._gaInitialized = true;
+    ['pointerdown', 'scroll', 'touchstart', 'keydown'].forEach(function(e) {
+      window.removeEventListener(e, loadGA, { passive: true });
+    });
+    var s = document.createElement('script');
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX';
+    s.async = true;
+    s.fetchPriority = 'low';
+    document.head.appendChild(s);
+  }
+  ['pointerdown', 'scroll', 'touchstart', 'keydown'].forEach(function(e) {
+    window.addEventListener(e, loadGA, { passive: true, once: true });
+  });
+  setTimeout(loadGA, 7000);
+  document.addEventListener('visibilitychange', function() {
+    if (document.visibilityState === 'hidden') loadGA();
+  }, { once: true });
+})();
+```
+
 ##### The Benchmark
 Here is the empirical scoreboard across each phase of our testing, measuring mobile Core Web Vitals under throttled CPU and 4G network conditions:
 

@@ -230,6 +230,48 @@
             <li><strong>Fallback Safety Net:</strong> A background fallback timer and a <code>visibilitychange</code> listener ensure that even passive readers or quick tab-switchers are recorded without impacting initial Lighthouse audits.</li>
           </ol>
 
+          <p>
+            Here is the complete vanilla JavaScript implementation you can drop directly into your document <code>&lt;head&gt;</code>:
+          </p>
+
+          <pre><code>&lt;!-- High-Performance GA4 Interaction Loader --&gt;
+&lt;script&gt;
+  // 1. Initialize dataLayer and buffer events in memory (0 ms CPU)
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX');
+
+  // 2. Sequence external script download on first user interaction
+  (function() {
+    function loadGA() {
+      if (window._gaInitialized) return;
+      window._gaInitialized = true;
+      
+      ['pointerdown', 'scroll', 'touchstart', 'keydown'].forEach(function(e) {
+        window.removeEventListener(e, loadGA, { passive: true });
+      });
+
+      var s = document.createElement('script');
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX';
+      s.async = true;
+      s.fetchPriority = 'low';
+      document.head.appendChild(s);
+    }
+
+    // Attach one-time passive listeners
+    ['pointerdown', 'scroll', 'touchstart', 'keydown'].forEach(function(e) {
+      window.addEventListener(e, loadGA, { passive: true, once: true });
+    });
+
+    // Fallback timer (7s) and tab-switch listener for passive visitors
+    setTimeout(loadGA, 7000);
+    document.addEventListener('visibilitychange', function() {
+      if (document.visibilityState === 'hidden') loadGA();
+    }, { once: true });
+  })();
+&lt;/script&gt;</code></pre>
+
           <!-- GRAPHIC: INTERACTION-DRIVEN TELEMETRY ARCHITECTURE -->
           <figure class="diagram-container" aria-label="Abstract flow model: dataLayer Queue -> Critical Paint -> User Interaction -> GA4 Telemetry Dispatch">
             <div class="diagram-wrapper">
