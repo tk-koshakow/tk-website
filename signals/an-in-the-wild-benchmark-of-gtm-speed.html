@@ -203,14 +203,8 @@
           </blockquote>
 
           <p>
-            Both extremes miss the operational reality. GTM&rsquo;s asynchronous download does not prevent main-thread execution blocking, while outright banning marketing tags ignores the commercial reality that modern digital businesses require attribution to allocate capital. Good marketing distributes proof, good product creates it. The question is whether we can preserve 100% of marketing telemetry without sacrificing user experience.
+            Both extremes miss the operational reality. GTM&rsquo;s asynchronous download does not prevent main-thread execution blocking, while outright banning marketing tags ignores the commercial reality that modern digital businesses require attribution to allocate capital. The question is whether we can preserve 100% of marketing telemetry without sacrificing user experience.
           </p>
-
-          <figure class="pullquote">
-            <blockquote>
-              &ldquo;Good marketing distributes proof,<br>good product creates it.&rdquo;
-            </blockquote>
-          </figure>
 
           <p>
             To resolve this debate with hard data, I conducted an empirical benchmark in the wild on my live production website (<a href="https://tylerkoshakow.com">tylerkoshakow.com</a>), measuring eight distinct architectural configurations under identical throttled mobile conditions.
@@ -221,7 +215,7 @@
           </p>
 
           <p>
-            Here is what I tested, what the data proved, and how modern edge architecture eliminates the tradeoff forever&mdash;for $0.
+            Here is what I tested and what the data proved.
           </p>
 
           <h2>Testing in the Wild</h2>
@@ -388,65 +382,6 @@
           <p>
             This catastrophic freeze directly fails Google&rsquo;s <strong>Interaction to Next Paint (INP)</strong> metric in Chrome User Experience Report (CrUX) field data&mdash;which is the metric that actually impacts Google rankings and user bounce rates. Tricking Lighthouse with pure interaction listeners creates a stellar lab report while actively ruining the real user experience.
           </p>
-
-          <!-- GRAPHIC 1: A 100 IN THE LAB VS A 100 IN THE FIELD -->
-          <figure class="diagram-container" aria-label="Abstract diagram: A 100 in the Lab vs. a 100 in the Field">
-            <div class="diagram-wrapper">
-              <svg viewBox="0 0 620 220" class="aeo-diagram" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Lab 100 vs Field Reality Comparison">
-                <defs>
-                  <marker id="arrow-lab" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                    <path d="M 0 1 L 8 5 L 0 9 z" fill="currentColor" />
-                  </marker>
-                </defs>
-
-                <!-- Connective Signal Paths -->
-                <g class="diagram-lines" stroke="currentColor" stroke-width="1.5" fill="none">
-                  <!-- Track 1: Lab Flow -->
-                  <path d="M 180 55 L 232 55" marker-end="url(#arrow-lab)" />
-                  <path d="M 390 55 L 442 55" marker-end="url(#arrow-lab)" />
-
-                  <!-- Track 2: Field Flow -->
-                  <path d="M 180 155 L 232 155" marker-end="url(#arrow-lab)" />
-                  <path d="M 390 155 L 442 155" marker-end="url(#arrow-lab)" />
-                </g>
-
-                <!-- LAB TRACK -->
-                <g class="diagram-node" data-hint="Lab // Headless Chrome evaluates page in isolation with zero user interaction">
-                  <rect x="20" y="30" width="160" height="50" rx="4" class="node-box" />
-                  <text x="100" y="55" class="node-title" text-anchor="middle">Lab: Headless Bot</text>
-                </g>
-
-                <g class="diagram-node" data-hint="Dormant // 880 KiB marketing payload never triggers during audit window">
-                  <rect x="240" y="30" width="150" height="50" rx="4" class="node-box" />
-                  <text x="315" y="55" class="node-title" text-anchor="middle">Tags Stay Dormant</text>
-                </g>
-
-                <g class="diagram-node" data-hint="Lab Result // Artificial 100 score: 0ms TBT, 1.4s LCP under zero interaction">
-                  <rect x="450" y="30" width="150" height="50" rx="4" class="node-box node-highlight" />
-                  <text x="525" y="55" class="node-title" text-anchor="middle">100 / 0ms TBT</text>
-                </g>
-
-                <!-- FIELD TRACK -->
-                <g class="diagram-node" data-hint="Field // Human visitor arrives on mobile device over real cellular network">
-                  <rect x="20" y="130" width="160" height="50" rx="4" class="node-box" />
-                  <text x="100" y="155" class="node-title" text-anchor="middle">Field: Real Visitor</text>
-                </g>
-
-                <g class="diagram-node" data-hint="Interaction // First tap or scroll triggers deferred scripts simultaneously">
-                  <rect x="240" y="130" width="150" height="50" rx="4" class="node-box" />
-                  <text x="315" y="155" class="node-title" text-anchor="middle">First Tap / Scroll</text>
-                </g>
-
-                <g class="diagram-node" data-hint="INP Freeze // 880 KiB JS compiles at once, locking main thread for 650ms+">
-                  <rect x="450" y="130" width="150" height="50" rx="4" class="node-box node-focus" />
-                  <text x="525" y="155" class="node-title" text-anchor="middle">650ms INP Freeze</text>
-                </g>
-              </svg>
-              <div class="diagram-status" aria-live="polite">
-                <span class="status-text" data-default="telemetry // hover node to inspect lab audit vs field reality">telemetry // hover node to inspect lab audit vs field reality</span>
-              </div>
-            </div>
-          </figure>
 
           <h3>3. You Can Have the True 100/100 for Free</h3>
 
@@ -678,17 +613,6 @@
             <figcaption><strong>Option 3 (Variant A Direct Sequenced GA4):</strong> 100 Mobile Lighthouse score with 0 ms Total Blocking Time and 1.4s Speed Index.</figcaption>
           </figure>
 
-          <h2>Deep-Dive Guides</h2>
-
-          <p>
-            This empirical paper is the hub of my technical tagging research. For tactical implementation guides, explore the three accompanying deep dives:
-          </p>
-
-          <ul>
-            <li><strong>Spoke 1: Does Google Tag Manager Hurt Page Speed? An Empirical Audit</strong><br>A granular breakdown of how GTM&rsquo;s container size, tag evaluation cycle, and DOM listeners impact TBT and LCP.</li>
-            <li><strong>Spoke 2: Why Defer Doesn’t Fix GTM: The Main-Thread Execution Trap</strong><br>A technical teardown of async vs. defer vs. interaction listeners, and why hiding scripts from Lighthouse fails INP in the field.</li>
-            <li><strong>Spoke 3: $0 Server-Side Tagging: Edge Functions vs. $120/mo Cloud Containers</strong><br>Complete step-by-step code and architecture to deploy server-side GA4 and Meta CAPI using Vercel Edge Functions or Cloudflare Workers without paid cloud infrastructure.</li>
-          </ul>
 
         </div>
 
