@@ -24,7 +24,7 @@ export default async function handler(request) {
     const userAgent = request.headers.get('user-agent') || '';
     const clientIp = request.headers.get('x-forwarded-for') || '';
 
-    const measurementId = process.env.GA4_MEASUREMENT_ID || 'G-5JSX1RQMSR';
+    const measurementId = process.env.GA4_MEASUREMENT_ID || 'G-9PCEJCPSV2';
     const apiSecret = process.env.GA4_API_SECRET || '';
 
     // Asynchronously forward to GA4 Measurement Protocol if secret is present
