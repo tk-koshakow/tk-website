@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Benchmark Variant D1: Interaction-Sequenced GTM</title>
+  <link rel="stylesheet" href="/style.css">
+  
+  <!-- High-Performance Interaction-Sequenced Google Tag Manager ($0 Solution) -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    (function() {
+      function loadGTM() {
+        if (window._gtmInitialized) return;
+        window._gtmInitialized = true;
+        
+        ['pointerdown', 'scroll', 'touchstart', 'keydown'].forEach(function(e) {
+          window.removeEventListener(e, loadGTM, { passive: true });
+        });
+
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-MZHNSFVZ');
+      }
+
+      ['pointerdown', 'scroll', 'touchstart', 'keydown'].forEach(function(e) {
+        window.addEventListener(e, loadGTM, { passive: true, once: true });
+      });
+
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(function() {
+          setTimeout(loadGTM, 3500);
+        });
+      } else {
+        setTimeout(loadGTM, 3500);
+      }
+    })();
+  </script>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Performance Benchmark: Variant D1 (Interaction-Sequenced GTM)</h1>
+      <p class="feed-meta">Google Tag Manager loaded strictly upon user engagement or idle fallback</p>
+    </header>
+    <main>
+      <article class="article-content">
+        <p>This page tests our zero-cost client-side optimization pattern: deferring Google Tag Manager container evaluation until first user interaction (scroll, touch, keydown) with a 3.5s requestIdleCallback fallback.</p>
+        <h2>Measurement Methodology</h2>
+        <p>We measure Mobile Lighthouse performance, First Contentful Paint (FCP), Largest Contentful Paint (LCP), Total Blocking Time (TBT), and Cumulative Layout Shift (CLS) under throttled CPU and network conditions.</p>
+        <div style="padding: 2rem; border: 1px solid var(--border-color, #e0e0e0); margin: 2rem 0; border-radius: 4px;">
+          <h3>Benchmark Node: Variant D1</h3>
+          <p>Status: Sequenced Client-Side GTM</p>
+        </div>
+      </article>
+    </main>
+  </div>
+</body>
+</html>

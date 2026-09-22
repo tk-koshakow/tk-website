@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Benchmark Variant A: Baseline / Sequenced GA4</title>
+  <link rel="stylesheet" href="/style.css">
+  
+  <!-- High-Performance Sequenced GA4 (Control) -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-5JSX1RQMSR');
+
+    (function() {
+      function loadGA() {
+        if (window._gaInitialized) return;
+        window._gaInitialized = true;
+        ['pointerdown', 'scroll', 'touchstart', 'keydown'].forEach(function(e) {
+          window.removeEventListener(e, loadGA, { passive: true });
+        });
+        var s = document.createElement('script');
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=G-5JSX1RQMSR';
+        s.async = true;
+        s.fetchPriority = 'low';
+        document.head.appendChild(s);
+      }
+      ['pointerdown', 'scroll', 'touchstart', 'keydown'].forEach(function(e) {
+        window.addEventListener(e, loadGA, { passive: true, once: true });
+      });
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(function() { setTimeout(loadGA, 3500); });
+      } else {
+        setTimeout(loadGA, 3500);
+      }
+    })();
+  </script>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Performance Benchmark: Variant A (Control)</h1>
+      <p class="feed-meta">Baseline with interaction-sequenced GA4</p>
+    </header>
+    <main>
+      <article class="article-content">
+        <p>This page serves as the baseline control variant for our empirical Core Web Vitals benchmark. It uses semantic HTML5, native CSS, and interaction-sequenced Google Analytics telemetry.</p>
+        <h2>Measurement Methodology</h2>
+        <p>We measure Mobile Lighthouse performance, First Contentful Paint (FCP), Largest Contentful Paint (LCP), Total Blocking Time (TBT), and Cumulative Layout Shift (CLS) under throttled CPU and network conditions.</p>
+        <div style="padding: 2rem; border: 1px solid var(--border-color, #e0e0e0); margin: 2rem 0; border-radius: 4px;">
+          <h3>Benchmark Node: Variant A</h3>
+          <p>Status: Active Control</p>
+        </div>
+      </article>
+    </main>
+  </div>
+</body>
+</html>

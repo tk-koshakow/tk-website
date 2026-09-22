@@ -1,0 +1,77 @@
+[
+  {
+    "id": "variant-a-baseline",
+    "name": "Variant A: Control (Sequenced GA4)",
+    "metrics": {
+      "score": 99,
+      "fcp": "1.6\u00a0s",
+      "lcp": "1.6\u00a0s",
+      "tbt": "0\u00a0ms",
+      "cls": "0",
+      "speed_index": "1.7\u00a0s",
+      "main_thread_work": "0.3\u00a0s",
+      "total_weight": "Total size was 202\u00a0KiB"
+    },
+    "screenshot": "images/benchmarks/variant-a-baseline.png"
+  },
+  {
+    "id": "variant-b-gtm-standard",
+    "name": "Variant B: Standard Client-Side GTM",
+    "metrics": {
+      "score": 65,
+      "fcp": "3.0\u00a0s",
+      "lcp": "3.0\u00a0s",
+      "tbt": "740\u00a0ms",
+      "cls": "0",
+      "speed_index": "7.5\u00a0s",
+      "main_thread_work": "1.1\u00a0s",
+      "total_weight": "Total size was 760\u00a0KiB"
+    },
+    "screenshot": "images/benchmarks/variant-b-gtm-standard.png"
+  },
+  {
+    "id": "variant-c-gtm-bloat",
+    "name": "Variant C: GTM with Marketing Tag Bloat (Meta + LinkedIn)",
+    "metrics": {
+      "score": 90,
+      "fcp": "1.4\u00a0s",
+      "lcp": "1.4\u00a0s",
+      "tbt": "240\u00a0ms",
+      "cls": "0",
+      "speed_index": "6.1\u00a0s",
+      "main_thread_work": "0.7\u00a0s",
+      "total_weight": "Total size was 901\u00a0KiB"
+    },
+    "screenshot": "images/benchmarks/variant-c-gtm-bloat.png"
+  },
+  {
+    "id": "variant-d1-gtm-sequenced",
+    "name": "Variant D1: Interaction-Sequenced GTM ($0)",
+    "metrics": {
+      "score": 92,
+      "fcp": "1.4\u00a0s",
+      "lcp": "1.4\u00a0s",
+      "tbt": "0\u00a0ms",
+      "cls": "0",
+      "speed_index": "8.0\u00a0s",
+      "main_thread_work": "0.6\u00a0s",
+      "total_weight": "Total size was 761\u00a0KiB"
+    },
+    "screenshot": "images/benchmarks/variant-d1-gtm-sequenced.png"
+  },
+  {
+    "id": "variant-d2-edge-proxy",
+    "name": "Variant D2: Edge Proxy / Server-Side ($0)",
+    "metrics": {
+      "score": 100,
+      "fcp": "1.5\u00a0s",
+      "lcp": "1.5\u00a0s",
+      "tbt": "0\u00a0ms",
+      "cls": "0",
+      "speed_index": "1.5\u00a0s",
+      "main_thread_work": "0.0\u00a0s",
+      "total_weight": "Total size was 31\u00a0KiB"
+    },
+    "screenshot": "images/benchmarks/variant-d2-edge-proxy.png"
+  }
+]

@@ -17,6 +17,7 @@ This skill defines the editorial standards, typographic rules, abstract minimali
   1. *Human Executives (C-Suite & Decision Makers):* Ultra-clean, distraction-free typography, stark minimalism, and strategic business relevance.
   2. *Machine Crawlers (LLMs, AI Answer Engines, Web Crawlers):* Semantic HTML5, deep JSON-LD entity graphs, and plain-text `/llms.txt` mirrors.
 - **Zero Placeholder Policy:** Never publish synthetic directives, mock tables, placeholder logs, or dummy content. Every published signal must contain real, verified content.
+- **Collaborative Drafts & Review:** All new signals, essays, and briefings must first be published as Google Docs to the **TK Website / Drafts** folder (`1OXScFvvjdkR_V4TxqKcouGTA-Ojhm2iR`) via the `google-workspace` skill for Tyler's editorial review before converting to final production code.
 
 ---
 

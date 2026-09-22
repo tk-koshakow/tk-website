@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Benchmark Variant B: Standard Client-Side GTM</title>
+  <link rel="stylesheet" href="/style.css">
+  
+  <!-- Standard Google Tag Manager (Synchronous / Default Head Injection) -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-MZHNSFVZ');</script>
+  <!-- End Google Tag Manager -->
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MZHNSFVZ"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <div class="container">
+    <header>
+      <h1>Performance Benchmark: Variant B (Standard GTM)</h1>
+      <p class="feed-meta">Default synchronous Google Tag Manager container snippet</p>
+    </header>
+    <main>
+      <article class="article-content">
+        <p>This page tests the default, recommended Google Tag Manager setup where gtm.js is injected into the document head per standard documentation.</p>
+        <h2>Measurement Methodology</h2>
+        <p>We measure Mobile Lighthouse performance, First Contentful Paint (FCP), Largest Contentful Paint (LCP), Total Blocking Time (TBT), and Cumulative Layout Shift (CLS) under throttled CPU and network conditions.</p>
+        <div style="padding: 2rem; border: 1px solid var(--border-color, #e0e0e0); margin: 2rem 0; border-radius: 4px;">
+          <h3>Benchmark Node: Variant B</h3>
+          <p>Status: Standard Client-Side GTM</p>
+        </div>
+      </article>
+    </main>
+  </div>
+</body>
+</html>
