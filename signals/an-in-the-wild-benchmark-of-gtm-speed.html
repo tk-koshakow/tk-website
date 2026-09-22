@@ -37,9 +37,6 @@
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <!-- Unlinked Preview: Noindex, Nofollow until approved -->
-  <meta name="robots" content="noindex, nofollow">
 
   <title>An In-The-Wild Benchmark of Client-Side GTM vs. Deferral Hacks vs. $0 Edge Proxying — Tyler 'TK' Koshakow</title>
   <meta name="description" content="An empirical in-the-wild benchmark across 8 live production tagging architectures: what marketing tags actually cost, why deferring them creates an INP trap, and how $0 edge proxying delivers a true 100/100 Core Web Vitals score.">
@@ -144,7 +141,7 @@
         <header class="article-header">
           <div class="feed-meta">
             <time datetime="2026-09-22" itemprop="datePublished">September 22, 2026</time>
-            <span class="type-tag">Empirical // Benchmark</span>
+            <span class="type-tag">Online // Signal 004</span>
           </div>
           <h1 class="article-title" itemprop="headline">An In-The-Wild Benchmark of Client-Side GTM vs. Deferral Hacks vs. $0 Edge Proxying</h1>
           <p class="article-author" itemprop="author">Tyler &ldquo;TK&rdquo; Koshakow</p>
@@ -228,14 +225,14 @@
             <li><strong>Host Environment:</strong> Vercel Global Edge Network (<code>tylerkoshakow.com</code>).</li>
             <li><strong>Test Isolation:</strong> All variants were deployed as standalone pages under <code>/experiments/gtm-benchmark/</code>, unlinked from site navigation or sitemaps, and tagged with <code>&lt;meta name="robots" content="noindex, nofollow"&gt;</code>.</li>
             <li><strong>Auditing Engine:</strong> Google Lighthouse 13.5 running with Moto G Power mobile emulation, DevTools throttling, and 4x CPU slowdown over live internet connections.</li>
-            <li><strong>Control Baseline:</strong> My live production homepage (<code>https://tylerkoshakow.com/</code>), which runs a clean, minimal layout with sequenced GA4.</li>
+            <li><strong>Control Baseline:</strong> My live production homepage (<code>https://tylerkoshakow.com/</code>), which runs a clean, minimal layout with sequenced GA4 (an optimization pattern I documented in my empirical audit, <a href="/signals/does-google-analytics-slow-down-website.html">Does Google Analytics Slow Down Your Website? An Empirical GA4 Benchmark</a>).</li>
           </ul>
 
           <h3>The 8 Architectural Configurations</h3>
 
           <ul>
             <li><strong>Production Homepage (Control):</strong> The live site baseline running sequenced GA4.</li>
-            <li><strong>Variant A: Clean Baseline:</strong> Direct, optimized Google Analytics 4 (<code>gtag.js</code>) sequenced after initial paint.</li>
+            <li><strong>Variant A: Clean Baseline:</strong> Direct, optimized Google Analytics 4 (<code>gtag.js</code>) sequenced after initial paint (<a href="/signals/does-google-analytics-slow-down-website.html">preserving 100/100 Core Web Vitals</a>).</li>
             <li><strong>Variant B: Standard Client-Side GTM:</strong> A real enterprise GTM container (<code>GTM-MZHNSFVZ</code>, 534 KB uncompressed / 48 KB gzip) embedded via Google&rsquo;s official recommended <code>&lt;head&gt;</code> snippet.</li>
             <li><strong>Variant C: GTM with Marketing Bloat:</strong> The 534 KB GTM container plus direct client-side injections of Meta Pixel (<code>fbevents.js</code>) and LinkedIn Insight Tag (<code>insight.min.js</code>).</li>
             <li><strong>Variant D1: Interaction-Sequenced GTM:</strong> GTM deferred until first user interaction (scroll, touch, keydown) or a 3.5-second idle fallback timer.</li>
@@ -601,7 +598,7 @@
           </p>
 
           <p>
-            <strong>Architecture:</strong> Use direct, sequenced GA4 (<code>gtag.js</code>) without GTM.
+            <strong>Architecture:</strong> Use direct, sequenced GA4 (<code>gtag.js</code>) without GTM, deferring execution until first interaction as detailed in my earlier benchmark on <a href="/signals/does-google-analytics-slow-down-website.html">GA4 page speed impact</a>.
           </p>
 
           <p>
