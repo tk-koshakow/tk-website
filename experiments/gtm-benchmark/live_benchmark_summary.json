@@ -1,0 +1,130 @@
+[
+  {
+    "id": "live-homepage-control",
+    "name": "Live Homepage Control (Production)",
+    "url": "https://tylerkoshakow.com/",
+    "metrics": {
+      "score": 99,
+      "fcp": "1.7\u00a0s",
+      "lcp": "1.7\u00a0s",
+      "tbt": "0\u00a0ms",
+      "cls": "0",
+      "speed_index": "1.8\u00a0s",
+      "main_thread_work": "0.3\u00a0s",
+      "total_weight": "Total size was 184\u00a0KiB"
+    },
+    "screenshot": "images/benchmarks/live-homepage-control.png"
+  },
+  {
+    "id": "live-variant-a-baseline",
+    "name": "Variant A: Control (Sequenced GA4)",
+    "url": "https://tylerkoshakow.com/experiments/gtm-benchmark/variant-a-baseline.html",
+    "metrics": {
+      "score": 100,
+      "fcp": "1.4\u00a0s",
+      "lcp": "1.4\u00a0s",
+      "tbt": "0\u00a0ms",
+      "cls": "0",
+      "speed_index": "1.4\u00a0s",
+      "main_thread_work": "0.3\u00a0s",
+      "total_weight": "Total size was 180\u00a0KiB"
+    },
+    "screenshot": "images/benchmarks/live-variant-a-baseline.png"
+  },
+  {
+    "id": "live-variant-b-gtm-standard",
+    "name": "Variant B: Standard Client-Side GTM",
+    "url": "https://tylerkoshakow.com/experiments/gtm-benchmark/variant-b-gtm-standard.html",
+    "metrics": {
+      "score": 82,
+      "fcp": "1.9\u00a0s",
+      "lcp": "1.9\u00a0s",
+      "tbt": "430\u00a0ms",
+      "cls": "0",
+      "speed_index": "6.2\u00a0s",
+      "main_thread_work": "0.8\u00a0s",
+      "total_weight": "Total size was 739\u00a0KiB"
+    },
+    "screenshot": "images/benchmarks/live-variant-b-gtm-standard.png"
+  },
+  {
+    "id": "live-variant-c-gtm-bloat",
+    "name": "Variant C: GTM with Marketing Bloat (Meta + LinkedIn)",
+    "url": "https://tylerkoshakow.com/experiments/gtm-benchmark/variant-c-gtm-bloat.html",
+    "metrics": {
+      "score": 81,
+      "fcp": "1.6\u00a0s",
+      "lcp": "1.6\u00a0s",
+      "tbt": "500\u00a0ms",
+      "cls": "0",
+      "speed_index": "6.3\u00a0s",
+      "main_thread_work": "1.0\u00a0s",
+      "total_weight": "Total size was 879\u00a0KiB"
+    },
+    "screenshot": "images/benchmarks/live-variant-c-gtm-bloat.png"
+  },
+  {
+    "id": "live-variant-d1-gtm-sequenced",
+    "name": "Variant D1: Interaction-Sequenced GTM ($0)",
+    "url": "https://tylerkoshakow.com/experiments/gtm-benchmark/variant-d1-gtm-sequenced.html",
+    "metrics": {
+      "score": 90,
+      "fcp": "1.9\u00a0s",
+      "lcp": "1.9\u00a0s",
+      "tbt": "0\u00a0ms",
+      "cls": "0",
+      "speed_index": "8.6\u00a0s",
+      "main_thread_work": "0.7\u00a0s",
+      "total_weight": "Total size was 739\u00a0KiB"
+    },
+    "screenshot": "images/benchmarks/live-variant-d1-gtm-sequenced.png"
+  },
+  {
+    "id": "live-variant-d2-edge-proxy",
+    "name": "Variant D2: Edge Proxy / Server-Side ($0)",
+    "url": "https://tylerkoshakow.com/experiments/gtm-benchmark/variant-d2-edge-proxy.html",
+    "metrics": {
+      "score": 98,
+      "fcp": "2.0\u00a0s",
+      "lcp": "2.0\u00a0s",
+      "tbt": "0\u00a0ms",
+      "cls": "0",
+      "speed_index": "2.0\u00a0s",
+      "main_thread_work": "0.0\u00a0s",
+      "total_weight": "Total size was 8\u00a0KiB"
+    },
+    "screenshot": "images/benchmarks/live-variant-d2-edge-proxy.png"
+  },
+  {
+    "id": "live-variant-d3-full-bloat-sequenced",
+    "name": "Variant D3: Full Bloat Sequenced (GTM+Meta+LI on 6s/Interaction)",
+    "url": "https://tylerkoshakow.com/experiments/gtm-benchmark/variant-d3-full-bloat-sequenced.html",
+    "metrics": {
+      "score": 90,
+      "fcp": "1.4\u00a0s",
+      "lcp": "1.4\u00a0s",
+      "tbt": "0\u00a0ms",
+      "cls": "0",
+      "speed_index": "11.6\u00a0s",
+      "main_thread_work": "1.0\u00a0s",
+      "total_weight": "Total size was 881\u00a0KiB"
+    },
+    "screenshot": "images/benchmarks/live-variant-d3-full-bloat-sequenced.png"
+  },
+  {
+    "id": "live-variant-d4-pure-interaction",
+    "name": "Variant D4: Pure Interaction Full Bloat",
+    "url": "https://tylerkoshakow.com/experiments/gtm-benchmark/variant-d4-pure-interaction.html",
+    "metrics": {
+      "score": 100,
+      "fcp": "1.4\u00a0s",
+      "lcp": "1.4\u00a0s",
+      "tbt": "0\u00a0ms",
+      "cls": "0",
+      "speed_index": "1.4\u00a0s",
+      "main_thread_work": "0.0\u00a0s",
+      "total_weight": "Total size was 8\u00a0KiB"
+    },
+    "screenshot": "images/benchmarks/live-variant-d4-pure-interaction.png"
+  }
+]
