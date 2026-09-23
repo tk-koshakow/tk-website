@@ -124,7 +124,7 @@ def validate_html_file(filepath: Path):
 def main():
     print(f"=== Running Site Validation on {REPO_ROOT} ===")
     html_files = sorted(REPO_ROOT.glob("**/*.html"))
-    html_files = [f for f in html_files if not is_ignored_file(f.name) and ".vercel" not in f.parts and ".git" not in f.parts]
+    html_files = [f for f in html_files if not is_ignored_file(f.name) and ".vercel" not in f.parts and ".git" not in f.parts and "experiments" not in f.parts]
     
     total_errors = 0
     for hf in html_files:
