@@ -145,6 +145,14 @@ def collect_urls():
             if parsed:
                 entries.append(parsed)
 
+    # 3. Offline logs directory
+    offline_dir = REPO_ROOT / "offline"
+    if offline_dir.exists():
+        for html_file in sorted(offline_dir.glob("*.html")):
+            parsed = parse_page(html_file)
+            if parsed:
+                entries.append(parsed)
+
     # If root index lastmod should reflect the newest signal date:
     if entries and entries[0][0] == f"{BASE_URL}/":
         root_url = entries[0][0]

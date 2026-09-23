@@ -1,0 +1,14 @@
+{
+  "redirects": [
+    {
+      "source": "/signals/tricholomopsis-sulphureoides-ai-mycology.html",
+      "destination": "/offline/tricholomopsis-sulphureoides-ai-mycology.html",
+      "permanent": true
+    },
+    {
+      "source": "/signals/aeo-analytics-product-proof.html",
+      "destination": "/signals/aeo-reporting-c-suite.html",
+      "permanent": true
+    }
+  ]
+}

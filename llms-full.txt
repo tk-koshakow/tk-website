@@ -53,10 +53,10 @@ All of these questions can and should be captured in AEO analytics, and all of t
 
 ---
 
-### Signal 002: Tricholomopsis sulphureoides: A Case Study in AI's Terribleness and Amazingness
+### Field Log 001: Tricholomopsis sulphureoides: A Case Study in AI's Terribleness and Amazingness
 **Date:** August 28, 2026  
 **Author:** Tyler "TK" Koshakow  
-**URL:** https://tylerkoshakow.com/signals/tricholomopsis-sulphureoides-ai-mycology.html  
+**URL:** https://tylerkoshakow.com/offline/tricholomopsis-sulphureoides-ai-mycology.html  
 
 #### Full Text:
 About a week ago, while I was out on an errand (buying a two-wheeler for my three-year-old!), I found myself about five minutes from my most prolific chanterelle spot. Despite it being August, the recent rains, my past success, and everything else in my favor, I came up completely empty-handed.
