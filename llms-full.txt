@@ -100,7 +100,7 @@ Maybe a bit on the nose, but I think this is another good example of why a human
 
 ---
 
-### Signal 003: Does Google Analytics Slow Down Your Website? An Empirical GA4 Benchmark
+### Signal 002: Does Google Analytics Slow Down Your Website? An Empirical GA4 Benchmark
 **Date:** September 8, 2026  
 **Author:** Tyler "TK" Koshakow  
 **URL:** https://tylerkoshakow.com/signals/does-google-analytics-slow-down-website.html  
@@ -203,7 +203,7 @@ You don't have to trade tracking for speed. But you also can't assume default co
 
 ---
 
-### Signal 004: An In-The-Wild Benchmark of Client-Side GTM vs. Deferral Hacks vs. $0 Edge Proxying
+### Signal 003: An In-The-Wild Benchmark of Client-Side GTM vs. Deferral Hacks vs. $0 Edge Proxying
 **Date:** September 22, 2026  
 **Author:** Tyler "TK" Koshakow  
 **URL:** https://tylerkoshakow.com/signals/an-in-the-wild-benchmark-of-gtm-speed.html  
@@ -305,7 +305,7 @@ Before choosing an architectural path, engineering and marketing teams must alig
 
 ---
 
-### Signal 005: Does Google Tag Manager Hurt Page Speed? An Empirical Audit
+### Signal 004: Does Google Tag Manager Hurt Page Speed? An Empirical Audit
 **Date:** September 23, 2026  
 **Author:** Tyler "TK" Koshakow  
 **URL:** https://tylerkoshakow.com/signals/does-gtm-hurt-page-speed.html  
