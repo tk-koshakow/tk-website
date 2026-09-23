@@ -174,10 +174,7 @@
       <nav class="filter-nav" aria-label="Filter content by tag">
         <span class="filter-label">Filter //</span>
         <div class="filter-group" role="group" aria-label="Content tags">
-          <button type="button" class="filter-btn active" data-filter="all" aria-pressed="true">
-            <span class="filter-name">All</span>
-          </button>
-          <button type="button" class="filter-btn" data-filter="online" aria-pressed="false">
+          <button type="button" class="filter-btn active" data-filter="online" aria-pressed="true">
             <span class="filter-name">Online</span>
             <span class="filter-sub">AEO, GEO, Content</span>
           </button>
@@ -223,7 +220,7 @@
           </article>
 
           <!-- OFFLINE ITEM: Field Log 001 -->
-          <article class="feed-item" data-tag="offline">
+          <article class="feed-item" data-tag="offline" data-hidden="true">
             <div class="feed-meta">
               <time datetime="2026-08-28">August 28, 2026</time>
               <span class="type-tag">Offline // Field Log 001</span>
@@ -416,34 +413,49 @@
       const initialTheme = document.documentElement.getAttribute('data-theme') || 'dark';
       applyTheme(initialTheme, true);
 
-      // 2. Tag Filtering (Online vs. Offline vs. All)
+      // 2. Tag Filtering (Online vs. Offline Binary Toggle)
       const filterBtns = document.querySelectorAll('.filter-btn');
       const filterItems = document.querySelectorAll('[data-tag]');
       
+      function setFilter(filter) {
+        filterBtns.forEach(b => {
+          const isMatch = b.getAttribute('data-filter') === filter;
+          b.classList.toggle('active', isMatch);
+          b.setAttribute('aria-pressed', isMatch ? 'true' : 'false');
+        });
+        
+        filterItems.forEach(item => {
+          const itemTag = item.getAttribute('data-tag');
+          if (itemTag === filter) {
+            item.removeAttribute('data-hidden');
+          } else {
+            item.setAttribute('data-hidden', 'true');
+          }
+        });
+
+        if (document.documentElement.getAttribute('data-theme') === 'goblin') {
+          startGoblinChaos();
+        }
+      }
+
       filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
           const filter = btn.getAttribute('data-filter');
-          
-          filterBtns.forEach(b => {
-            b.classList.remove('active');
-            b.setAttribute('aria-pressed', 'false');
-          });
-          btn.classList.add('active');
-          btn.setAttribute('aria-pressed', 'true');
-          
-          filterItems.forEach(item => {
-            const itemTag = item.getAttribute('data-tag');
-            if (filter === 'all' || itemTag === filter) {
-              item.removeAttribute('data-hidden');
-            } else {
-              item.setAttribute('data-hidden', 'true');
-            }
-          });
-
-          if (document.documentElement.getAttribute('data-theme') === 'goblin') {
-            startGoblinChaos();
+          setFilter(filter);
+          if (window.history && window.history.replaceState) {
+            window.history.replaceState(null, '', filter === 'offline' ? '#offline' : window.location.pathname);
           }
         });
+      });
+
+      // Synchronize with URL hash if loaded or navigated with #offline
+      if (window.location.hash === '#offline') {
+        setFilter('offline');
+      }
+
+      window.addEventListener('hashchange', () => {
+        const filter = window.location.hash === '#offline' ? 'offline' : 'online';
+        setFilter(filter);
       });
 
       // 3. Escape Key to Instantly Exit Goblin Mode
