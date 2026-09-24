@@ -74,9 +74,8 @@ The search intelligence engine must accept and gracefully handle three distinct 
 Search intelligence relies on live search data from DataForSEO. Always use the active authenticated credentials configured in the environment.
 
 ### Environment & Authentication
-* **Configuration Path:** `/Users/tylerkoshakow/Documents/antigravity/Screaming Frog Audit/.env`
-* **Active Account:** `tyler.koshakow@hexagon.com`
-* **Auth Scheme:** HTTP Basic Auth (`Authorization: Basic dHlsZXIua29zaGFrb3dAaGV4YWdvbi5jb206NTBmZjU1NWMwOTFlYzljNA==`)
+* **Configuration Path:** Loaded from environment variable `DATAFORSEO_BASIC_AUTH` or `/Users/tylerkoshakow/Documents/antigravity/Screaming Frog Audit/.env`
+* **Auth Scheme:** HTTP Basic Auth (`Authorization: Basic <DATAFORSEO_BASIC_AUTH>`)
 
 ### Core API Endpoints
 1. **Keyword Search Volumes & CPC:**

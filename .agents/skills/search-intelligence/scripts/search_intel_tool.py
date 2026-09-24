@@ -13,16 +13,43 @@ import urllib.parse
 import re
 import html
 
+import base64
+
 TOKEN_FILE = "/Users/tylerkoshakow/Documents/antigravity/Screaming Frog Audit/google_workspace_mcp/token.json"
 ENV_FILE = "/Users/tylerkoshakow/Documents/antigravity/Screaming Frog Audit/.env"
 
 def load_dataforseo_auth():
-    if os.path.exists(ENV_FILE):
-        with open(ENV_FILE) as f:
-            for line in f:
-                if line.startswith("DATAFORSEO_BASIC_AUTH="):
-                    return line.strip().split("=", 1)[1]
-    return "dHlsZXIua29zaGFrb3dAaGV4YWdvbi5jb206NTBmZjU1NWMwOTFlYzljNA=="
+    env_auth = os.environ.get("DATAFORSEO_BASIC_AUTH")
+    if env_auth:
+        return env_auth.strip()
+    
+    repo_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+    candidate_paths = [
+        os.path.join(repo_root, ".env"),
+        ENV_FILE,
+        os.path.join(os.getcwd(), ".env")
+    ]
+    login = os.environ.get("DATAFORSEO_LOGIN")
+    password = os.environ.get("DATAFORSEO_PASSWORD")
+    basic_auth = None
+    for path in candidate_paths:
+        if os.path.exists(path):
+            with open(path, "r", encoding="utf-8") as f:
+                for line in f:
+                    line = line.strip()
+                    if not line or line.startswith("#"):
+                        continue
+                    if line.startswith("DATAFORSEO_BASIC_AUTH=") and not basic_auth:
+                        basic_auth = line.split("=", 1)[1].strip().strip("\"'")
+                    if line.startswith("DATAFORSEO_LOGIN=") and not login:
+                        login = line.split("=", 1)[1].strip().strip("\"'")
+                    if line.startswith("DATAFORSEO_PASSWORD=") and not password:
+                        password = line.split("=", 1)[1].strip().strip("\"'")
+    if basic_auth:
+        return basic_auth
+    if login and password:
+        return base64.b64encode(f"{login}:{password}".encode()).decode()
+    raise ValueError("DataForSEO credentials not found in environment or .env files.")
 
 def get_google_token():
     if not os.path.exists(TOKEN_FILE):
