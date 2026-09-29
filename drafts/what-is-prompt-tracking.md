@@ -3,14 +3,14 @@ EDITORIAL FEEDBACK & REVISION LOG (FOR TYLER)
 Instructions: Add your review comments, punch-up notes, or direction changes below.
 When ready, reply in chat: "Reviewed doc [What Is Prompt Tracking?] - proceed with edits."
 --------------------------------------------------------------------------------
-Status: Revision v4 Applied (AEO Technical Fact-Check & Content Refinement)
+Status: Revision v5 Applied (Internal/External Linking, Diagram Overflows & TAM Scaling)
 Target Audience: Marketing Leaders, SEO Strategists, Growth Teams, Founders
-Primary Angle: What prompt tracking is, how it works in AI search, avoiding prompt bloat, tracking the 5 prompt archetypes, measuring Generative Share of Voice (G-SoV), and reverse-engineering consensus sources.
-Tyler's Feedback & Technical Audit Addressed:
-1. Eradicated all pull quotes per direct instruction.
-2. Upgraded definition card with high-contrast container styling and guaranteed text containment.
-3. Removed all em dashes and purged formulaic AI phrasing and B2B clichés.
-4. Corrected technical inaccuracies: articulated non-deterministic inference sampling, corrected GA4 Google AI Overviews vs. Gemini tracking, clarified live RAG unlinked mentions vs. training memory, and resolved the Prompt Archetype 5 taxonomy flaw.
+Primary Angle: What prompt tracking is, how it works in AI search, avoiding prompt bloat, tracking the 5 prompt archetypes, measuring Generative Share of Voice (G-SoV), reverse-engineering consensus sources, and scaling portfolios by TAM/revenue.
+Tyler's Feedback Addressed:
+1. Internal Linking: Connected the Consensus Graph section directly to Tyler's foundational analysis on why AEO reporting belongs in the C-suite (/signals/aeo-reporting-c-suite.html).
+2. Authoritative External Linking: Added non-competing external links to foundational technical resources (arXiv seminal RAG paper, Google Analytics 4 documentation, Google AI Overviews documentation, Google Search Console, Google Knowledge Graph, OpenAI GPTBot, and PerplexityBot documentation).
+3. Diagram Text Overflows: Fixed SVG layout bounds, widened nodes, adjusted arrows, and implemented balanced two-line text wrapping for "Card Catalog Index", "Trade Publications", and "Verified Citations" so text never exceeds container borders.
+4. TAM & Revenue-Scaled Portfolio Sizing: Refactored Best Practice 4 from a flat 30-to-50 cap into a dynamic TAM/ARR scaling framework. Outlined explicit rules of thumb for SMBs (<$10M ARR), Mid-Market ($10M-$50M ARR), and Enterprises ($50M+ ARR), backed by a simple revenue heuristic formula: Recommended Prompts ≈ 30 + [10 × (ARR in $M / 10)].
 ================================================================================
 
 # What Is Prompt Tracking? The Complete Guide to Monitoring Brand Visibility in AI Search
@@ -50,7 +50,7 @@ To understand how to track your brand in generative search, it helps to see how 
 | **What It Measures** | Where your link sits on a page (Positions 1 through 10) | Whether the AI mentions your brand, cites your links, and recommends you |
 | **What The User Sees** | A list of 10 static blue links with titles and meta descriptions | A synthesized conversational answer, comparison table, or bullet points |
 | **Key Metrics** | Average ranking position, impressions, click-through rate | Brand mention rate, citation share (links), and recommendation sentiment |
-| **How The Data Is Generated** | Google scores crawled URLs from an inverted index using deterministic algorithmic ranking models | A multi-stage RAG pipeline retrieves live web documents, re-ranks content chunks, and autoregressively generates an answer |
+| **How The Data Is Generated** | Google scores crawled URLs from an inverted index using deterministic algorithmic ranking models | A multi-stage [Retrieval-Augmented Generation (RAG)](https://arxiv.org/abs/2005.11401) pipeline retrieves live web documents, re-ranks content chunks, and autoregressively generates an answer |
 | **Why Results Change** | Core algorithm updates, backlink velocity, technical crawl health, and competitor on-page changes | Live search index freshness, context window re-ranking thresholds, inference sampling temperature, and prompt formulation |
 
 <!-- DIAGRAM BLUEPRINT:
@@ -77,7 +77,7 @@ Three structural retrieval dynamics drive this bloat:
 ### 1. Semantic Vector Collapse and Query Normalization
 In traditional SEO, subtle keyword differences matter. "Enterprise CRM software," "best CRM for enterprise," and "top CRM tools for large business" were treated by Google as three separate searches with distinct search volumes and ranking quirks.
 
-In generative search, dense embedding models map these three queries into virtually identical vector coordinates (cosine similarity exceeding 0.95). In addition, LLM query rewrite modules collapse them into the exact same web retrieval queries. Tracking fifty slight variations of the same intent burns tracking budget to inspect identical context windows.
+In generative search, dense embedding models map these three queries into virtually identical vector coordinates ([cosine similarity](https://en.wikipedia.org/wiki/Cosine_similarity) exceeding 0.95). In addition, LLM query rewrite modules collapse them into the exact same web retrieval queries. Tracking fifty slight variations of the same intent burns tracking budget to inspect identical context windows.
 
 ### 2. High Generation Entropy on Sparse Long-Tail Queries
 Traditional keyword lists are packed with obscure long-tail phrases that receive five searches a month. In organic Google, ranking #1 for an obscure query is stable because the inverted index does not change daily.
@@ -87,7 +87,7 @@ In generative search, rare queries suffer from high generation entropy. Because 
 ### 3. Generic Definition Queries Lack Commercial Grounding
 Tracking broad, high-level questions like "what is customer relationship management" looks rigorous in a spreadsheet, but it produces zero qualified pipeline. AI engines answer definitional questions directly from parametric weights or neutral reference sources like Wikipedia. They rarely invoke commercial comparison tools, and the searchers asking them have zero purchase intent.
 
-You do not need a bloated library of 2,000 prompts. What you actually need is a focused, disciplined list of 30 to 50 high-intent questions that real buyers ask immediately prior to booking a sales demo or selecting a vendor.
+You do not need a bloated library of 2,000 prompts. For a single product line, what you actually need is a focused, disciplined list of 30 to 50 high-intent questions that real buyers ask immediately prior to booking a sales demo or selecting a vendor.
 
 ---
 
@@ -144,7 +144,7 @@ Here is a simple, four-step process to build a high-impact tracking list:
 ### Step 1: Find AI Referral Traffic in Google Analytics 4
 AI search engines do not pass conversational query strings in referral URLs, but they do register domain referrers in Google Analytics 4. You can see which pages on your site already win generative citations:
 
-1. Go to **Reports → Acquisition → Traffic Acquisition** in GA4.
+1. Go to **Reports → Acquisition → [Traffic Acquisition](https://support.google.com/analytics/answer/9304153)** in GA4.
 2. Set your primary dimension to **Session source / medium**.
 3. Apply a regex filter across known generative platforms and mobile app protocols:
    ```regex
@@ -152,17 +152,17 @@ AI search engines do not pass conversational query strings in referral URLs, but
    ```
 4. Add **Landing page** as your secondary dimension.
 
-*(Note: Google AI Overviews referral traffic does not appear under `gemini.google.com`. Because AI Overviews live directly within Google Search, their clicks register as standard `google / organic`. To track AI Overview visibility, isolate question queries in Google Search Console that exhibit high impressions but depressed organic CTR.)*
+*(Note: Google AI Overviews referral traffic does not appear under `gemini.google.com`. Because [Google AI Overviews](https://developers.google.com/search/docs/fundamentals/ai-overviews) live directly within Google Search, their clicks register as standard `google / organic`. To track AI Overview visibility, isolate question queries in Google Search Console that exhibit high impressions but depressed organic CTR.)*
 
 The pages getting referral visits from ChatGPT or Perplexity are the ones the models already trust. Look at those pages and turn their core topics into natural buyer questions.
 
 ### Step 2: Extract Conversational Questions from Google Search Console
-Google Search Console is full of natural-language questions that traditional keyword tools ignore because their individual search volumes look low.
+[Google Search Console](https://support.google.com/webmasters/answer/75765) is full of natural-language questions that traditional keyword tools ignore because their individual search volumes look low.
 
 Filter your Search Console query list for question words like `how`, `what`, `which`, `why`, or `best`. Look specifically for queries that have high impressions but low click-through rates. That usually means Google's AI Overview or a Featured Snippet answered the question directly on the search results page.
 
 ### Step 3: Identify Entity Competitors in Google Knowledge Graph and PASF
-Search your brand in Google and look at the "People Also Search For" box and your Knowledge Panel. The brands listed there are your algorithmic neighbors. When an AI model builds a comparison list, it looks at those related entities first. Use those names to write your head-to-head comparison prompts.
+Search your brand in Google and look at the "People Also Search For" box and your Knowledge Panel. The brands listed there are your algorithmic neighbors in the [Google Knowledge Graph](https://developers.google.com/knowledge-graph). When an AI model builds a comparison list, it looks at those related entities first. Use those names to write your head-to-head comparison prompts.
 
 ### Step 4: Prune Prompts Aggressively to Eliminate False Positives
 Before you add any prompt to your tracking list, run it through three elimination checks:
@@ -219,7 +219,7 @@ To reverse-engineer where the AI is pulling opinions in your category:
 2. **Group domains by source type:** Categorize citations into vendor websites, customer reviews (G2, TrustRadius), community forums (Reddit, Stack Overflow), and trade press.
 3. **Identify the top 60%:** Pinpoint the three to five specific websites that account for the vast majority of all citations in your niche.
 
-In nearly every audit I run, I see the same pattern: companies spend 90% of their marketing budget writing articles on their own blog, while 75% of the citations powering AI recommendations come from Reddit threads, review sites, and niche industry blogs where the brand has zero presence. Winning in AI search requires making sure your product strengths are visible in the outside places the AI checks for proof.
+In nearly every audit I run, I see the same pattern: companies spend 90% of their marketing budget writing articles on their own blog, while 75% of the citations powering AI recommendations come from Reddit threads, review sites, and niche industry blogs where the brand has zero presence. As I explored in my analysis on [why AEO reporting belongs in the C-suite](/signals/aeo-reporting-c-suite.html), good marketing distributes proof, but your product has to create it first. Winning in AI search requires making sure your product strengths are visible in the outside places the AI checks for proof.
 
 <!-- DIAGRAM BLUEPRINT:
 Type: Radial Consensus Network
@@ -241,14 +241,25 @@ Generative search engines are non-deterministic by design. Because models use no
 
 ### 2. Separate Model Weights Updates from Competitor Consensus Shifts
 When your citations shift, evaluate whether the movement is platform-specific or systemic:
-* If your citations drop across ChatGPT, Perplexity, and Google AI Overviews simultaneously, inspect your technical infrastructure first. Instantaneous multi-engine drops almost always point to accidental robots.txt disallows (blocking GPTBot, PerplexityBot, or Googlebot), indexation errors, or site outages. Structural consensus losses across independent engines typically emerge gradually over multi-week crawl cycles.
+* If your citations drop across ChatGPT, Perplexity, and Google AI Overviews simultaneously, inspect your technical infrastructure first. Instantaneous multi-engine drops almost always point to accidental robots.txt disallows (blocking [GPTBot](https://platform.openai.com/docs/bots), [PerplexityBot](https://docs.perplexity.ai/guides/perplexitybot), or Googlebot), indexation errors, or site outages. Structural consensus losses across independent engines typically emerge gradually over multi-week crawl cycles.
 * If your citations drop only in ChatGPT immediately following a major OpenAI model release, while your visibility in Perplexity and Google remains steady, OpenAI simply adjusted their internal retrieval thresholds or fine-tuning weights. Never upend your search strategy over a single model iteration.
 
 ### 3. Structure On-Site Content for RAG Extraction
 AI search bots scan web pages looking for clear, direct answers they can pull into their summaries. If your blog posts hide the real answer behind 400 words of introductory fluff, the AI will skip your page and quote a competitor who got straight to the point. Put a clear, 2-to-3 sentence answer right underneath your main headings.
 
-### 4. Cap Your Core Prompt Portfolio at 30 to 50 Prompts
-Cap your primary monitoring portfolio at 30 to 50 targeted queries. A disciplined set of prompts (covering head-to-head comparisons, specific technical use cases, and high-friction pain points) delivers clear, actionable intelligence your team can actually execute on.
+### 4. Size Your Core Prompt Portfolio Based on TAM and Revenue
+The risk of prompt bloat is real, but a flat cap of 30 to 50 prompts only makes sense for single-product companies with a focused Total Addressable Market (TAM). If you manage multiple product lines, distinct buyer personas, and complex feature tiers, your tracking portfolio must scale with your market footprint.
+
+Use this simple revenue and TAM heuristic to size your core tracking portfolio:
+* **Small to Medium Business / Single-Product (<$10M ARR): 30 to 50 prompts.** Focus strictly on your primary commercial evaluation terms, head-to-head competitor alternatives, and key problem/solution triggers. This gives you high signal without burning budget on semantic overlap.
+* **Mid-Market / Multi-Feature ($10M to $50M ARR): 75 to 150 prompts.** Expand coverage across 2 to 4 distinct product lines or Ideal Customer Profiles (ICPs), allocating 25 to 35 high-intent prompts per product pillar.
+* **Enterprise / Multi-Product Portfolio ($50M+ ARR): 150 to 300+ prompts.** Segment tracking by business unit. Each distinct product vertical operates its own dedicated cluster of 30 to 50 prompts.
+
+**The Revenue Heuristic:** A reliable rule of thumb is to start with a baseline of **30 prompts**, then add **10 prompts for every $10 million in Annual Recurring Revenue (ARR)**:
+
+$$\text{Recommended Prompts} \approx 30 + \left[ 10 \times \left( \frac{\text{Annual Revenue in \$M}}{10} \right) \right]$$
+
+For example, a $50M multi-product platform tracks approximately 80 core prompts (30 baseline + 50 revenue-scaled prompts), split across its major product pillars. The critical operational rule: *never dump 300 prompts into a single unstructured bucket*. Always partition prompts into distinct product clusters of 30 to 50 queries to prevent vector collapse and ensure your team can take direct action on the data.
 
 ---
 
@@ -261,7 +272,7 @@ For most brands, a weekly cadence provides the optimal signal-to-noise ratio. Da
 ChatGPT and Perplexity use different retrieval pipelines and ranking algorithms to search the live web. Perplexity leans heavily on recent news, forums, and real-time web citations, while ChatGPT balances its pre-trained model weights with targeted live search queries. Because their retrieval sources and indexing priorities differ, they often cite different websites for the same prompt.
 
 ### Can you do prompt tracking on a budget?
-Yes. You do not need an expensive $500/month enterprise subscription to track your brand in AI search. By focusing on a lean portfolio of 30 to 50 high-intent commercial prompts and running weekly checks, you can monitor your core visibility using simple custom scripts or affordable pay-as-you-go APIs for a fraction of the cost of dedicated SaaS platforms.
+Yes. You do not need an expensive $500/month enterprise subscription to track your brand in AI search. By focusing on a lean portfolio of 30 to 50 high-intent commercial prompts per core product line and running weekly checks, you can monitor your core visibility using simple custom scripts or affordable pay-as-you-go APIs for a fraction of the cost of dedicated SaaS platforms.
 
 ### What should you do when a competitor replaces your brand in an AI Overview?
 First, inspect the sources Google's AI Overview is citing for that prompt. Look at the specific passages and external domains quoted in the answer. Did the competitor publish fresh data, earn a new review, or get mentioned in a popular Reddit thread? Once you identify the consensus source powering their citation, update your own content with direct, quotable data or build presence on the third-party platforms the AI is consulting.
