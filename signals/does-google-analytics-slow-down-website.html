@@ -76,42 +76,102 @@
     })();
   </script>
   
-  <!-- JSON-LD Entity Graph -->
+  <!-- Comprehensive Machine-Readable JSON-LD Entity Graph -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@graph": [
       {
+        "@type": "WebSite",
+        "@id": "https://tylerkoshakow.com/#website",
+        "name": "Tyler 'TK' Koshakow",
+        "url": "https://tylerkoshakow.com",
+        "publisher": {
+          "@id": "https://tylerkoshakow.com/#person"
+        }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://tylerkoshakow.com/signals/does-google-analytics-slow-down-website.html#webpage",
+        "url": "https://tylerkoshakow.com/signals/does-google-analytics-slow-down-website.html",
+        "name": "Does Google Analytics Slow Down Your Website? An Empirical GA4 Benchmark — Tyler 'TK' Koshakow",
+        "description": "We benchmarked Google Search Console and GA4 on a clean 100/100 site. Google's default snippet dropped mobile scores to 84. Here is why, and how to fix it.",
+        "isPartOf": {
+          "@id": "https://tylerkoshakow.com/#website"
+        },
+        "breadcrumb": {
+          "@id": "https://tylerkoshakow.com/signals/does-google-analytics-slow-down-website.html#breadcrumb"
+        },
+        "mainEntity": {
+          "@id": "https://tylerkoshakow.com/signals/does-google-analytics-slow-down-website.html#article"
+        },
+        "inLanguage": "en-US"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://tylerkoshakow.com/signals/does-google-analytics-slow-down-website.html#breadcrumb",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://tylerkoshakow.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Signals",
+            "item": "https://tylerkoshakow.com/#content-feed"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "GA4 Speed Benchmark",
+            "item": "https://tylerkoshakow.com/signals/does-google-analytics-slow-down-website.html"
+          }
+        ]
+      },
+      {
+        "@type": "Person",
+        "@id": "https://tylerkoshakow.com/#person",
+        "name": "Tyler 'TK' Koshakow",
+        "alternateName": ["TK", "Tyler Koshakow"],
+        "jobTitle": "Enterprise AEO/SEO Strategist",
+        "url": "https://tylerkoshakow.com",
+        "sameAs": [
+          "https://www.linkedin.com/in/tylerkoshakow",
+          "https://github.com/tylerkoshakow"
+        ]
+      },
+      {
         "@type": "TechArticle",
         "@id": "https://tylerkoshakow.com/signals/does-google-analytics-slow-down-website.html#article",
         "isPartOf": {
-          "@type": "WebSite",
-          "@id": "https://tylerkoshakow.com/#website",
-          "name": "Tyler 'TK' Koshakow",
-          "url": "https://tylerkoshakow.com"
+          "@id": "https://tylerkoshakow.com/signals/does-google-analytics-slow-down-website.html#webpage"
         },
         "headline": "Does Google Analytics Slow Down Your Website? An Empirical GA4 Benchmark",
         "description": "We benchmarked Google Search Console and GA4 on a clean 100/100 site. Google's default snippet dropped mobile scores to 84. Here is why, and how to fix it.",
         "datePublished": "2026-09-08",
         "dateModified": "2026-09-08",
         "mainEntityOfPage": "https://tylerkoshakow.com/signals/does-google-analytics-slow-down-website.html",
+        "inLanguage": "en-US",
+        "proficiencyLevel": "Expert",
+        "articleSection": "Web Performance & Analytics Telemetry",
         "author": {
-          "@type": "Person",
-          "@id": "https://tylerkoshakow.com/#person",
-          "name": "Tyler 'TK' Koshakow",
-          "jobTitle": "Enterprise AEO/SEO Strategist",
-          "url": "https://tylerkoshakow.com"
+          "@id": "https://tylerkoshakow.com/#person"
         },
         "publisher": {
-          "@type": "Person",
-          "@id": "https://tylerkoshakow.com/#person",
-          "name": "Tyler 'TK' Koshakow"
+          "@id": "https://tylerkoshakow.com/#person"
         },
         "about": [
-          { "@type": "Thing", "name": "Google Analytics 4 (GA4)" },
+          { "@type": "Thing", "name": "Google Analytics 4 (GA4)", "sameAs": "https://en.wikipedia.org/wiki/Google_Analytics" },
           { "@type": "Thing", "name": "PageSpeed Insights" },
-          { "@type": "Thing", "name": "Core Web Vitals" },
+          { "@type": "Thing", "name": "Core Web Vitals", "sameAs": "https://en.wikipedia.org/wiki/Core_Web_Vitals" },
           { "@type": "Thing", "name": "Web Performance Optimization" }
+        ],
+        "mentions": [
+          { "@type": "SoftwareApplication", "name": "Google Analytics 4" },
+          { "@type": "SoftwareApplication", "name": "Google Search Console" }
         ]
       }
     ]

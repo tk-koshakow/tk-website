@@ -88,13 +88,72 @@
     "@context": "https://schema.org",
     "@graph": [
       {
+        "@type": "WebSite",
+        "@id": "https://tylerkoshakow.com/#website",
+        "name": "Tyler 'TK' Koshakow",
+        "url": "https://tylerkoshakow.com",
+        "publisher": {
+          "@id": "https://tylerkoshakow.com/#person"
+        }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://tylerkoshakow.com/offline/tricholomopsis-sulphureoides-ai-mycology.html#webpage",
+        "url": "https://tylerkoshakow.com/offline/tricholomopsis-sulphureoides-ai-mycology.html",
+        "name": "Tricholomopsis sulphureoides: A Case Study in AI's Terribleness and Amazingness — Tyler 'TK' Koshakow",
+        "description": "How a wild foraging find, an initial AI hallucination, a white spore print, and Michael Kuo's dichotomous keys illustrate the high-stakes necessity of human-in-the-loop AI systems.",
+        "isPartOf": {
+          "@id": "https://tylerkoshakow.com/#website"
+        },
+        "breadcrumb": {
+          "@id": "https://tylerkoshakow.com/offline/tricholomopsis-sulphureoides-ai-mycology.html#breadcrumb"
+        },
+        "mainEntity": {
+          "@id": "https://tylerkoshakow.com/offline/tricholomopsis-sulphureoides-ai-mycology.html#article"
+        },
+        "inLanguage": "en-US"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://tylerkoshakow.com/offline/tricholomopsis-sulphureoides-ai-mycology.html#breadcrumb",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://tylerkoshakow.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Offline",
+            "item": "https://tylerkoshakow.com/#content-feed"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Tricholomopsis sulphureoides: AI Mycology",
+            "item": "https://tylerkoshakow.com/offline/tricholomopsis-sulphureoides-ai-mycology.html"
+          }
+        ]
+      },
+      {
+        "@type": "Person",
+        "@id": "https://tylerkoshakow.com/#person",
+        "name": "Tyler 'TK' Koshakow",
+        "alternateName": ["TK", "Tyler Koshakow"],
+        "jobTitle": "Enterprise AEO/SEO Strategist",
+        "url": "https://tylerkoshakow.com",
+        "sameAs": [
+          "https://www.linkedin.com/in/tylerkoshakow",
+          "https://github.com/tylerkoshakow"
+        ]
+      },
+      {
         "@type": "TechArticle",
         "@id": "https://tylerkoshakow.com/offline/tricholomopsis-sulphureoides-ai-mycology.html#article",
         "isPartOf": {
-          "@type": "WebSite",
-          "@id": "https://tylerkoshakow.com/#website",
-          "name": "Tyler 'TK' Koshakow",
-          "url": "https://tylerkoshakow.com"
+          "@id": "https://tylerkoshakow.com/offline/tricholomopsis-sulphureoides-ai-mycology.html#webpage"
         },
         "headline": "Tricholomopsis sulphureoides: A Case Study in AI's Terribleness and Amazingness",
         "description": "How a wild foraging find, an initial AI hallucination, a white spore print, and Michael Kuo's dichotomous keys illustrate the high-stakes necessity of human-in-the-loop AI systems.",
@@ -110,34 +169,35 @@
         "datePublished": "2026-08-28",
         "dateModified": "2026-08-28",
         "mainEntityOfPage": "https://tylerkoshakow.com/offline/tricholomopsis-sulphureoides-ai-mycology.html",
+        "inLanguage": "en-US",
+        "proficiencyLevel": "Expert",
+        "articleSection": "Field Mycology & AI Verification",
         "author": {
-          "@type": "Person",
-          "@id": "https://tylerkoshakow.com/#person",
-          "name": "Tyler 'TK' Koshakow",
-          "jobTitle": "Enterprise AEO/SEO Strategist",
-          "url": "https://tylerkoshakow.com"
+          "@id": "https://tylerkoshakow.com/#person"
         },
         "publisher": {
-          "@type": "Person",
-          "@id": "https://tylerkoshakow.com/#person",
-          "name": "Tyler 'TK' Koshakow"
+          "@id": "https://tylerkoshakow.com/#person"
         },
         "about": [
           {
             "@type": "Thing",
-            "name": "Mycology"
+            "name": "Mycology",
+            "sameAs": "https://en.wikipedia.org/wiki/Mycology"
           },
           {
             "@type": "Thing",
-            "name": "Artificial Intelligence"
+            "name": "Artificial Intelligence",
+            "sameAs": "https://en.wikipedia.org/wiki/Artificial_intelligence"
           },
           {
             "@type": "Thing",
-            "name": "Human-in-the-loop"
+            "name": "Human-in-the-loop",
+            "sameAs": "https://en.wikipedia.org/wiki/Human-in-the-loop"
           },
           {
             "@type": "Thing",
-            "name": "Dichotomous Key"
+            "name": "Dichotomous Key",
+            "sameAs": "https://en.wikipedia.org/wiki/Single-access_key"
           },
           {
             "@type": "Thing",

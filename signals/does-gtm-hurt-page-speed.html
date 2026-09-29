@@ -82,37 +82,169 @@
     "@context": "https://schema.org",
     "@graph": [
       {
+        "@type": "WebSite",
+        "@id": "https://tylerkoshakow.com/#website",
+        "name": "Tyler 'TK' Koshakow",
+        "url": "https://tylerkoshakow.com",
+        "publisher": {
+          "@id": "https://tylerkoshakow.com/#person"
+        }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://tylerkoshakow.com/signals/does-gtm-hurt-page-speed.html#webpage",
+        "url": "https://tylerkoshakow.com/signals/does-gtm-hurt-page-speed.html",
+        "name": "Does Google Tag Manager Hurt Page Speed? An Empirical Audit — Tyler 'TK' Koshakow",
+        "description": "An empirical mobile benchmark testing Google Tag Manager: why standard GTM drops mobile performance by nearly 20 points, how monolithic CPU tasks freeze the main thread, and how to measure the damage.",
+        "isPartOf": {
+          "@id": "https://tylerkoshakow.com/#website"
+        },
+        "breadcrumb": {
+          "@id": "https://tylerkoshakow.com/signals/does-gtm-hurt-page-speed.html#breadcrumb"
+        },
+        "mainEntity": {
+          "@id": "https://tylerkoshakow.com/signals/does-gtm-hurt-page-speed.html#article"
+        },
+        "inLanguage": "en-US"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://tylerkoshakow.com/signals/does-gtm-hurt-page-speed.html#breadcrumb",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://tylerkoshakow.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Signals",
+            "item": "https://tylerkoshakow.com/#content-feed"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Does Google Tag Manager Hurt Page Speed?",
+            "item": "https://tylerkoshakow.com/signals/does-gtm-hurt-page-speed.html"
+          }
+        ]
+      },
+      {
+        "@type": "Person",
+        "@id": "https://tylerkoshakow.com/#person",
+        "name": "Tyler 'TK' Koshakow",
+        "alternateName": ["TK", "Tyler Koshakow"],
+        "jobTitle": "Enterprise AEO/SEO Strategist",
+        "url": "https://tylerkoshakow.com",
+        "sameAs": [
+          "https://www.linkedin.com/in/tylerkoshakow",
+          "https://github.com/tylerkoshakow"
+        ]
+      },
+      {
         "@type": "TechArticle",
         "@id": "https://tylerkoshakow.com/signals/does-gtm-hurt-page-speed.html#article",
         "isPartOf": {
-          "@type": "WebSite",
-          "@id": "https://tylerkoshakow.com/#website",
-          "name": "Tyler 'TK' Koshakow",
-          "url": "https://tylerkoshakow.com"
+          "@id": "https://tylerkoshakow.com/signals/does-gtm-hurt-page-speed.html#webpage"
         },
         "headline": "Does Google Tag Manager Hurt Page Speed? An Empirical Audit",
         "description": "An empirical mobile benchmark testing Google Tag Manager: why standard GTM drops mobile performance by nearly 20 points, how monolithic CPU tasks freeze the main thread, and how to measure the damage.",
         "datePublished": "2026-09-23",
         "dateModified": "2026-09-23",
         "mainEntityOfPage": "https://tylerkoshakow.com/signals/does-gtm-hurt-page-speed.html",
+        "inLanguage": "en-US",
+        "proficiencyLevel": "Expert",
+        "articleSection": "Web Performance & Technical SEO",
         "author": {
-          "@type": "Person",
-          "@id": "https://tylerkoshakow.com/#person",
-          "name": "Tyler 'TK' Koshakow",
-          "jobTitle": "Enterprise AEO/SEO Strategist",
-          "url": "https://tylerkoshakow.com"
+          "@id": "https://tylerkoshakow.com/#person"
         },
         "publisher": {
-          "@type": "Person",
-          "@id": "https://tylerkoshakow.com/#person",
-          "name": "Tyler 'TK' Koshakow"
+          "@id": "https://tylerkoshakow.com/#person"
         },
         "about": [
-          { "@type": "Thing", "name": "Google Tag Manager (GTM)" },
-          { "@type": "Thing", "name": "Core Web Vitals" },
+          { "@type": "Thing", "name": "Google Tag Manager (GTM)", "sameAs": "https://en.wikipedia.org/wiki/Google_Tag_Manager" },
+          { "@type": "Thing", "name": "Core Web Vitals", "sameAs": "https://en.wikipedia.org/wiki/Core_Web_Vitals" },
           { "@type": "Thing", "name": "PageSpeed Insights" },
           { "@type": "Thing", "name": "Total Blocking Time (TBT)" },
+          { "@type": "Thing", "name": "Interaction to Next Paint (INP)" },
           { "@type": "Thing", "name": "Largest Contentful Paint (LCP)" }
+        ],
+        "mentions": [
+          { "@type": "Person", "name": "Julius Fedorovicius" },
+          { "@type": "Organization", "name": "Analytics Mania", "url": "https://www.analyticsmania.com" },
+          { "@type": "SoftwareApplication", "name": "Google Chrome DevTools" }
+        ],
+        "hasPart": [
+          {
+            "@id": "https://tylerkoshakow.com/signals/does-gtm-hurt-page-speed.html#faq"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://tylerkoshakow.com/signals/does-gtm-hurt-page-speed.html#faq",
+        "isPartOf": {
+          "@id": "https://tylerkoshakow.com/signals/does-gtm-hurt-page-speed.html#webpage"
+        },
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What are the cons of Google Tag Manager?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The primary cons of Google Tag Manager center on web performance degradation, main-thread contention, and organizational tag bloat. Because GTM allows marketing and product teams to deploy third-party scripts without engineering code reviews, containers rapidly accumulate redundant tracking pixels, CMP consent banners, and behavioral session recorders. While the initial snippet downloads asynchronously, executing the JavaScript inside the container monopolizes the browser’s single main thread, causing multi-second CPU freezes (our benchmarks recorded a 1,378 ms single-task freeze), inflating Total Blocking Time (TBT), delaying Largest Contentful Paint (LCP), and damaging real-world Interaction to Next Paint (INP)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What are the disadvantages and limitations of Google Tag Manager for web performance?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The fundamental technical limitation of client-side GTM is that it cannot execute outside the browser’s main execution thread. Every injected tag competes directly with your application’s UI rendering, stylesheet parsing, and touch event handlers. Furthermore, GTM lacks built-in performance budgets: there is no automated mechanism within GTM to prevent a non-technical user from publishing a 500 KB unminified tracking script that degrades Core Web Vitals across the entire website."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is Google Tag Manager still relevant for modern web development?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, but its architectural role is shifting from client-side script injection to server-side data orchestration. In modern Jamstack and headless frontend architectures (Next.js, Remix, Astro), loading client-side GTM directly in the document layout is increasingly considered an anti-pattern due to its negative impact on Core Web Vitals. Leading engineering organizations now treat GTM either as a server-side container running in the cloud or replace it entirely with lightweight first-party edge beacons that fan out data to analytics endpoints without running third-party code in the user's browser."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does an empty GTM container slow down a website?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Practically speaking, no. Empirical benchmarks show that an empty GTM container adds approximately 100 milliseconds (0.1 seconds) to document processing time, which is imperceptible on modern broadband connections and desktop devices. The performance penalty only emerges when tags, triggers, and third-party vendor scripts are published inside the container."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Why does Lighthouse show a high score while real users experience lag?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "This discrepancy is known as the “Lab 100 vs. Field INP Trap.” If you configure GTM to delay script loading until after the page finishes initial rendering or upon first user interaction, automated lab tools like Google Lighthouse award high performance scores (often 90–100) because the test bot completes its audit before the scripts execute. However, when real human users touch the screen to scroll or tap, the deferred scripts execute all at once, freezing the main thread and causing real-world Interaction to Next Paint (INP) failures in Google's CrUX database."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I fix GTM performance using setTimeout or delaying script load?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Using static timers (such as setTimeout(3000)) drops 10% to 20% of tracking data from visitors who bounce before the timer expires, breaking paid ad attribution and conversion tracking. Furthermore, once the timer expires, the scripts still execute on the main thread and freeze user interactions. A resilient architecture requires either interaction-driven sequencing with idle fallbacks on the client or migrating to server-side edge proxies."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does standard Server-Side GTM completely eliminate client-side performance penalties?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Not by default. Most standard Server-Side GTM tutorials still instruct developers to load the heavy client-side gtm.js container in the browser, merely changing the “Transport URL” where data hits are sent. Because the full container is still downloaded and evaluated on the client device, the main-thread parse and execution overhead remains. To truly eliminate the performance penalty, client-side GTM must be replaced with a native beacon script that routes data directly to an edge worker."
+            }
+          }
         ]
       }
     ]

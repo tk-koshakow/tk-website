@@ -81,35 +81,119 @@
     "@context": "https://schema.org",
     "@graph": [
       {
+        "@type": "WebSite",
+        "@id": "https://tylerkoshakow.com/#website",
+        "name": "Tyler 'TK' Koshakow",
+        "url": "https://tylerkoshakow.com",
+        "publisher": {
+          "@id": "https://tylerkoshakow.com/#person"
+        }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://tylerkoshakow.com/signals/what-is-prompt-tracking.html#webpage",
+        "url": "https://tylerkoshakow.com/signals/what-is-prompt-tracking.html",
+        "name": "What Is Prompt Tracking? The Complete Guide to Monitoring Brand Visibility in AI Search — Tyler 'TK' Koshakow",
+        "description": "Learn what prompt tracking is, how AI answer engines break traditional rank tracking, and how to measure brand citations across ChatGPT, Perplexity, and Google AI Overviews.",
+        "isPartOf": {
+          "@id": "https://tylerkoshakow.com/#website"
+        },
+        "breadcrumb": {
+          "@id": "https://tylerkoshakow.com/signals/what-is-prompt-tracking.html#breadcrumb"
+        },
+        "mainEntity": {
+          "@id": "https://tylerkoshakow.com/signals/what-is-prompt-tracking.html#article"
+        },
+        "inLanguage": "en-US"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://tylerkoshakow.com/signals/what-is-prompt-tracking.html#breadcrumb",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://tylerkoshakow.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Signals",
+            "item": "https://tylerkoshakow.com/#content-feed"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "What Is Prompt Tracking?",
+            "item": "https://tylerkoshakow.com/signals/what-is-prompt-tracking.html"
+          }
+        ]
+      },
+      {
+        "@type": "Person",
+        "@id": "https://tylerkoshakow.com/#person",
+        "name": "Tyler 'TK' Koshakow",
+        "alternateName": ["TK", "Tyler Koshakow"],
+        "jobTitle": "Enterprise AEO/SEO Strategist",
+        "url": "https://tylerkoshakow.com",
+        "sameAs": [
+          "https://www.linkedin.com/in/tylerkoshakow",
+          "https://github.com/tylerkoshakow"
+        ]
+      },
+      {
+        "@type": "DefinedTerm",
+        "@id": "https://tylerkoshakow.com/signals/what-is-prompt-tracking.html#prompt-tracking-term",
+        "name": "Prompt Tracking",
+        "description": "The process of monitoring brand mentions, citation links, and recommendation sentiment across AI answer engines like ChatGPT, Google AI Overviews, and Perplexity in response to targeted conversational queries.",
+        "inDefinedTermSet": "https://tylerkoshakow.com/signals/what-is-prompt-tracking.html"
+      },
+      {
         "@type": "TechArticle",
         "@id": "https://tylerkoshakow.com/signals/what-is-prompt-tracking.html#article",
         "isPartOf": {
-          "@type": "WebSite",
-          "@id": "https://tylerkoshakow.com/#website",
-          "name": "Tyler 'TK' Koshakow",
-          "url": "https://tylerkoshakow.com"
+          "@id": "https://tylerkoshakow.com/signals/what-is-prompt-tracking.html#webpage"
         },
         "headline": "What Is Prompt Tracking? The Complete Guide to Monitoring Brand Visibility in AI Search",
         "description": "Learn what prompt tracking is, how AI answer engines break traditional rank tracking, and how to measure brand citations across ChatGPT, Perplexity, and Google AI Overviews.",
         "datePublished": "2026-09-29",
         "dateModified": "2026-09-29",
         "mainEntityOfPage": "https://tylerkoshakow.com/signals/what-is-prompt-tracking.html",
+        "inLanguage": "en-US",
+        "proficiencyLevel": "Expert",
+        "articleSection": "Answer Engine Optimization (AEO)",
+        "wordCount": 3200,
         "author": {
-          "@type": "Person",
-          "@id": "https://tylerkoshakow.com/#person",
-          "name": "Tyler 'TK' Koshakow",
-          "jobTitle": "Enterprise AEO/SEO Strategist",
-          "url": "https://tylerkoshakow.com"
+          "@id": "https://tylerkoshakow.com/#person"
         },
         "publisher": {
-          "@type": "Person",
-          "@id": "https://tylerkoshakow.com/#person",
-          "name": "Tyler 'TK' Koshakow"
+          "@id": "https://tylerkoshakow.com/#person"
         },
+        "keywords": [
+          "Prompt Tracking",
+          "Answer Engine Optimization",
+          "AEO",
+          "Generative Engine Optimization",
+          "GEO",
+          "Generative Share of Voice",
+          "G-SoV",
+          "AI Search Visibility",
+          "ChatGPT Search",
+          "Perplexity AI",
+          "Google AI Overviews",
+          "Rank Tracking vs Prompt Tracking",
+          "Retrieval-Augmented Generation"
+        ],
         "about": [
           {
+            "@type": "DefinedTerm",
+            "@id": "https://tylerkoshakow.com/signals/what-is-prompt-tracking.html#prompt-tracking-term"
+          },
+          {
             "@type": "Thing",
-            "name": "Answer Engine Optimization (AEO)"
+            "name": "Answer Engine Optimization (AEO)",
+            "sameAs": "https://en.wikipedia.org/wiki/Answer_engine"
           },
           {
             "@type": "Thing",
@@ -117,11 +201,149 @@
           },
           {
             "@type": "Thing",
-            "name": "Prompt Tracking"
+            "name": "Search Engine Optimization (SEO)",
+            "sameAs": "https://en.wikipedia.org/wiki/Search_engine_optimization"
           },
           {
             "@type": "Thing",
-            "name": "Search Engine Optimization (SEO)"
+            "name": "Retrieval-Augmented Generation (RAG)",
+            "sameAs": "https://arxiv.org/abs/2005.11401"
+          },
+          {
+            "@type": "Thing",
+            "name": "Generative Share of Voice (G-SoV)"
+          }
+        ],
+        "mentions": [
+          {
+            "@type": "SoftwareApplication",
+            "name": "ChatGPT",
+            "operatingSystem": "All",
+            "applicationCategory": "AI Search Engine",
+            "url": "https://chatgpt.com"
+          },
+          {
+            "@type": "SoftwareApplication",
+            "name": "Perplexity",
+            "operatingSystem": "All",
+            "applicationCategory": "AI Search Engine",
+            "url": "https://www.perplexity.ai"
+          },
+          {
+            "@type": "SoftwareApplication",
+            "name": "Google AI Overviews",
+            "url": "https://developers.google.com/search/docs/fundamentals/ai-overviews"
+          },
+          {
+            "@type": "SoftwareApplication",
+            "name": "Google Analytics 4",
+            "url": "https://support.google.com/analytics/answer/9304153"
+          },
+          {
+            "@type": "SoftwareApplication",
+            "name": "Google Search Console",
+            "url": "https://support.google.com/webmasters/answer/75765"
+          },
+          {
+            "@type": "Thing",
+            "name": "Google Knowledge Graph",
+            "url": "https://developers.google.com/knowledge-graph"
+          },
+          {
+            "@type": "Thing",
+            "name": "Cosine Similarity",
+            "sameAs": "https://en.wikipedia.org/wiki/Cosine_similarity"
+          },
+          {
+            "@type": "Thing",
+            "name": "Goodhart's Law",
+            "sameAs": "https://en.wikipedia.org/wiki/Goodhart%27s_law"
+          },
+          {
+            "@type": "Organization",
+            "name": "OpenAI",
+            "url": "https://openai.com"
+          }
+        ],
+        "hasPart": [
+          {
+            "@id": "https://tylerkoshakow.com/signals/what-is-prompt-tracking.html#howto"
+          },
+          {
+            "@id": "https://tylerkoshakow.com/signals/what-is-prompt-tracking.html#faq"
+          }
+        ]
+      },
+      {
+        "@type": "HowTo",
+        "@id": "https://tylerkoshakow.com/signals/what-is-prompt-tracking.html#howto",
+        "name": "How to Find the Right Prompts to Track",
+        "description": "A disciplined, four-step telemetry framework for identifying high-impact AI search prompts using real analytics and entity data.",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "position": 1,
+            "name": "Find AI Referral Traffic in Google Analytics 4",
+            "text": "Navigate to Reports → Acquisition → Traffic Acquisition in GA4, set primary dimension to Session source / medium, filter for generative referral regex (chatgpt.com|perplexity.ai|claude.ai|copilot.microsoft.com), and identify landing pages winning model citations."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 2,
+            "name": "Extract Conversational Questions from Google Search Console",
+            "text": "Filter Search Console queries for natural language question tokens (how, what, which, why, best) exhibiting high impressions with depressed CTR where AI Overviews or snippets serve answers on-SERP."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 3,
+            "name": "Identify Entity Competitors in Google Knowledge Graph and PASF",
+            "text": "Inspect 'People Also Search For' and Knowledge Panel entity co-occurrences to identify algorithmic neighbors that AI retrieval engines evaluate when synthesizing head-to-head competitor comparisons."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 4,
+            "name": "Prune Prompts Aggressively to Eliminate False Positives",
+            "text": "Screen every candidate prompt against three elimination checks: commercial revenue impact, concrete brand recommendation invocation, and semantic uniqueness to eliminate vector overlap."
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://tylerkoshakow.com/signals/what-is-prompt-tracking.html#faq",
+        "isPartOf": {
+          "@id": "https://tylerkoshakow.com/signals/what-is-prompt-tracking.html#webpage"
+        },
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How often should you track prompts in AI search?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "For most brands, a weekly cadence provides the optimal signal-to-noise ratio. Daily tracking forces your team to chase stochastic temperature fluctuations and retrieval jitter, while monthly tracking is too slow to catch emerging competitor citations or shifts in Google AI Overviews. A weekly cadence produces clean, reliable trend lines without wasting budget."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Why do ChatGPT and Perplexity give different answers to the same prompt?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "ChatGPT and Perplexity use different retrieval pipelines and ranking algorithms to search the live web. Perplexity leans heavily on recent news, forums, and real-time web citations, while ChatGPT balances its pre-trained model weights with targeted live search queries. Because their retrieval sources and indexing priorities differ, they often cite different websites for the same prompt."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can you do prompt tracking on a budget?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. You do not need an expensive $500/month enterprise subscription to track your brand in AI search. By focusing on a lean portfolio of 30 to 50 high-intent commercial prompts per core product line and running weekly checks, you can monitor your core visibility using simple custom scripts or affordable pay-as-you-go APIs for a fraction of the cost of dedicated SaaS platforms."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What should you do when a competitor replaces your brand in an AI Overview?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "First, inspect the sources Google's AI Overview is citing for that prompt. Look at the specific passages and external domains quoted in the answer. Did the competitor publish fresh data, earn a new review, or get mentioned in a popular Reddit thread? Once you identify the consensus source powering their citation, update your own content with direct, quotable data or build presence on the third-party platforms the AI is consulting."
+            }
           }
         ]
       }
