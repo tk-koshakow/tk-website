@@ -10,5 +10,11 @@
       "destination": "/signals/aeo-reporting-c-suite.html",
       "permanent": true
     }
+  ],
+  "rewrites": [
+    {
+      "source": "/about",
+      "destination": "/about.html"
+    }
   ]
 }
