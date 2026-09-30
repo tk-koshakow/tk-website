@@ -1128,7 +1128,12 @@ html[data-theme="goblin"] .diagram-lines {
   transition: max-width 0.3s ease;
 }
 
-@media (min-width: 64rem) {
+/* Sidebar structure: hidden on viewports < 58rem */
+.article-sidebar {
+  display: none;
+}
+
+@media (min-width: 58rem) {
   .container.has-sidebar {
     max-width: 72rem;
     padding-left: var(--space-lg);
@@ -1143,7 +1148,7 @@ html[data-theme="goblin"] .diagram-lines {
   }
 
   .article-sidebar {
-    display: block;
+    display: block !important;
     position: sticky;
     top: 2rem;
     max-height: calc(100vh - 4rem);
@@ -1154,11 +1159,6 @@ html[data-theme="goblin"] .diagram-lines {
     max-width: var(--container-width);
     min-width: 0;
   }
-}
-
-/* Sidebar structure */
-.article-sidebar {
-  display: none; /* hidden on screens < 64rem; shown via media query above */
 }
 
 .sidebar-sticky-wrapper {
@@ -1310,21 +1310,21 @@ html[data-theme="goblin"] .diagram-lines {
   scroll-margin-top: 2rem;
 }
 
-@media (max-width: 63.99rem) {
+@media (max-width: 57.99rem) {
   .article-section {
     scroll-margin-top: 5rem;
   }
 }
 
 /* ==========================================================================
-   MOBILE STICKY TOC BAR & DRAWER (< 64rem)
+   MOBILE STICKY TOC BAR & DRAWER (< 58rem)
    ========================================================================== */
 
 .mobile-toc-bar {
   display: none;
 }
 
-@media (max-width: 63.99rem) {
+@media (max-width: 57.99rem) {
   .mobile-toc-bar {
     display: block;
     position: sticky;
