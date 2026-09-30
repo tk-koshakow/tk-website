@@ -1594,3 +1594,69 @@ html[data-theme="goblin"] .mobile-toc-sheet {
   box-shadow: 0 -10px 30px rgba(57, 255, 20, 0.15);
 }
 
+/* ==========================================================================
+   ABOUT PAGE & PROFESSIONAL BIO CARD
+   ========================================================================== */
+.bio-card {
+  background-color: var(--code-bg);
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  padding: var(--space-md) var(--space-lg);
+  margin-top: var(--space-xl);
+  margin-bottom: var(--space-xl);
+}
+
+.bio-card h2 {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: var(--space-sm);
+  color: var(--fg);
+}
+
+.bio-card p {
+  margin-bottom: var(--space-md);
+  line-height: var(--line-height-base);
+}
+
+.bio-card p:last-of-type {
+  margin-bottom: 0;
+}
+
+.bio-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-md);
+  margin-top: var(--space-md);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--border-subtle);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+}
+
+.bio-meta-item .bio-meta-label {
+  color: var(--fg-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.bio-meta-item .bio-meta-value {
+  color: var(--fg);
+  line-height: 1.5;
+}
+
+html[data-theme="goblin"] .bio-card {
+  border-color: #1e8738;
+  background-color: #061109;
+}
+
+html[data-theme="goblin"] .bio-meta-item .bio-meta-label {
+  color: var(--fg-secondary);
+}
+
+

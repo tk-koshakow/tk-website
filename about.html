@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- High-Performance GA4 Loader (Zero-TBT / Core Web Vitals Preserved) -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-9PCEJCPSV2');
+
+    (function() {
+      function loadGA() {
+        if (window._gaInitialized) return;
+        window._gaInitialized = true;
+        
+        ['pointerdown', 'scroll', 'touchstart', 'keydown'].forEach(function(e) {
+          window.removeEventListener(e, loadGA, { passive: true });
+        });
+
+        var s = document.createElement('script');
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=G-9PCEJCPSV2';
+        s.async = true;
+        s.fetchPriority = 'low';
+        document.head.appendChild(s);
+      }
+
+      ['pointerdown', 'scroll', 'touchstart', 'keydown'].forEach(function(e) {
+        window.addEventListener(e, loadGA, { passive: true, once: true });
+      });
+
+      setTimeout(loadGA, 7000);
+      document.addEventListener('visibilitychange', function() {
+        if (document.visibilityState === 'hidden') loadGA();
+      }, { once: true });
+    })();
+  </script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="About Tyler 'TK' Koshakow: Enterprise AEO/SEO Strategist, writer, and researcher based in Madison, WI.">
+  <title>About — Tyler 'TK' Koshakow</title>
+  <link rel="canonical" href="https://tylerkoshakow.com/about.html">
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
+
+  <!-- Favicons & Touch Icons -->
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/favicon.svg" sizes="any" type="image/svg+xml">
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <!-- OpenGraph Metadata -->
+  <meta property="og:title" content="About — Tyler 'TK' Koshakow">
+  <meta property="og:description" content="About Tyler 'TK' Koshakow: Enterprise AEO/SEO Strategist, writer, and researcher based in Madison, WI.">
+  <meta property="og:type" content="profile">
+  <meta property="og:url" content="https://tylerkoshakow.com/about.html">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="About — Tyler 'TK' Koshakow">
+  <meta name="twitter:description" content="About Tyler 'TK' Koshakow: Enterprise AEO/SEO Strategist, writer, and researcher based in Madison, WI.">
+
+  <!-- Preload Critical CSS with cache-buster -->
+  <link rel="stylesheet" href="style.css?v=about1">
+
+  <!-- Inline Script to Prevent Theme Flash (FOUC) -->
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('theme');
+      const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const theme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+
+  <!-- Machine-Readable Structured Entity Graph (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://tylerkoshakow.com/#website",
+        "name": "Tyler 'TK' Koshakow",
+        "url": "https://tylerkoshakow.com",
+        "publisher": {
+          "@id": "https://tylerkoshakow.com/#person"
+        }
+      },
+      {
+        "@type": "AboutPage",
+        "@id": "https://tylerkoshakow.com/about.html#webpage",
+        "url": "https://tylerkoshakow.com/about.html",
+        "name": "About Tyler 'TK' Koshakow",
+        "description": "About Tyler 'TK' Koshakow: Enterprise AEO/SEO Strategist, writer, and researcher based in Madison, WI.",
+        "isPartOf": {
+          "@id": "https://tylerkoshakow.com/#website"
+        },
+        "breadcrumb": {
+          "@id": "https://tylerkoshakow.com/about.html#breadcrumb"
+        },
+        "about": {
+          "@id": "https://tylerkoshakow.com/#person"
+        },
+        "mainEntity": {
+          "@id": "https://tylerkoshakow.com/#person"
+        },
+        "inLanguage": "en-US"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://tylerkoshakow.com/about.html#breadcrumb",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://tylerkoshakow.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "About",
+            "item": "https://tylerkoshakow.com/about.html"
+          }
+        ]
+      },
+      {
+        "@type": "Person",
+        "@id": "https://tylerkoshakow.com/#person",
+        "name": "Tyler 'TK' Koshakow",
+        "alternateName": [
+          "TK",
+          "Tyler Koshakow",
+          "Tyler Samuel Koshakow"
+        ],
+        "givenName": "Tyler",
+        "additionalName": "Samuel",
+        "familyName": "Koshakow",
+        "jobTitle": "Enterprise AEO/SEO Strategist",
+        "description": "Tyler 'TK' Koshakow is an SEO and AEO expert with over a decade of experience in digital marketing, leading strategy for clients such as Outreach, Airtable, and Skedulo, and currently leading SEO and AEO strategy for Octave.",
+        "url": "https://tylerkoshakow.com",
+        "sameAs": [
+          "https://www.linkedin.com/in/tyler-koshakow/",
+          "https://github.com/tylerkoshakow"
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Madison",
+          "addressRegion": "WI",
+          "addressCountry": "US"
+        },
+        "worksFor": {
+          "@type": "Organization",
+          "@id": "https://tylerkoshakow.com/about.html#octave",
+          "name": "Octave",
+          "url": "https://www.octave.com"
+        },
+        "knowsAbout": [
+          "Answer Engine Optimization (AEO)",
+          "Generative Engine Optimization (GEO)",
+          "Enterprise Content Strategy",
+          "Search Engine Optimization (SEO)",
+          "AI Search Visibility",
+          "Workflow Automation",
+          "Mycology"
+        ]
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://tylerkoshakow.com/about.html#octave",
+        "name": "Octave",
+        "url": "https://www.octave.com"
+      },
+      {
+        "@type": "Organization",
+        "name": "Outreach",
+        "url": "https://www.outreach.io"
+      },
+      {
+        "@type": "Organization",
+        "name": "Airtable",
+        "url": "https://www.airtable.com"
+      },
+      {
+        "@type": "Organization",
+        "name": "Skedulo",
+        "url": "https://skedulo.com"
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <div class="container">
+
+    <!-- TOP NAVIGATION -->
+    <header>
+      <div class="header-top">
+        <a href="/" class="nav-back">&larr; TK</a>
+        <div class="theme-selector" role="group" aria-label="Select theme mode">
+          <button type="button" class="theme-option" data-theme-val="light" aria-pressed="false">Light</button>
+          <button type="button" class="theme-option" data-theme-val="dark" aria-pressed="false">Dark</button>
+          <button type="button" class="theme-option" data-theme-val="goblin" aria-pressed="false">Goblin</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- MAIN ARTICLE / PROFILE CONTENT -->
+    <main>
+      <article class="article-detail" itemscope itemtype="https://schema.org/AboutPage">
+
+        <header class="article-header">
+          <div class="feed-meta">
+            <span class="type-tag">Profile // About</span>
+          </div>
+          <h1 class="article-title" itemprop="headline">About TK</h1>
+        </header>
+
+        <div class="article-content" itemprop="mainContentOfPage">
+
+          <p>
+            Hi, I’m TK.
+          </p>
+
+          <p>
+            I currently lead SEO/AEO strategy for an enterprise industrial software company. I’ve been in the SEO/AEO industry for just about a decade, with over 5 of those years spent at a boutique agency specializing in B2B tech, where I was the Strategy Director. We had clients like Adobe, Lyft, Airtable, Skedulo, Atlassian and many more.
+          </p>
+
+          <p>
+            Before that I worked in publishing, both literary and academic. I also used to write quite a bit. Here are a couple of examples:
+          </p>
+
+          <ul>
+            <li><strong>Fiction:</strong> <em>The Moment 19</em> &mdash; A short story published in <a href="http://necessaryfiction.com" target="_blank" rel="noopener noreferrer"><em>Necessary Fiction</em></a>, 2013</li>
+            <li><strong>Non-fiction:</strong> <a href="https://www.hobartpulp.com/web_features/wow-and-flutter-7-spirit-of-elijah" target="_blank" rel="noopener noreferrer"><em>Wow and Flutter #7: Spirit of Elijah</em></a> &mdash; Part of an essay series I wrote for <a href="https://www.hobartpulp.com" target="_blank" rel="noopener noreferrer"><em>Hobart</em></a></li>
+          </ul>
+
+          <p>
+            The point of this site is for me to learn. The best way to do that is to ask good questions (for example, how do I build a site that gets a perfect score on PageSpeed Insights?), try to answer them, and then write about it.
+          </p>
+
+          <p>
+            Also, I really like mushrooms. I live in Madison, WI. I’m a husband, dad, and bicycle enthusiast.
+          </p>
+
+          <!-- DEDICATED PROFESSIONAL BIO CARD -->
+          <section class="bio-card" aria-labelledby="bio-heading">
+            <h2 id="bio-heading">Professional Bio</h2>
+            <p>
+              Tyler &ldquo;TK&rdquo; Koshakow is an SEO and AEO expert with over a decade of experience in digital marketing. He has managed agency teams and strategy, leading SEO strategy for clients such as <a href="https://www.outreach.io" target="_blank" rel="noopener noreferrer">Outreach</a>, <a href="https://www.airtable.com" target="_blank" rel="noopener noreferrer">Airtable</a>, and <a href="https://skedulo.com" target="_blank" rel="noopener noreferrer">Skedulo</a>. He currently leads SEO and AEO strategy for <a href="https://www.octave.com" target="_blank" rel="noopener noreferrer">Octave</a>, where he engineers AI workflows to drive efficiency through automation and revenue through organic discovery.
+            </p>
+
+            <div class="bio-meta-grid">
+              <div class="bio-meta-item">
+                <span class="bio-meta-label">Current In-House Role //</span>
+                <span class="bio-meta-value">Lead SEO &amp; AEO Strategy, <a href="https://www.octave.com" target="_blank" rel="noopener noreferrer">Octave</a></span>
+              </div>
+              <div class="bio-meta-item">
+                <span class="bio-meta-label">Featured Client History //</span>
+                <span class="bio-meta-value">
+                  <a href="https://www.outreach.io" target="_blank" rel="noopener noreferrer">Outreach</a>, 
+                  <a href="https://www.airtable.com" target="_blank" rel="noopener noreferrer">Airtable</a>, 
+                  <a href="https://skedulo.com" target="_blank" rel="noopener noreferrer">Skedulo</a>
+                </span>
+              </div>
+              <div class="bio-meta-item">
+                <span class="bio-meta-label">Location //</span>
+                <span class="bio-meta-value">Madison, WI</span>
+              </div>
+              <div class="bio-meta-item">
+                <span class="bio-meta-label">Connect //</span>
+                <span class="bio-meta-value">
+                  <a href="https://www.linkedin.com/in/tyler-koshakow/" target="_blank" rel="noopener noreferrer">LinkedIn</a> &bull; 
+                  <a href="https://github.com/tylerkoshakow" target="_blank" rel="noopener noreferrer">GitHub</a>
+                </span>
+              </div>
+            </div>
+          </section>
+
+        </div>
+      </article>
+    </main>
+
+    <!-- FOOTER NODE -->
+    <footer>
+      <div class="footer-meta">
+        <p>&copy; 2026 Tyler &ldquo;TK&rdquo; Koshakow. All rights reserved.</p>
+      </div>
+      <div class="footer-links">
+        <a href="/llms.txt" title="Machine Readable Overview">/llms.txt</a> &bull; 
+        <a href="/llms-full.txt" title="Unpaginated Knowledge Ingestion">/llms-full.txt</a> &bull; 
+        <a href="/sitemap.xml" title="XML Sitemap">/sitemap.xml</a>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Interactive Scripts (Theme Selector & Goblin Mode Physics) -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const themeButtons = document.querySelectorAll('.theme-option');
+      let goblinRAF = null;
+      let goblinElements = [];
+
+      function startGoblinChaos() {
+        stopGoblinChaos();
+        const selector = 'h1, h2, h3, h4, p, a, li, time, blockquote, table, th, td, .type-tag, .bio-meta-label, .bio-meta-value';
+        const rawEls = document.querySelectorAll(selector);
+        goblinElements = [];
+        
+        rawEls.forEach((el, index) => {
+          if (el.closest('.header-top') || el.closest('.theme-selector')) return;
+          
+          goblinElements.push({
+            el: el,
+            speedX: 0.0012 + (index % 5) * 0.0005,
+            speedY: 0.0016 + (index % 4) * 0.0006,
+            speedRot: 0.0011 + (index % 3) * 0.0004,
+            ampX: 40 + (index % 7) * 12,
+            ampY: 35 + (index % 6) * 10,
+            ampRot: 14 + (index % 5) * 5,
+            phaseX: index * 1.3,
+            phaseY: index * 2.1,
+            phaseRot: index * 0.8
+          });
+          el.style.display = 'inline-block';
+          el.style.position = 'relative';
+          el.style.transition = 'none';
+        });
+        
+        const startTime = performance.now();
+        function loop(now) {
+          const elapsed = now - startTime;
+          goblinElements.forEach(item => {
+            const x = Math.sin(elapsed * item.speedX + item.phaseX) * item.ampX;
+            const y = Math.cos(elapsed * item.speedY + item.phaseY) * item.ampY;
+            const rot = Math.sin(elapsed * item.speedRot + item.phaseRot) * item.ampRot;
+            item.el.style.transform = `translate3d(${x.toFixed(1)}px, ${y.toFixed(1)}px, 0) rotate(${rot.toFixed(1)}deg)`;
+          });
+          goblinRAF = requestAnimationFrame(loop);
+        }
+        goblinRAF = requestAnimationFrame(loop);
+      }
+
+      function stopGoblinChaos() {
+        if (goblinRAF) {
+          cancelAnimationFrame(goblinRAF);
+          goblinRAF = null;
+        }
+        if (goblinElements.length) {
+          goblinElements.forEach(item => {
+            item.el.style.transform = '';
+            item.el.style.display = '';
+            item.el.style.position = '';
+            item.el.style.transition = '';
+          });
+          goblinElements = [];
+        }
+      }
+
+      function morphThemeSelector(newTheme, callback) {
+        const selector = document.querySelector('.theme-selector');
+        if (!selector) {
+          callback();
+          return;
+        }
+
+        selector.classList.remove('breathe');
+
+        const firstRect = selector.getBoundingClientRect();
+        callback();
+        const lastRect = selector.getBoundingClientRect();
+
+        const deltaX = firstRect.left - lastRect.left;
+        const deltaY = firstRect.top - lastRect.top;
+        const scaleX = firstRect.width / (lastRect.width || 1);
+        const scaleY = firstRect.height / (lastRect.height || 1);
+
+        if (Math.abs(deltaX) < 1 && Math.abs(deltaY) < 1) {
+          if (newTheme === 'goblin') {
+            selector.classList.add('breathe');
+          }
+          return;
+        }
+
+        selector.style.transition = 'none';
+        selector.style.transform = `translate3d(${deltaX}px, ${deltaY}px, 0) scale(${scaleX}, ${scaleY})`;
+        
+        selector.getBoundingClientRect();
+
+        selector.style.transition = 'transform 0.65s cubic-bezier(0.34, 1.4, 0.64, 1), border-radius 0.65s ease, box-shadow 0.65s ease, background-color 0.55s ease, border-color 0.55s ease, padding 0.55s ease';
+        selector.style.transform = (newTheme === 'goblin') ? 'translateX(-50%)' : 'none';
+
+        setTimeout(() => {
+          selector.style.transition = '';
+          if (newTheme === 'goblin') {
+            selector.classList.add('breathe');
+          } else {
+            selector.style.transform = '';
+            selector.classList.remove('breathe');
+          }
+        }, 660);
+      }
+
+      function applyTheme(theme, isInitial) {
+        const execute = () => {
+          document.documentElement.setAttribute('data-theme', theme);
+          localStorage.setItem('theme', theme);
+          themeButtons.forEach(btn => {
+            const val = btn.getAttribute('data-theme-val');
+            if (val === theme) {
+              btn.classList.add('active');
+              btn.setAttribute('aria-pressed', 'true');
+            } else {
+              btn.classList.remove('active');
+              btn.setAttribute('aria-pressed', 'false');
+            }
+          });
+
+          if (theme === 'goblin') {
+            startGoblinChaos();
+          } else {
+            stopGoblinChaos();
+          }
+        };
+
+        if (isInitial) {
+          execute();
+          const selector = document.querySelector('.theme-selector');
+          if (selector && theme === 'goblin') {
+            selector.classList.add('breathe');
+          }
+        } else {
+          morphThemeSelector(theme, execute);
+        }
+      }
+      
+      themeButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const selected = btn.getAttribute('data-theme-val');
+          applyTheme(selected, false);
+        });
+      });
+      
+      const initialTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+      applyTheme(initialTheme, true);
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && document.documentElement.getAttribute('data-theme') === 'goblin') {
+          applyTheme('dark', false);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
