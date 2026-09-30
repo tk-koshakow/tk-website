@@ -138,7 +138,7 @@
         "jobTitle": "Enterprise AEO/SEO Strategist",
         "url": "https://tylerkoshakow.com",
         "sameAs": [
-          "https://www.linkedin.com/in/tylerkoshakow",
+          "https://www.linkedin.com/in/tyler-koshakow/",
           "https://github.com/tylerkoshakow"
         ]
       },
@@ -415,7 +415,7 @@
         </div>
 
         <div class="mobile-toc-sheet-footer">
-          <a href="https://www.linkedin.com/in/tylerkoshakow" target="_blank" rel="noopener noreferrer" class="sidebar-btn sidebar-btn-primary">
+          <a href="https://www.linkedin.com/in/tyler-koshakow/" target="_blank" rel="noopener noreferrer" class="sidebar-btn sidebar-btn-primary">
             <span>Connect on LinkedIn</span>
             <svg class="btn-arrow" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <line x1="3" y1="8" x2="13" y2="8"></line>
@@ -460,7 +460,7 @@
           </nav>
 
           <div class="sidebar-actions">
-            <a href="https://www.linkedin.com/in/tylerkoshakow" target="_blank" rel="noopener noreferrer" class="sidebar-btn sidebar-btn-primary">
+            <a href="https://www.linkedin.com/in/tyler-koshakow/" target="_blank" rel="noopener noreferrer" class="sidebar-btn sidebar-btn-primary">
               <span>Connect on LinkedIn</span>
               <svg class="btn-arrow" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <line x1="3" y1="8" x2="13" y2="8"></line>
@@ -1220,15 +1220,16 @@
 
       // Share Signal & Citation Copy
       async function handleShareSignal(btn) {
-        const title = document.title;
+        const articleH1 = document.querySelector('h1.article-title, h1');
+        const articleTitle = articleH1 ? articleH1.textContent.trim() : document.title.split('—')[0].trim();
         const url = window.location.href.split('#')[0];
-        const citation = `Tyler "TK" Koshakow: "${title}" — ${url}`;
+        const citation = `Tyler Koshakow (${articleTitle}) (${url})`;
         
         if (navigator.share && /mobile|android|iphone|ipad/i.test(navigator.userAgent.toLowerCase())) {
           try {
             await navigator.share({
-              title: title,
-              text: citation,
+              title: articleTitle,
+              text: `Tyler Koshakow (${articleTitle})`,
               url: url
             });
             return;
