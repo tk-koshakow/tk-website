@@ -63,7 +63,7 @@
   <meta name="twitter:title" content="What Is Prompt Tracking? The Complete Guide to Monitoring Brand Visibility in AI Search">
   <meta name="twitter:description" content="Learn what prompt tracking is, how AI answer engines break traditional rank tracking, and how to measure brand citations across ChatGPT, Perplexity, and Google AI Overviews.">
   
-  <link rel="stylesheet" href="../style.css?v=goblin20">
+  <link rel="stylesheet" href="../style.css?v=sidebar1">
   
   <!-- Inline Script to Prevent Theme Flash & Handle Persistent Theme -->
   <script>
@@ -352,7 +352,7 @@
   </script>
 </head>
 <body>
-  <div class="container">
+  <div class="container has-sidebar">
     
     <!-- TOP NAVIGATION -->
     <header>
@@ -366,22 +366,138 @@
       </div>
     </header>
 
-    <!-- ARTICLE MAIN CONTENT -->
-    <main>
-      <article class="article-detail" itemscope itemtype="https://schema.org/TechArticle">
-        
-        <header class="article-header">
-          <div class="feed-meta">
-            <time datetime="2026-09-29" itemprop="datePublished">September 29, 2026</time>
-            <span class="type-tag">Online // Signal 005</span>
-          </div>
-          <h1 class="article-title" itemprop="headline">What Is Prompt Tracking? The Complete Guide to Monitoring Brand Visibility in AI Search</h1>
-          <p class="article-author" itemprop="author">Tyler &ldquo;TK&rdquo; Koshakow</p>
-        </header>
+    <!-- MOBILE STICKY TOC BAR (Visible on viewports < 64rem) -->
+    <div class="mobile-toc-bar" id="mobileTocBar">
+      <button type="button" class="mobile-toc-trigger" id="mobileTocTrigger" aria-expanded="false" aria-controls="mobileTocDrawer" aria-label="Open article table of contents">
+        <div class="mobile-toc-info">
+          <span class="mobile-toc-indicator-dot" aria-hidden="true"></span>
+          <span class="mobile-toc-label">Index //</span>
+          <span class="mobile-toc-current" id="mobileTocCurrent">What Is Prompt Tracking?</span>
+        </div>
+        <div class="mobile-toc-action-hint">
+          <span class="mobile-toc-jump">Jump to</span>
+          <svg class="mobile-toc-chevron" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="3 4.5 6 7.5 9 4.5"></polyline>
+          </svg>
+        </div>
+      </button>
+    </div>
 
-        <div class="article-content" itemprop="articleBody">
+    <!-- MOBILE TOC DRAWER MODAL -->
+    <div class="mobile-toc-drawer" id="mobileTocDrawer" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Table of Contents">
+      <div class="mobile-toc-backdrop" id="mobileTocBackdrop"></div>
+      <div class="mobile-toc-sheet">
+        <div class="mobile-toc-sheet-header">
+          <div class="mobile-toc-sheet-title">
+            <span class="toc-badge">Index //</span>
+            <span>Table of Contents</span>
+          </div>
+          <button type="button" class="mobile-toc-close" id="mobileTocClose" aria-label="Close table of contents">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+        
+        <div class="mobile-toc-sheet-body">
+          <ul class="mobile-toc-list">
+            <li><a href="#what-is-prompt-tracking" class="mobile-toc-link">What Is Prompt Tracking?</a></li>
+            <li><a href="#traditional-vs-ai" class="mobile-toc-link">Traditional vs. AI Tracking</a></li>
+            <li><a href="#prompt-bloat-problem" class="mobile-toc-link">Why Prompt Tracking Efficiency Matters</a></li>
+            <li><a href="#core-prompt-types" class="mobile-toc-link">5 Core Types of Prompts to Track</a></li>
+            <li><a href="#finding-prompts" class="mobile-toc-link">How to Find the Right Prompts to Track</a></li>
+            <li><a href="#measuring-g-sov" class="mobile-toc-link">How to Measure Generative Share of Voice</a></li>
+            <li><a href="#consensus-graph" class="mobile-toc-link">Where Do AI Models Get Their Data?</a></li>
+            <li><a href="#best-practices" class="mobile-toc-link">Best Practices for AI Prompt Tracking</a></li>
+            <li><a href="#faq" class="mobile-toc-link">Frequently Asked Questions</a></li>
+          </ul>
+        </div>
+
+        <div class="mobile-toc-sheet-footer">
+          <a href="https://www.linkedin.com/in/tylerkoshakow" target="_blank" rel="noopener noreferrer" class="sidebar-btn sidebar-btn-primary">
+            <span>Connect on LinkedIn</span>
+            <svg class="btn-arrow" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="3" y1="8" x2="13" y2="8"></line>
+              <polyline points="9 4 13 8 9 12"></polyline>
+            </svg>
+          </a>
+          <button type="button" class="sidebar-btn sidebar-btn-secondary mobile-share-btn" aria-label="Share this signal or copy citation">
+            <svg class="share-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="18" cy="5" r="3"></circle>
+              <circle cx="6" cy="12" r="3"></circle>
+              <circle cx="18" cy="19" r="3"></circle>
+              <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+              <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+            </svg>
+            <span class="btn-text">Share Signal</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TWO-COLUMN ARTICLE LAYOUT -->
+    <div class="article-layout">
+      
+      <!-- DESKTOP STICKY SIDEBAR -->
+      <aside class="article-sidebar" aria-label="Article navigation">
+        <div class="sidebar-sticky-wrapper">
+          <nav class="sidebar-nav" aria-label="Article outline">
+            <div class="sidebar-header">
+              <span class="sidebar-label">Index //</span>
+            </div>
+            <ul class="sidebar-list">
+              <li><a href="#what-is-prompt-tracking" class="sidebar-link">What Is Prompt Tracking?</a></li>
+              <li><a href="#traditional-vs-ai" class="sidebar-link">Traditional vs. AI Tracking</a></li>
+              <li><a href="#prompt-bloat-problem" class="sidebar-link">Prompt Bloat Problem</a></li>
+              <li><a href="#core-prompt-types" class="sidebar-link">5 Core Prompt Types</a></li>
+              <li><a href="#finding-prompts" class="sidebar-link">Finding the Right Prompts</a></li>
+              <li><a href="#measuring-g-sov" class="sidebar-link">Measuring Generative SoV</a></li>
+              <li><a href="#consensus-graph" class="sidebar-link">The Consensus Graph</a></li>
+              <li><a href="#best-practices" class="sidebar-link">Best Practices</a></li>
+              <li><a href="#faq" class="sidebar-link">Frequently Asked Questions</a></li>
+            </ul>
+          </nav>
+
+          <div class="sidebar-actions">
+            <a href="https://www.linkedin.com/in/tylerkoshakow" target="_blank" rel="noopener noreferrer" class="sidebar-btn sidebar-btn-primary">
+              <span>Connect on LinkedIn</span>
+              <svg class="btn-arrow" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="3" y1="8" x2="13" y2="8"></line>
+                <polyline points="9 4 13 8 9 12"></polyline>
+              </svg>
+            </a>
+            <button type="button" class="sidebar-btn sidebar-btn-secondary desktop-share-btn" aria-label="Share this signal or copy citation">
+              <svg class="share-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="18" cy="5" r="3"></circle>
+                <circle cx="6" cy="12" r="3"></circle>
+                <circle cx="18" cy="19" r="3"></circle>
+                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+              </svg>
+              <span class="btn-text">Share Signal</span>
+            </button>
+          </div>
+        </div>
+      </aside>
+
+      <!-- ARTICLE MAIN CONTENT -->
+      <main class="article-main">
+        <article class="article-detail" itemscope itemtype="https://schema.org/TechArticle">
           
-          <h2>What Is Prompt Tracking?</h2>
+          <header class="article-header">
+            <div class="feed-meta">
+              <time datetime="2026-09-29" itemprop="datePublished">September 29, 2026</time>
+              <span class="type-tag">Online // Signal 005</span>
+            </div>
+            <h1 class="article-title" itemprop="headline">What Is Prompt Tracking? The Complete Guide to Monitoring Brand Visibility in AI Search</h1>
+            <p class="article-author" itemprop="author">Tyler &ldquo;TK&rdquo; Koshakow</p>
+          </header>
+
+          <div class="article-content" itemprop="articleBody">
+            
+            <section id="what-is-prompt-tracking" class="article-section">
+              <h2>What Is Prompt Tracking?</h2>
 
           <div class="definition-card" style="background: var(--code-bg); border: 1px solid var(--border-subtle); border-left: 3px solid var(--fg); padding: var(--space-md); margin: var(--space-md) 0 var(--space-lg) 0; border-radius: 4px; box-sizing: border-box; overflow-wrap: break-word;">
             <p style="margin: 0; color: var(--fg); font-size: var(--text-base); line-height: var(--line-height-base); font-weight: 500;">
@@ -478,7 +594,9 @@
               </div>
             </div>
           </figure>
+        </section>
 
+        <section id="traditional-vs-ai" class="article-section">
           <h2>Traditional Rank Tracking vs. AI Prompt Tracking</h2>
 
           <p>
@@ -523,7 +641,9 @@
               </tbody>
             </table>
           </div>
+        </section>
 
+        <section id="prompt-bloat-problem" class="article-section">
           <h2>Why Prompt Tracking Efficiency Matters (The Prompt Bloat Problem)</h2>
 
           <p>
@@ -565,7 +685,9 @@
           <p>
             You do not need a bloated library of 2,000 prompts. For a single product line, what you actually need is a focused, disciplined list of 30 to 50 high-intent questions that real buyers ask immediately prior to booking a sales demo or selecting a vendor.
           </p>
+        </section>
 
+        <section id="core-prompt-types" class="article-section">
           <h2>The 5 Core Types of Prompts You Should Track</h2>
 
           <p>
@@ -617,7 +739,9 @@
             <li><em>Example:</em> &ldquo;How do engineering teams connect Snowflake to HubSpot via reverse ETL without custom code?&rdquo;</li>
             <li><em>What to look for:</em> Does the AI validate that your platform supports the integration natively, or does it recommend third-party middleware and custom workarounds?</li>
           </ul>
+        </section>
 
+        <section id="finding-prompts" class="article-section">
           <h2>How to Find the Right Prompts to Track</h2>
 
           <p>
@@ -672,7 +796,9 @@
           <p>
             If the answer to any of those is no, cut it from the list. Keep your core tracking portfolio disciplined and tied directly to revenue.
           </p>
+        </section>
 
+        <section id="measuring-g-sov" class="article-section">
           <h2>How to Measure Generative Share of Voice (G-SoV)</h2>
 
           <p>
@@ -701,7 +827,9 @@
           <p>
             <em>(Note: This formula represents Gross Algorithmic Presence. In comprehensive audits, multiply brand mentions by a Sentiment Polarity coefficient S &isin; [-1.0, +1.0] so negative warnings do not artificially inflate your score.)</em>
           </p>
+        </section>
 
+        <section id="consensus-graph" class="article-section">
           <h2>Where Do AI Models Get Their Data? (The Consensus Graph)</h2>
 
           <p>
@@ -794,7 +922,9 @@
               </div>
             </div>
           </figure>
+        </section>
 
+        <section id="best-practices" class="article-section">
           <h2>Best Practices for AI Prompt Tracking</h2>
 
           <p>
@@ -841,7 +971,9 @@
           <p>
             For example, a $50M multi-product platform tracks approximately 80 core prompts (30 baseline + 50 revenue-scaled prompts), split across its major product pillars. The critical operational rule: <em>never dump 300 prompts into a single unstructured bucket</em>. Always partition prompts into distinct product clusters of 30 to 50 queries to prevent vector collapse and ensure your team can take direct action on the data.
           </p>
+        </section>
 
+        <section id="faq" class="article-section">
           <h2>Frequently Asked Questions About Prompt Tracking</h2>
 
           <h3>How often should you track prompts in AI search?</h3>
@@ -863,11 +995,13 @@
           <p>
             First, inspect the sources Google's AI Overview is citing for that prompt. Look at the specific passages and external domains quoted in the answer. Did the competitor publish fresh data, earn a new review, or get mentioned in a popular Reddit thread? Once you identify the consensus source powering their citation, update your own content with direct, quotable data or build presence on the third-party platforms the AI is consulting.
           </p>
+        </section>
 
-        </div>
+      </div>
 
-      </article>
-    </main>
+    </article>
+  </main>
+</div>
 
     <!-- FOOTER NODE -->
     <footer>
@@ -970,9 +1104,183 @@
         });
       });
 
+      // --------------------------------------------------------------------------
+      // Responsive Sticky Navigation, Scrollspy & Mobile Drawer
+      // --------------------------------------------------------------------------
+      const sections = document.querySelectorAll('.article-section');
+      const desktopLinks = document.querySelectorAll('.sidebar-link');
+      const mobileLinks = document.querySelectorAll('.mobile-toc-link');
+      const mobileCurrent = document.getElementById('mobileTocCurrent');
+      const mobileDrawer = document.getElementById('mobileTocDrawer');
+      const mobileTrigger = document.getElementById('mobileTocTrigger');
+      const mobileClose = document.getElementById('mobileTocClose');
+      const mobileBackdrop = document.getElementById('mobileTocBackdrop');
+
+      function setActiveSection(id) {
+        if (!id) return;
+        desktopLinks.forEach(link => {
+          const isMatch = link.getAttribute('href') === '#' + id;
+          link.classList.toggle('active', isMatch);
+          link.classList.toggle('\\:target-current', isMatch);
+          link.setAttribute('aria-current', isMatch ? 'true' : 'false');
+        });
+        mobileLinks.forEach(link => {
+          const isMatch = link.getAttribute('href') === '#' + id;
+          link.classList.toggle('active', isMatch);
+          link.classList.toggle('\\:target-current', isMatch);
+          link.setAttribute('aria-current', isMatch ? 'true' : 'false');
+          if (isMatch && mobileCurrent) {
+            mobileCurrent.textContent = link.textContent.trim();
+          }
+        });
+      }
+
+      if ('IntersectionObserver' in window && sections.length > 0) {
+        const observer = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const id = entry.target.getAttribute('id');
+              setActiveSection(id);
+            }
+          });
+        }, {
+          rootMargin: '-15% 0px -70% 0px',
+          threshold: 0
+        });
+
+        sections.forEach(sec => observer.observe(sec));
+      }
+
+      if (window.CSS && CSS.supports && CSS.supports('scroll-target-group: auto')) {
+        const syncCurrent = () => {
+          const currentLink = document.querySelector('.sidebar-link:target-current');
+          if (currentLink) {
+            const href = currentLink.getAttribute('href');
+            if (href && href.startsWith('#')) {
+              setActiveSection(href.substring(1));
+            }
+          }
+        };
+        document.addEventListener('scrollend', syncCurrent);
+      }
+
+      function openMobileDrawer() {
+        if (!mobileDrawer) return;
+        mobileDrawer.classList.add('open');
+        mobileDrawer.setAttribute('aria-hidden', 'false');
+        if (mobileTrigger) mobileTrigger.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeMobileDrawer() {
+        if (!mobileDrawer) return;
+        mobileDrawer.classList.remove('open');
+        mobileDrawer.setAttribute('aria-hidden', 'true');
+        if (mobileTrigger) mobileTrigger.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      }
+
+      function handleTocClick(e, link) {
+        const href = link.getAttribute('href');
+        if (!href || !href.startsWith('#')) return;
+        e.preventDefault();
+        const targetId = href.substring(1);
+        const targetEl = document.getElementById(targetId);
+        if (targetEl) {
+          closeMobileDrawer();
+          targetEl.scrollIntoView({ behavior: 'smooth' });
+          if (history.pushState) {
+            history.pushState(null, '', href);
+          } else {
+            location.hash = href;
+          }
+          setActiveSection(targetId);
+        }
+      }
+
+      desktopLinks.forEach(link => {
+        link.addEventListener('click', (e) => handleTocClick(e, link));
+      });
+      mobileLinks.forEach(link => {
+        link.addEventListener('click', (e) => handleTocClick(e, link));
+      });
+
+      if (mobileTrigger) {
+        mobileTrigger.addEventListener('click', () => {
+          const isOpen = mobileDrawer && mobileDrawer.classList.contains('open');
+          if (isOpen) {
+            closeMobileDrawer();
+          } else {
+            openMobileDrawer();
+          }
+        });
+      }
+      if (mobileClose) mobileClose.addEventListener('click', closeMobileDrawer);
+      if (mobileBackdrop) mobileBackdrop.addEventListener('click', closeMobileDrawer);
+
+      // Share Signal & Citation Copy
+      async function handleShareSignal(btn) {
+        const title = document.title;
+        const url = window.location.href.split('#')[0];
+        const citation = `Tyler "TK" Koshakow: "${title}" — ${url}`;
+        
+        if (navigator.share && /mobile|android|iphone|ipad/i.test(navigator.userAgent.toLowerCase())) {
+          try {
+            await navigator.share({
+              title: title,
+              text: citation,
+              url: url
+            });
+            return;
+          } catch (err) {
+            if (err.name !== 'AbortError') {
+              console.warn('Share failed, falling back to copy', err);
+            } else {
+              return;
+            }
+          }
+        }
+
+        try {
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            await navigator.clipboard.writeText(citation);
+          } else {
+            const ta = document.createElement('textarea');
+            ta.value = citation;
+            ta.style.position = 'fixed';
+            ta.style.opacity = '0';
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            document.body.removeChild(ta);
+          }
+
+          const btnText = btn.querySelector('.btn-text');
+          const originalText = btnText ? btnText.textContent : '';
+          if (btnText) btnText.textContent = 'Citation Copied!';
+          btn.classList.add('copied');
+          
+          setTimeout(() => {
+            if (btnText) btnText.textContent = originalText;
+            btn.classList.remove('copied');
+          }, 2500);
+        } catch (copyErr) {
+          console.error('Failed to copy citation', copyErr);
+        }
+      }
+
+      document.querySelectorAll('.desktop-share-btn, .mobile-share-btn').forEach(btn => {
+        btn.addEventListener('click', () => handleShareSignal(btn));
+      });
+
       document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && document.documentElement.getAttribute('data-theme') === 'goblin') {
-          applyTheme('dark', false);
+        if (e.key === 'Escape') {
+          if (mobileDrawer && mobileDrawer.classList.contains('open')) {
+            closeMobileDrawer();
+          }
+          if (document.documentElement.getAttribute('data-theme') === 'goblin') {
+            applyTheme('dark', false);
+          }
         }
       });
     });

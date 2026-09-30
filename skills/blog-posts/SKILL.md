@@ -11,8 +11,8 @@ This skill defines the editorial standards, typographic rules, abstract minimali
 
 ## 1. Editorial Voice & Core Principles
 
-- **Core Slogan / Philosophy:** *"Good marketing distributes proof, good product creates it."*
-- **Perspective:** In-house enterprise AEO/SEO strategist and AI consultant. Practitioner-first, contrarian, authoritative, and concise.
+- **Tone & Style:** In-house enterprise AEO/SEO strategist and AI consultant. Practitioner-first, contrarian, authoritative, and concise.
+- **No Forced Slogans:** Do not insert repetitive catchphrases or slogans into editorial pieces. Let the technical evidence and data drive the narrative.
 - **Audience:** Dual-audience design:
   1. *Human Executives (C-Suite & Decision Makers):* Ultra-clean, distraction-free typography, stark minimalism, and strategic business relevance.
   2. *Machine Crawlers (LLMs, AI Answer Engines, Web Crawlers):* Semantic HTML5, deep JSON-LD entity graphs, and plain-text `/llms.txt` mirrors.
@@ -32,22 +32,22 @@ This skill defines the editorial standards, typographic rules, abstract minimali
 - **`<h2>`**: Major conceptual sections (e.g., `Goodhart’s Law and Outdated SEO Metrics`, `The Case for C-Suite Reporting`).
 - **`<h3>`**: Subordinate subsections or drill-down questions (e.g., `So Why Is UGC Different?`).
 
-### In-Text Slogans & Quotations
-- **Rule:** When pulling a slogan or thesis out into a graphical pull quote, **always preserve the full sentence inside the body paragraph text**.
+### In-Text Theses & Quotations
+- **Rule:** When highlighting an empirical finding or core thesis as a graphical pull quote, ensure the context is naturally embedded within the body paragraph.
 - **Example in Paragraph:**
   ```html
   <p>
-    Rankings and clicks are great, but the main thing they indicate is how good your SEO program is. Here is my new slogan: Good marketing distributes proof, good product creates it. The power of AEO analytics is its ability to tell you how good your product is.
+    Asynchronous downloads prevent DOM parsing blocks, but they cannot prevent main-thread execution freezes once third-party scripts compile.
   </p>
   ```
 
 ### Editorial Graphical Pull Quotes
-- **Rule:** Pull quotes must be styled as a clean graphical element with top and bottom hairline borders, centered alignment, and **must break at the comma with a `<br>` tag**.
+- **Rule:** Pull quotes must be styled as a clean graphical element with top and bottom hairline borders, centered alignment, and **should break naturally with a `<br>` tag** where appropriate.
 - **Markup:**
   ```html
   <figure class="pullquote">
     <blockquote>
-      &ldquo;Good marketing distributes proof,<br>good product creates it.&rdquo;
+      &ldquo;Asynchronous downloads don't block the DOM,<br>but they still freeze the main thread.&rdquo;
     </blockquote>
   </figure>
   ```
@@ -56,6 +56,18 @@ This skill defines the editorial standards, typographic rules, abstract minimali
   - Alignment: `text-align: center;`
   - Font: `font-size: var(--text-lg); font-weight: 600; line-height: 1.35; font-style: normal; color: var(--fg); letter-spacing: -0.02em;`
   - Margin: `margin: var(--space-xl) 0; padding: var(--space-lg) var(--space-md);`
+
+### Responsive Sticky Navigation Sidebar & Table of Contents
+- **Layout Architecture:** For long-form technical signals and guides, wrap the page in `<div class="container has-sidebar">` and use `<div class="article-layout">` containing `<aside class="article-sidebar">` and `<main class="article-main">`.
+- **Desktop Grid (`min-width: 64rem`):** Expands container to `72rem`, placing a `240px` sticky left sidebar alongside the `44rem` article content column (`align-items: start;`).
+- **Modern Scrollspy Standards:**
+  - Nav container uses CSS `scroll-target-group: auto`.
+  - Links use `:is(:target-current, .\:target-current, .active)` for active state styling.
+  - JavaScript pairs `IntersectionObserver` (reading zone rootMargin `-15% 0px -70% 0px`) with accessible `aria-current="true"` state.
+- **Section Wrapping:** Every major section must be wrapped in `<section id="SLUG" class="article-section">` with proper `scroll-margin-top` (`2rem` desktop, `5rem` mobile).
+- **Sidebar Action Buttons:** Include primary high-contrast "Connect on LinkedIn ->" link and secondary "Share Signal" button (copies canonical URL citation with dynamic "Citation Copied!" feedback).
+- **Mobile Sticky Bar & Drawer (`< 64rem`):** Sticky top pill bar (`.mobile-toc-bar`) displaying active section and open trigger; opens a sliding bottom sheet drawer (`.mobile-toc-drawer`) with full table of contents and action buttons.
+- **Theme & Goblin Mode Compatibility:** Full reactivity across Light, Dark, and Goblin modes. All navigation structural elements must be exempted from chaotic float physics (`animation: none !important; transform: none !important;`).
 
 ---
 
@@ -281,14 +293,14 @@ Whenever a new post is published:
             Opening paragraph text...
           </p>
 
-          <!-- In-text slogan followed by graphical pullquote -->
+          <!-- Key thesis followed by graphical pullquote -->
           <p>
-            Contextual paragraph containing the full slogan: Good marketing distributes proof, good product creates it.
+            Asynchronous downloads prevent DOM parsing blocks, but they cannot prevent main-thread execution freezes once third-party scripts compile.
           </p>
 
           <figure class="pullquote">
             <blockquote>
-              &ldquo;Good marketing distributes proof,<br>good product creates it.&rdquo;
+              &ldquo;Asynchronous downloads don't block the DOM,<br>but they still freeze the main thread.&rdquo;
             </blockquote>
           </figure>
 

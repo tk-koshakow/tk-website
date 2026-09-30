@@ -36,8 +36,9 @@ For all new articles, signals, prompt intelligence briefings, and pitches create
 
 ## 2. Editorial Voice & Style
 
-* **Core Philosophy:** *"Good marketing distributes proof, good product creates it."*
-* **Tone:** Practitioner-first, authoritative, concise, contrarian enterprise AI/SEO strategist.
+* **Writing Skill Reference:** Adhere to [`.agents/skills/editorial-writing/SKILL.md`](file:///Users/tylerkoshakow/Documents/TK%20Website/.agents/skills/editorial-writing/SKILL.md) for all prose creation, voice calibration, content archetypes, and rhetorical anatomy.
+* **Tone:** Practitioner-first, authoritative, concise, contrarian enterprise AI/SEO strategist ("Empirical Skeptic & Systems Architect").
+* **No Forced Slogans:** Do not insert repetitive catchphrases or slogans into content, notes, or briefs. Let the empirical evidence, data, and technical architecture carry the authority.
 * **No synthetic placeholders:** Never create dummy logs, mock data, or fake quotes.
 * **Typographic Standards:** Uniform body font sizes (`var(--text-base)`), no `.lead` enlargement, graphical pull quotes breaking at the comma with `<br>`.
 * **Theme Reactivity:** All diagrams and layouts must seamlessly support Light, Dark, and Goblin modes.
