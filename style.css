@@ -1660,62 +1660,80 @@ html[data-theme="goblin"] .bio-meta-item .bio-meta-label {
 }
 
 /* ==========================================================================
-   PRESTIGE NEWSPAPER BYLINE PORTRAIT (HEDCUT / STIPPLE STYLE)
+   ABOUT PAGE HEADER WITH PRESTIGE BYLINE OVAL CAMEO
    ========================================================================== */
-.byline-portrait {
-  float: right;
-  margin: 0.25rem 0 var(--space-md) var(--space-md);
-  width: 120px;
-  text-align: center;
+.about-header {
+  margin-bottom: var(--space-xl);
 }
 
-.byline-portrait .byline-frame {
-  display: block;
+.about-header-lockup {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-lg);
+  margin-top: var(--space-xs);
+}
+
+.about-header-text {
+  flex: 1;
+}
+
+.about-header-text .article-title {
+  margin-top: 0;
+  margin-bottom: 0.25rem;
+}
+
+.about-greeting {
+  font-size: var(--text-md);
+  font-weight: 600;
+  line-height: var(--line-height-tight);
+  color: var(--fg);
+  margin-top: var(--space-xs);
+  margin-bottom: 0;
+  letter-spacing: -0.01em;
+}
+
+.byline-oval-portrait {
+  flex-shrink: 0;
+  width: 145px;
+  height: 196px;
+  border-radius: 50%;
+  overflow: hidden;
   background-color: #ffffff;
   border: 1px solid var(--border-subtle);
-  border-radius: 2px;
-  padding: 3px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
   transition: border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
-.byline-portrait img {
+.byline-oval-portrait img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
   display: block;
-  aspect-ratio: 759 / 1024;
 }
 
-.byline-portrait figcaption {
-  font-family: var(--font-mono);
-  font-size: 9px;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--fg-muted);
-  margin-top: 6px;
-  line-height: 1.2;
-}
-
-[data-theme="dark"] .byline-portrait .byline-frame {
+[data-theme="dark"] .byline-oval-portrait {
   border-color: var(--border-subtle);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.55);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.65);
 }
 
-html[data-theme="goblin"] .byline-portrait .byline-frame {
+html[data-theme="goblin"] .byline-oval-portrait {
   border-color: #39ff14;
-  box-shadow: 0 0 14px rgba(57, 255, 20, 0.45);
+  box-shadow: 0 0 16px rgba(57, 255, 20, 0.5);
 }
 
-html[data-theme="goblin"] .byline-portrait figcaption {
-  color: var(--fg-secondary);
-}
+@media (max-width: 34rem) {
+  .about-header-lockup {
+    gap: var(--space-md);
+  }
 
-@media (max-width: 30rem) {
-  .byline-portrait {
-    width: 95px;
-    margin: 0.15rem 0 var(--space-sm) var(--space-sm);
+  .byline-oval-portrait {
+    width: 110px;
+    height: 148px;
   }
 }
+
 
 
 
