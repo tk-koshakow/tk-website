@@ -1659,4 +1659,63 @@ html[data-theme="goblin"] .bio-meta-item .bio-meta-label {
   color: var(--fg-secondary);
 }
 
+/* ==========================================================================
+   PRESTIGE NEWSPAPER BYLINE PORTRAIT (HEDCUT / STIPPLE STYLE)
+   ========================================================================== */
+.byline-portrait {
+  float: right;
+  margin: 0.25rem 0 var(--space-md) var(--space-md);
+  width: 120px;
+  text-align: center;
+}
+
+.byline-portrait .byline-frame {
+  display: block;
+  background-color: #ffffff;
+  border: 1px solid var(--border-subtle);
+  border-radius: 2px;
+  padding: 3px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.byline-portrait img {
+  width: 100%;
+  height: auto;
+  display: block;
+  aspect-ratio: 759 / 1024;
+}
+
+.byline-portrait figcaption {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--fg-muted);
+  margin-top: 6px;
+  line-height: 1.2;
+}
+
+[data-theme="dark"] .byline-portrait .byline-frame {
+  border-color: var(--border-subtle);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.55);
+}
+
+html[data-theme="goblin"] .byline-portrait .byline-frame {
+  border-color: #39ff14;
+  box-shadow: 0 0 14px rgba(57, 255, 20, 0.45);
+}
+
+html[data-theme="goblin"] .byline-portrait figcaption {
+  color: var(--fg-secondary);
+}
+
+@media (max-width: 30rem) {
+  .byline-portrait {
+    width: 95px;
+    margin: 0.15rem 0 var(--space-sm) var(--space-sm);
+  }
+}
+
+
 
