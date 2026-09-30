@@ -568,6 +568,10 @@
         });
       });
       
+      // Initialize active button state from current data-theme
+      const initialTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+      applyTheme(initialTheme, true);
+      
       // Interactive Micro-Telemetry Status Readout
       document.querySelectorAll('.diagram-wrapper').forEach(wrapper => {
         const statusEl = wrapper.querySelector('.status-text');

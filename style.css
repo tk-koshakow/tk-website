@@ -193,7 +193,9 @@ header {
   border-color: var(--fg-secondary);
 }
 
-.theme-option.active {
+.theme-option.active,
+html[data-theme="light"] .theme-option[data-theme-val="light"],
+html[data-theme="dark"] .theme-option[data-theme-val="dark"] {
   background: var(--fg);
   color: var(--bg);
   border-color: var(--fg);

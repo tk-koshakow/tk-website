@@ -63,7 +63,7 @@
   <meta name="twitter:title" content="What Is Prompt Tracking? The Complete Guide to Monitoring Brand Visibility in AI Search">
   <meta name="twitter:description" content="Learn what prompt tracking is, how AI answer engines break traditional rank tracking, and how to measure brand citations across ChatGPT, Perplexity, and Google AI Overviews.">
   
-  <link rel="stylesheet" href="../style.css?v=sidebar2">
+  <link rel="stylesheet" href="../style.css?v=sidebar3">
   
   <!-- Inline Script to Prevent Theme Flash & Handle Persistent Theme -->
   <script>
@@ -1081,6 +1081,10 @@
           applyTheme(selected, false);
         });
       });
+      
+      // Initialize active button state from current data-theme
+      const initialTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+      applyTheme(initialTheme, true);
       
       // Interactive Micro-Telemetry Status Readout
       document.querySelectorAll('.diagram-wrapper').forEach(wrapper => {
