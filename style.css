@@ -1668,29 +1668,17 @@ html[data-theme="goblin"] .bio-meta-item .bio-meta-label {
 
 .about-header-lockup {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
-  gap: var(--space-lg);
+  gap: var(--space-md);
   margin-top: var(--space-xs);
 }
 
-.about-header-text {
-  flex: 1;
-}
-
-.about-header-text .article-title {
-  margin-top: 0;
-  margin-bottom: 0.25rem;
-}
-
-.about-greeting {
-  font-size: var(--text-md);
-  font-weight: 600;
-  line-height: var(--line-height-tight);
-  color: var(--fg);
-  margin-top: var(--space-xs);
-  margin-bottom: 0;
-  letter-spacing: -0.01em;
+.about-title {
+  font-size: clamp(2.5rem, 5.5vw, 3rem) !important;
+  line-height: 1.1 !important;
+  margin: 0 !important;
+  letter-spacing: -0.03em !important;
 }
 
 .byline-oval-portrait {
@@ -1725,7 +1713,11 @@ html[data-theme="goblin"] .byline-oval-portrait {
 
 @media (max-width: 34rem) {
   .about-header-lockup {
-    gap: var(--space-md);
+    gap: 1.25rem;
+  }
+
+  .about-title {
+    font-size: 2.25rem !important;
   }
 
   .byline-oval-portrait {
@@ -1733,6 +1725,7 @@ html[data-theme="goblin"] .byline-oval-portrait {
     height: 148px;
   }
 }
+
 
 
 
