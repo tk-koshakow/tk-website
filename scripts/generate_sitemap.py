@@ -137,7 +137,14 @@ def collect_urls():
         if parsed:
             entries.append(parsed)
 
-    # 2. Signals directory
+    # 2. Other root pages (e.g. about.html)
+    for root_page in sorted(REPO_ROOT.glob("*.html")):
+        if root_page.name != "index.html":
+            parsed = parse_page(root_page)
+            if parsed:
+                entries.append(parsed)
+
+    # 3. Signals directory
     signals_dir = REPO_ROOT / "signals"
     if signals_dir.exists():
         for html_file in sorted(signals_dir.glob("*.html")):

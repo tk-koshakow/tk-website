@@ -9,6 +9,7 @@
 - **Entity Name:** Tyler "TK" Koshakow (TK)
 - **Primary Roles:** Enterprise AEO Architect, GEO & Enterprise Content Strategist, Principal AI Consultant
 - **Core Value Proposition:** AEO, GEO, Enterprise Content Strategy. Structuring machine-navigable brand authority, engineering entity confidence, and turning search & answer engine telemetry into executive business intelligence.
+- **About Page:** https://tylerkoshakow.com/about.html
 - **Offline / Personal Interests:** Spores, Molds, Fungi (Mycology & Foraging)
 - **Core Entity Schema (JSON-LD URN):** https://tylerkoshakow.com/#person
 

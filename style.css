@@ -471,6 +471,20 @@ p {
   color: var(--fg-secondary);
 }
 
+.identity-subhead a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--border-subtle);
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
+  transition: color 0.15s ease, text-decoration-color 0.15s ease;
+}
+
+.identity-subhead a:hover {
+  color: var(--fg);
+  text-decoration-color: var(--fg);
+}
+
 p.lead {
   font-size: var(--text-md);
   color: var(--fg-secondary);
@@ -773,6 +787,20 @@ footer {
   text-transform: uppercase;
   letter-spacing: 0.05em;
   margin-bottom: var(--space-lg);
+}
+
+.article-author a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--border-subtle);
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  transition: color 0.15s ease, text-decoration-color 0.15s ease;
+}
+
+.article-author a:hover {
+  color: var(--fg);
+  text-decoration-color: var(--fg);
 }
 
 .article-content h2 {
