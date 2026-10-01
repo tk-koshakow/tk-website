@@ -30,7 +30,7 @@
   <meta name="twitter:title" content="Does Google Analytics Slow Down Your Website? An Empirical GA4 Benchmark">
   <meta name="twitter:description" content="We benchmarked Google Search Console and GA4 on a clean 100/100 site. Google's default snippet dropped mobile scores to 84. Here is why, and how to fix it.">
   
-  <link rel="stylesheet" href="../style.css?v=goblin20">
+  <link rel="stylesheet" href="../style.css?v=sidebar3">
   
   <!-- Inline Script to Prevent Theme Flash (FOUC) -->
   <script>
@@ -179,7 +179,7 @@
   </script>
 </head>
 <body>
-  <div class="container">
+  <div class="container has-sidebar">
     
     <!-- TOP NAVIGATION -->
     <header>
@@ -193,9 +193,120 @@
       </div>
     </header>
 
-    <!-- ARTICLE MAIN CONTENT -->
-    <main>
-      <article class="article-detail" itemscope itemtype="https://schema.org/TechArticle">
+    <!-- MOBILE STICKY TOC BAR (Visible on viewports < 58rem) -->
+    <div class="mobile-toc-bar" id="mobileTocBar">
+      <button type="button" class="mobile-toc-trigger" id="mobileTocTrigger" aria-expanded="false" aria-controls="mobileTocDrawer" aria-label="Open article table of contents">
+        <div class="mobile-toc-info">
+          <span class="mobile-toc-indicator-dot" aria-hidden="true"></span>
+          <span class="mobile-toc-label">Index //</span>
+          <span class="mobile-toc-current" id="mobileTocCurrent">Does GA4 Slow Down Sites?</span>
+        </div>
+        <div class="mobile-toc-action-hint">
+          <span class="mobile-toc-jump">Jump to</span>
+          <svg class="mobile-toc-chevron" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="3 4.5 6 7.5 9 4.5"></polyline>
+          </svg>
+        </div>
+      </button>
+    </div>
+
+    <!-- MOBILE TOC DRAWER MODAL -->
+    <div class="mobile-toc-drawer" id="mobileTocDrawer" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Table of Contents">
+      <div class="mobile-toc-backdrop" id="mobileTocBackdrop"></div>
+      <div class="mobile-toc-sheet">
+        <div class="mobile-toc-sheet-header">
+          <div class="mobile-toc-sheet-title">
+            <span class="toc-badge">Index //</span>
+            <span>Table of Contents</span>
+          </div>
+          <button type="button" class="mobile-toc-close" id="mobileTocClose" aria-label="Close table of contents">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+        
+        <div class="mobile-toc-sheet-body">
+          <ul class="mobile-toc-list">
+            <li><a href="#does-ga4-slow-down" class="mobile-toc-link">Does GA4 Slow Down Sites?</a></li>
+            <li><a href="#what-happened-and-why" class="mobile-toc-link">What Happened &amp; Why</a></li>
+            <li><a href="#interaction-driven-sequencing" class="mobile-toc-link">Interaction-Driven Sequencing</a></li>
+            <li><a href="#the-benchmark" class="mobile-toc-link">The Empirical Benchmark</a></li>
+            <li><a href="#real-world-impact" class="mobile-toc-link">Real Business Impact</a></li>
+            <li><a href="#developer-perspectives" class="mobile-toc-link">Developer Perspectives</a></li>
+            <li><a href="#real-takeaway" class="mobile-toc-link">The Real Takeaway</a></li>
+          </ul>
+        </div>
+
+        <div class="mobile-toc-sheet-footer">
+          <a href="https://www.linkedin.com/in/tyler-koshakow/" target="_blank" rel="noopener noreferrer" class="sidebar-btn sidebar-btn-primary">
+            <span>Connect on LinkedIn</span>
+            <svg class="btn-arrow" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="3" y1="8" x2="13" y2="8"></line>
+              <polyline points="9 4 13 8 9 12"></polyline>
+            </svg>
+          </a>
+          <button type="button" class="sidebar-btn sidebar-btn-secondary mobile-share-btn" aria-label="Share this signal or copy citation">
+            <svg class="share-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="18" cy="5" r="3"></circle>
+              <circle cx="6" cy="12" r="3"></circle>
+              <circle cx="18" cy="19" r="3"></circle>
+              <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+              <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+            </svg>
+            <span class="btn-text">Share Signal</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TWO-COLUMN ARTICLE LAYOUT -->
+    <div class="article-layout">
+      
+      <!-- DESKTOP STICKY SIDEBAR -->
+      <aside class="article-sidebar" aria-label="Article navigation">
+        <div class="sidebar-sticky-wrapper">
+          <nav class="sidebar-nav" aria-label="Article outline">
+            <div class="sidebar-header">
+              <span class="sidebar-label">Index //</span>
+            </div>
+            <ul class="sidebar-list">
+              <li><a href="#does-ga4-slow-down" class="sidebar-link">Does GA4 Slow Down Sites?</a></li>
+              <li><a href="#what-happened-and-why" class="sidebar-link">What Happened &amp; Why</a></li>
+              <li><a href="#interaction-driven-sequencing" class="sidebar-link">Interaction Sequencing</a></li>
+              <li><a href="#the-benchmark" class="sidebar-link">The Empirical Benchmark</a></li>
+              <li><a href="#real-world-impact" class="sidebar-link">Real Business Impact</a></li>
+              <li><a href="#developer-perspectives" class="sidebar-link">Developer Perspectives</a></li>
+              <li><a href="#real-takeaway" class="sidebar-link">The Real Takeaway</a></li>
+            </ul>
+          </nav>
+
+          <div class="sidebar-actions">
+            <a href="https://www.linkedin.com/in/tyler-koshakow/" target="_blank" rel="noopener noreferrer" class="sidebar-btn sidebar-btn-primary">
+              <span>Connect on LinkedIn</span>
+              <svg class="btn-arrow" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="3" y1="8" x2="13" y2="8"></line>
+                <polyline points="9 4 13 8 9 12"></polyline>
+              </svg>
+            </a>
+            <button type="button" class="sidebar-btn sidebar-btn-secondary desktop-share-btn" aria-label="Share this signal or copy citation">
+              <svg class="share-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="18" cy="5" r="3"></circle>
+                <circle cx="6" cy="12" r="3"></circle>
+                <circle cx="18" cy="19" r="3"></circle>
+                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+              </svg>
+              <span class="btn-text">Share Signal</span>
+            </button>
+          </div>
+        </div>
+      </aside>
+
+      <!-- ARTICLE MAIN CONTENT -->
+      <main class="article-main">
+        <article class="article-detail" itemscope itemtype="https://schema.org/TechArticle">
         
         <header class="article-header">
           <div class="feed-meta">
@@ -215,7 +326,8 @@
             Then came time to add the standard business plumbing: <a href="https://search.google.com/search-console" target="_blank" rel="noopener noreferrer">Google Search Console</a> (GSC) for search visibility and <a href="https://developers.google.com/tag-platform/gtagjs" target="_blank" rel="noopener noreferrer">Google Analytics 4</a> (GA4) for telemetry. I wanted to measure what happens to a pristine performance score when you add these basic foundational tools.
           </p>
 
-          <h2>Does Google Analytics Slow Down Your Website?</h2>
+          <section id="does-ga4-slow-down" class="article-section">
+            <h2>Does Google Analytics Slow Down Your Website?</h2>
 
           <p>
             <strong>Yes, Google Analytics 4 (GA4) does slow down your website if you install it using Google&rsquo;s default setup snippet.</strong>
@@ -240,7 +352,10 @@
             </figcaption>
           </figure>
 
-          <h2>What Happened and Why</h2>
+          </section>
+
+          <section id="what-happened-and-why" class="article-section">
+            <h2>What Happened and Why</h2>
 
           <p>
             To understand where that 16-point mobile drop came from, we examined how each tracking integration interacts with the browser&rsquo;s critical rendering path under throttled CPU and mobile network conditions.
@@ -271,7 +386,10 @@
             Even with an <code>async</code> attribute, browsers prioritize scripts discovered in the <code>&lt;head&gt;</code> during the initial preload scan. Downloading Google&rsquo;s ~100 KB+ bundle directly competes with critical CSS, delaying layout and visual rendering.
           </p>
 
-          <h2>The Engineering Fix: Interaction-Driven Sequencing</h2>
+          </section>
+
+          <section id="interaction-driven-sequencing" class="article-section">
+            <h2>The Engineering Fix: Interaction-Driven Sequencing</h2>
 
           <p>
             The solution doesn&rsquo;t require dropping analytics. It just requires working with how Google Analytics actually handles data.
@@ -390,7 +508,10 @@
             </div>
           </figure>
 
-          <h2>The Benchmark</h2>
+          </section>
+
+          <section id="the-benchmark" class="article-section">
+            <h2>The Benchmark</h2>
 
           <p>
             Here is the empirical scoreboard across each phase of our testing, measuring mobile <a href="https://web.dev/explore/vitals" target="_blank" rel="noopener noreferrer">Core Web Vitals</a> under throttled CPU and 4G network conditions:
@@ -453,7 +574,10 @@
             </table>
           </div>
 
-          <h2>How This Applies to Real Business &amp; E-Commerce Sites</h2>
+          </section>
+
+          <section id="real-world-impact" class="article-section">
+            <h2>How This Applies to Real Business &amp; E-Commerce Sites</h2>
 
           <p>
             This challenge is not unique to personal websites. In high-stakes environments like e-commerce, where every 100ms of mobile latency measurably degrades conversion rates, loading raw tracking scripts in the document head is an immediate liability.
@@ -473,7 +597,10 @@
             While I haven&rsquo;t personally tested or used every specific proprietary plugin, the underlying pattern is an established industry standard: <em>never execute non-critical third-party JavaScript during the critical rendering path.</em>
           </p>
 
-          <h2>What Developers Are Saying in the Wild</h2>
+          </section>
+
+          <section id="developer-perspectives" class="article-section">
+            <h2>What Developers Are Saying in the Wild</h2>
 
           <p>
             If you search developer forums and community threads, this frustration is everywhere. On <a href="https://www.reddit.com/r/codestitch/comments/17nf19s/google_analytics_ruining_page_speed_performance/" target="_blank" rel="noopener noreferrer">Reddit</a>, web developers repeatedly share the exact same dilemma:
@@ -508,11 +635,15 @@
             </figcaption>
           </figure>
 
-          <h2>The Real Takeaway</h2>
+          </section>
+
+          <section id="real-takeaway" class="article-section">
+            <h2>The Real Takeaway</h2>
 
           <p>
             You don&rsquo;t have to trade tracking for speed. But you also can&rsquo;t assume default copy-paste code from a giant tech vendor is optimized for performance&mdash;even when that vendor is Google. Holding events in memory and waiting for user input keeps your Core Web Vitals clean while still getting the data your team needs. (If you want to read more about why clean telemetry matters to leadership, see my previous piece on <a href="/signals/aeo-reporting-c-suite.html">AEO and C-suite reporting</a>. And for what happens when you step up from raw GA4 to Google Tag Manager, see my follow-up audit: <a href="/signals/does-gtm-hurt-page-speed.html">Does Google Tag Manager Hurt Page Speed? An Empirical Audit</a>).
           </p>
+        </section>
 
           <!-- DEDICATED PROFESSIONAL BIO CARD -->
           <section class="bio-card" aria-labelledby="bio-heading">
@@ -538,6 +669,7 @@
 
       </article>
     </main>
+  </div>
 
     <!-- FOOTER NODE -->
     <footer>
@@ -726,9 +858,184 @@
         });
       });
 
+      // --------------------------------------------------------------------------
+      // Responsive Sticky Navigation, Scrollspy & Mobile Drawer
+      // --------------------------------------------------------------------------
+      const sections = document.querySelectorAll('.article-section');
+      const desktopLinks = document.querySelectorAll('.sidebar-link');
+      const mobileLinks = document.querySelectorAll('.mobile-toc-link');
+      const mobileCurrent = document.getElementById('mobileTocCurrent');
+      const mobileDrawer = document.getElementById('mobileTocDrawer');
+      const mobileTrigger = document.getElementById('mobileTocTrigger');
+      const mobileClose = document.getElementById('mobileTocClose');
+      const mobileBackdrop = document.getElementById('mobileTocBackdrop');
+
+      function setActiveSection(id) {
+        if (!id) return;
+        desktopLinks.forEach(link => {
+          const isMatch = link.getAttribute('href') === '#' + id;
+          link.classList.toggle('active', isMatch);
+          link.classList.toggle('\\:target-current', isMatch);
+          link.setAttribute('aria-current', isMatch ? 'true' : 'false');
+        });
+        mobileLinks.forEach(link => {
+          const isMatch = link.getAttribute('href') === '#' + id;
+          link.classList.toggle('active', isMatch);
+          link.classList.toggle('\\:target-current', isMatch);
+          link.setAttribute('aria-current', isMatch ? 'true' : 'false');
+          if (isMatch && mobileCurrent) {
+            mobileCurrent.textContent = link.textContent.trim();
+          }
+        });
+      }
+
+      if ('IntersectionObserver' in window && sections.length > 0) {
+        const observer = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const id = entry.target.getAttribute('id');
+              setActiveSection(id);
+            }
+          });
+        }, {
+          rootMargin: '-15% 0px -70% 0px',
+          threshold: 0
+        });
+
+        sections.forEach(sec => observer.observe(sec));
+      }
+
+      if (window.CSS && CSS.supports && CSS.supports('scroll-target-group: auto')) {
+        const syncCurrent = () => {
+          const currentLink = document.querySelector('.sidebar-link:target-current');
+          if (currentLink) {
+            const href = currentLink.getAttribute('href');
+            if (href && href.startsWith('#')) {
+              setActiveSection(href.substring(1));
+            }
+          }
+        };
+        document.addEventListener('scrollend', syncCurrent);
+      }
+
+      function openMobileDrawer() {
+        if (!mobileDrawer) return;
+        mobileDrawer.classList.add('open');
+        mobileDrawer.setAttribute('aria-hidden', 'false');
+        if (mobileTrigger) mobileTrigger.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeMobileDrawer() {
+        if (!mobileDrawer) return;
+        mobileDrawer.classList.remove('open');
+        mobileDrawer.setAttribute('aria-hidden', 'true');
+        if (mobileTrigger) mobileTrigger.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      }
+
+      function handleTocClick(e, link) {
+        const href = link.getAttribute('href');
+        if (!href || !href.startsWith('#')) return;
+        e.preventDefault();
+        const targetId = href.substring(1);
+        const targetEl = document.getElementById(targetId);
+        if (targetEl) {
+          closeMobileDrawer();
+          targetEl.scrollIntoView({ behavior: 'smooth' });
+          if (history.pushState) {
+            history.pushState(null, '', href);
+          } else {
+            location.hash = href;
+          }
+          setActiveSection(targetId);
+        }
+      }
+
+      desktopLinks.forEach(link => {
+        link.addEventListener('click', (e) => handleTocClick(e, link));
+      });
+      mobileLinks.forEach(link => {
+        link.addEventListener('click', (e) => handleTocClick(e, link));
+      });
+
+      if (mobileTrigger) {
+        mobileTrigger.addEventListener('click', () => {
+          const isOpen = mobileDrawer && mobileDrawer.classList.contains('open');
+          if (isOpen) {
+            closeMobileDrawer();
+          } else {
+            openMobileDrawer();
+          }
+        });
+      }
+      if (mobileClose) mobileClose.addEventListener('click', closeMobileDrawer);
+      if (mobileBackdrop) mobileBackdrop.addEventListener('click', closeMobileDrawer);
+
+      // Share Signal & Citation Copy
+      async function handleShareSignal(btn) {
+        const articleH1 = document.querySelector('h1.article-title, h1');
+        const articleTitle = articleH1 ? articleH1.textContent.trim() : document.title.split('—')[0].trim();
+        const url = window.location.href.split('#')[0];
+        const citation = `Tyler Koshakow (${articleTitle}) (${url})`;
+        
+        if (navigator.share && /mobile|android|iphone|ipad/i.test(navigator.userAgent.toLowerCase())) {
+          try {
+            await navigator.share({
+              title: articleTitle,
+              text: `Tyler Koshakow (${articleTitle})`,
+              url: url
+            });
+            return;
+          } catch (err) {
+            if (err.name !== 'AbortError') {
+              console.warn('Share failed, falling back to copy', err);
+            } else {
+              return;
+            }
+          }
+        }
+
+        try {
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            await navigator.clipboard.writeText(citation);
+          } else {
+            const ta = document.createElement('textarea');
+            ta.value = citation;
+            ta.style.position = 'fixed';
+            ta.style.opacity = '0';
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            document.body.removeChild(ta);
+          }
+
+          const btnText = btn.querySelector('.btn-text');
+          const originalText = btnText ? btnText.textContent : '';
+          if (btnText) btnText.textContent = 'Citation Copied!';
+          btn.classList.add('copied');
+          
+          setTimeout(() => {
+            if (btnText) btnText.textContent = originalText;
+            btn.classList.remove('copied');
+          }, 2500);
+        } catch (copyErr) {
+          console.error('Failed to copy citation', copyErr);
+        }
+      }
+
+      document.querySelectorAll('.desktop-share-btn, .mobile-share-btn').forEach(btn => {
+        btn.addEventListener('click', () => handleShareSignal(btn));
+      });
+
       document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && document.documentElement.getAttribute('data-theme') === 'goblin') {
-          applyTheme('dark', false);
+        if (e.key === 'Escape') {
+          if (mobileDrawer && mobileDrawer.classList.contains('open')) {
+            closeMobileDrawer();
+          }
+          if (document.documentElement.getAttribute('data-theme') === 'goblin') {
+            applyTheme('dark', false);
+          }
         }
       });
     });

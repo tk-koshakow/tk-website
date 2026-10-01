@@ -57,16 +57,342 @@ This skill defines the editorial standards, typographic rules, abstract minimali
   - Font: `font-size: var(--text-lg); font-weight: 600; line-height: 1.35; font-style: normal; color: var(--fg); letter-spacing: -0.02em;`
   - Margin: `margin: var(--space-xl) 0; padding: var(--space-lg) var(--space-md);`
 
-### Responsive Sticky Navigation Sidebar & Table of Contents
-- **Layout Architecture:** For long-form technical signals and guides, wrap the page in `<div class="container has-sidebar">` and use `<div class="article-layout">` containing `<aside class="article-sidebar">` and `<main class="article-main">`.
-- **Desktop Grid (`min-width: 64rem`):** Expands container to `72rem`, placing a `240px` sticky left sidebar alongside the `44rem` article content column (`align-items: start;`).
-- **Modern Scrollspy Standards:**
-  - Nav container uses CSS `scroll-target-group: auto`.
-  - Links use `:is(:target-current, .\:target-current, .active)` for active state styling.
-  - JavaScript pairs `IntersectionObserver` (reading zone rootMargin `-15% 0px -70% 0px`) with accessible `aria-current="true"` state.
-- **Section Wrapping:** Every major section must be wrapped in `<section id="SLUG" class="article-section">` with proper `scroll-margin-top` (`2rem` desktop, `5rem` mobile).
-- **Sidebar Action Buttons:** Include primary high-contrast "Connect on LinkedIn ->" link and secondary "Share Signal" button (copies canonical URL citation with dynamic "Citation Copied!" feedback).
-- **Mobile Sticky Bar & Drawer (`< 64rem`):** Sticky top pill bar (`.mobile-toc-bar`) displaying active section and open trigger; opens a sliding bottom sheet drawer (`.mobile-toc-drawer`) with full table of contents and action buttons.
+### Responsive Sticky Navigation Sidebar & Table of Contents (The 4+ H2 Rule)
+
+#### Mandatory Inclusion Rule
+- **Threshold:** Any article, signal, or long-form piece of content containing **four or more H2 headings (`>= 4 H2s`)** MUST implement the responsive sticky navigation sidebar, scrollspy, and mobile drawer.
+- **Short Content Exemption:** Content with fewer than 4 H2 headings (`< 4 H2s`, e.g., `signals/aeo-reporting-c-suite.html`) MUST remain in the clean, single-column container (`<div class="container">`) without sidebar or drawer markup.
+- **Bio-Card Handling:** The author bio card at the bottom (`<section class="bio-card" aria-labelledby="bio-heading">`) contains an `<h2>` for accessibility, but is **NOT** an article content section:
+  - Do NOT wrap the bio card in `.article-section`.
+  - Do NOT include the bio card in the sidebar or mobile TOC navigation links.
+  - Count: If a post has 3 content H2s + 1 bio-card H2 = 4 total H2s in the document, it meets the `>= 4 H2s` rule and receives the sidebar layout (as demonstrated in `offline/tricholomopsis-sulphureoides-ai-mycology.html`).
+
+#### Responsive Breakpoints
+- **Desktop Grid (`@media (min-width: 58rem)`):**
+  - Container `.container.has-sidebar` expands to `max-width: 72rem; padding: 0 var(--space-lg);`.
+  - Two-column CSS grid: `.article-layout { display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: 3.5rem; align-items: start; }`.
+  - Left column: `<aside class="article-sidebar">` is `position: sticky; top: 2rem; max-height: calc(100vh - 4rem);`.
+  - Right column: `<main class="article-main">` is constrained to `max-width: var(--container-width);` (keeping reading line length strictly at `44rem`).
+- **Mobile Sticky Bar & Drawer Modal (`@media (max-width: 57.99rem)`):**
+  - Desktop sidebar is hidden (`display: none;`).
+  - Mobile sticky pill bar (`.mobile-toc-bar`) appears at top (`position: sticky; top: 0; z-index: 100;`), showing the current section name and a "Jump to" trigger button.
+  - Tapping the pill bar opens the sliding bottom sheet drawer modal (`.mobile-toc-drawer`), featuring full navigation links and action buttons.
+  - Body scrolling is locked (`overflow: hidden`) while the drawer is open.
+
+#### Required HTML Structure
+Wrap the page in `.container.has-sidebar`:
+
+```html
+<div class="container has-sidebar">
+  <header>...</header>
+
+  <!-- MOBILE STICKY TOC BAR (Visible on viewports < 58rem) -->
+  <div class="mobile-toc-bar" id="mobileTocBar">
+    <button type="button" class="mobile-toc-trigger" id="mobileTocTrigger" aria-expanded="false" aria-controls="mobileTocDrawer" aria-label="Open article table of contents">
+      <div class="mobile-toc-info">
+        <span class="mobile-toc-indicator-dot" aria-hidden="true"></span>
+        <span class="mobile-toc-label">Index //</span>
+        <span class="mobile-toc-current" id="mobileTocCurrent">[First Section Title]</span>
+      </div>
+      <div class="mobile-toc-action-hint">
+        <span class="mobile-toc-jump">Jump to</span>
+        <svg class="mobile-toc-chevron" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="3 4.5 6 7.5 9 4.5"></polyline>
+        </svg>
+      </div>
+    </button>
+  </div>
+
+  <!-- MOBILE TOC DRAWER MODAL -->
+  <div class="mobile-toc-drawer" id="mobileTocDrawer" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Table of Contents">
+    <div class="mobile-toc-backdrop" id="mobileTocBackdrop"></div>
+    <div class="mobile-toc-sheet">
+      <div class="mobile-toc-sheet-header">
+        <div class="mobile-toc-sheet-title">
+          <span class="toc-badge">Index //</span>
+          <span>Table of Contents</span>
+        </div>
+        <button type="button" class="mobile-toc-close" id="mobileTocClose" aria-label="Close table of contents">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <div class="mobile-toc-sheet-body">
+        <ul class="mobile-toc-list">
+          <li><a href="#section-1" class="mobile-toc-link">Section One Title</a></li>
+          <li><a href="#section-2" class="mobile-toc-link">Section Two Title</a></li>
+        </ul>
+      </div>
+      <div class="mobile-toc-sheet-footer">
+        <a href="https://www.linkedin.com/in/tyler-koshakow/" target="_blank" rel="noopener noreferrer" class="sidebar-btn sidebar-btn-primary">
+          <span>Connect on LinkedIn</span>
+          <svg class="btn-arrow" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="3" y1="8" x2="13" y2="8"></line>
+            <polyline points="9 4 13 8 9 12"></polyline>
+          </svg>
+        </a>
+        <button type="button" class="sidebar-btn sidebar-btn-secondary mobile-share-btn" aria-label="Share this signal or copy citation">
+          <svg class="share-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="18" cy="5" r="3"></circle>
+            <circle cx="6" cy="12" r="3"></circle>
+            <circle cx="18" cy="19" r="3"></circle>
+            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+          </svg>
+          <span class="btn-text">Share Signal</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TWO-COLUMN ARTICLE LAYOUT -->
+  <div class="article-layout">
+    <!-- DESKTOP STICKY SIDEBAR -->
+    <aside class="article-sidebar" aria-label="Article navigation">
+      <div class="sidebar-sticky-wrapper">
+        <nav class="sidebar-nav" aria-label="Article outline">
+          <div class="sidebar-header">
+            <span class="sidebar-label">Index //</span>
+          </div>
+          <ul class="sidebar-list">
+            <li><a href="#section-1" class="sidebar-link">Section One Title</a></li>
+            <li><a href="#section-2" class="sidebar-link">Section Two Title</a></li>
+          </ul>
+        </nav>
+        <div class="sidebar-actions">
+          <a href="https://www.linkedin.com/in/tyler-koshakow/" target="_blank" rel="noopener noreferrer" class="sidebar-btn sidebar-btn-primary">
+            <span>Connect on LinkedIn</span>
+            <svg class="btn-arrow" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="3" y1="8" x2="13" y2="8"></line>
+              <polyline points="9 4 13 8 9 12"></polyline>
+            </svg>
+          </a>
+          <button type="button" class="sidebar-btn sidebar-btn-secondary desktop-share-btn" aria-label="Share this signal or copy citation">
+            <svg class="share-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="18" cy="5" r="3"></circle>
+              <circle cx="6" cy="12" r="3"></circle>
+              <circle cx="18" cy="19" r="3"></circle>
+              <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+              <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+            </svg>
+            <span class="btn-text">Share Signal</span>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ARTICLE MAIN CONTENT -->
+    <main class="article-main">
+      <article class="article-detail" itemscope itemtype="https://schema.org/TechArticle">
+        <header class="article-header">...</header>
+        <div class="article-content" itemprop="articleBody">
+          <!-- Each H2 section wrapped in section.article-section -->
+          <section id="section-1" class="article-section">
+            <h2>Section One Title</h2>
+            <p>...</p>
+          </section>
+
+          <section id="section-2" class="article-section">
+            <h2>Section Two Title</h2>
+            <p>...</p>
+          </section>
+
+          <!-- BIO CARD (Excluded from sidebar TOC and NOT wrapped in article-section) -->
+          <section class="bio-card" aria-labelledby="bio-heading">
+            <h2 id="bio-heading">Professional Bio</h2>
+            <p>...</p>
+          </section>
+        </div>
+      </article>
+    </main>
+  </div>
+
+  <footer>...</footer>
+</div>
+```
+
+#### Action Buttons & Citation Copy Specification
+- **LinkedIn Profile:** Must strictly link to Tyler's verified profile: `https://www.linkedin.com/in/tyler-koshakow/`
+- **Citation Format:** Format string must be strictly:
+  `Tyler Koshakow (${articleTitle}) (${url})`
+- **Native Share Support:** On mobile devices supporting `navigator.share`, opens the OS share sheet.
+- **Clipboard Fallback:** Automatically falls back to `navigator.clipboard.writeText` (with `<textarea>` fallback for older environments).
+- **Visual Feedback:** Temporarily flips `.btn-text` to `"Citation Copied!"` and adds `.copied` class for 2500ms.
+
+#### JavaScript Implementation Contract
+Include this logic in the page's `DOMContentLoaded` listener:
+
+```javascript
+// --------------------------------------------------------------------------
+// Responsive Sticky Navigation, Scrollspy & Mobile Drawer
+// --------------------------------------------------------------------------
+const sections = document.querySelectorAll('.article-section');
+const desktopLinks = document.querySelectorAll('.sidebar-link');
+const mobileLinks = document.querySelectorAll('.mobile-toc-link');
+const mobileCurrent = document.getElementById('mobileTocCurrent');
+const mobileDrawer = document.getElementById('mobileTocDrawer');
+const mobileTrigger = document.getElementById('mobileTocTrigger');
+const mobileClose = document.getElementById('mobileTocClose');
+const mobileBackdrop = document.getElementById('mobileTocBackdrop');
+
+function setActiveSection(id) {
+  if (!id) return;
+  desktopLinks.forEach(link => {
+    const isMatch = link.getAttribute('href') === '#' + id;
+    link.classList.toggle('active', isMatch);
+    link.classList.toggle('\\:target-current', isMatch);
+    link.setAttribute('aria-current', isMatch ? 'true' : 'false');
+  });
+  mobileLinks.forEach(link => {
+    const isMatch = link.getAttribute('href') === '#' + id;
+    link.classList.toggle('active', isMatch);
+    link.classList.toggle('\\:target-current', isMatch);
+    link.setAttribute('aria-current', isMatch ? 'true' : 'false');
+    if (isMatch && mobileCurrent) {
+      mobileCurrent.textContent = link.textContent.trim();
+    }
+  });
+}
+
+if ('IntersectionObserver' in window && sections.length > 0) {
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('id');
+        setActiveSection(id);
+      }
+    });
+  }, {
+    rootMargin: '-15% 0px -70% 0px',
+    threshold: 0
+  });
+
+  sections.forEach(sec => observer.observe(sec));
+}
+
+if (window.CSS && CSS.supports && CSS.supports('scroll-target-group: auto')) {
+  const syncCurrent = () => {
+    const currentLink = document.querySelector('.sidebar-link:target-current');
+    if (currentLink) {
+      const href = currentLink.getAttribute('href');
+      if (href && href.startsWith('#')) {
+        setActiveSection(href.substring(1));
+      }
+    }
+  };
+  document.addEventListener('scrollend', syncCurrent);
+}
+
+function openMobileDrawer() {
+  if (!mobileDrawer) return;
+  mobileDrawer.classList.add('open');
+  mobileDrawer.setAttribute('aria-hidden', 'false');
+  if (mobileTrigger) mobileTrigger.setAttribute('aria-expanded', 'true');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeMobileDrawer() {
+  if (!mobileDrawer) return;
+  mobileDrawer.classList.remove('open');
+  mobileDrawer.setAttribute('aria-hidden', 'true');
+  if (mobileTrigger) mobileTrigger.setAttribute('aria-expanded', 'false');
+  document.body.style.overflow = '';
+}
+
+function handleTocClick(e, link) {
+  const href = link.getAttribute('href');
+  if (!href || !href.startsWith('#')) return;
+  e.preventDefault();
+  const targetId = href.substring(1);
+  const targetEl = document.getElementById(targetId);
+  if (targetEl) {
+    closeMobileDrawer();
+    targetEl.scrollIntoView({ behavior: 'smooth' });
+    if (history.pushState) {
+      history.pushState(null, '', href);
+    } else {
+      location.hash = href;
+    }
+    setActiveSection(targetId);
+  }
+}
+
+desktopLinks.forEach(link => link.addEventListener('click', (e) => handleTocClick(e, link)));
+mobileLinks.forEach(link => link.addEventListener('click', (e) => handleTocClick(e, link)));
+
+if (mobileTrigger) {
+  mobileTrigger.addEventListener('click', () => {
+    const isOpen = mobileDrawer && mobileDrawer.classList.contains('open');
+    if (isOpen) closeMobileDrawer();
+    else openMobileDrawer();
+  });
+}
+if (mobileClose) mobileClose.addEventListener('click', closeMobileDrawer);
+if (mobileBackdrop) mobileBackdrop.addEventListener('click', closeMobileDrawer);
+
+// Share Signal & Citation Copy
+async function handleShareSignal(btn) {
+  const articleH1 = document.querySelector('h1.article-title, h1');
+  const articleTitle = articleH1 ? articleH1.textContent.trim() : document.title.split('—')[0].trim();
+  const url = window.location.href.split('#')[0];
+  const citation = `Tyler Koshakow (${articleTitle}) (${url})`;
+  
+  if (navigator.share && /mobile|android|iphone|ipad/i.test(navigator.userAgent.toLowerCase())) {
+    try {
+      await navigator.share({
+        title: articleTitle,
+        text: `Tyler Koshakow (${articleTitle})`,
+        url: url
+      });
+      return;
+    } catch (err) {
+      if (err.name !== 'AbortError') console.warn('Share failed, falling back to copy', err);
+      else return;
+    }
+  }
+
+  try {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      await navigator.clipboard.writeText(citation);
+    } else {
+      const ta = document.createElement('textarea');
+      ta.value = citation;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+    }
+
+    const btnText = btn.querySelector('.btn-text');
+    const originalText = btnText ? btnText.textContent : '';
+    if (btnText) btnText.textContent = 'Citation Copied!';
+    btn.classList.add('copied');
+    
+    setTimeout(() => {
+      if (btnText) btnText.textContent = originalText;
+      btn.classList.remove('copied');
+    }, 2500);
+  } catch (copyErr) {
+    console.error('Failed to copy citation', copyErr);
+  }
+}
+
+document.querySelectorAll('.desktop-share-btn, .mobile-share-btn').forEach(btn => {
+  btn.addEventListener('click', () => handleShareSignal(btn));
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    if (mobileDrawer && mobileDrawer.classList.contains('open')) closeMobileDrawer();
+    if (document.documentElement.getAttribute('data-theme') === 'goblin') applyTheme('dark', false);
+  }
+});
+```
+
 - **Theme & Goblin Mode Compatibility:** Full reactivity across Light, Dark, and Goblin modes. All navigation structural elements must be exempted from chaotic float physics (`animation: none !important; transform: none !important;`).
 
 ---

@@ -64,7 +64,7 @@
   <meta name="twitter:title" content="Does Google Tag Manager Hurt Page Speed? An Empirical Audit">
   <meta name="twitter:description" content="An empirical mobile benchmark testing Google Tag Manager: why standard GTM drops mobile performance by nearly 20 points, how monolithic CPU tasks freeze the main thread, and how to measure the damage.">
 
-  <link rel="stylesheet" href="../style.css?v=goblin20">
+  <link rel="stylesheet" href="../style.css?v=sidebar3">
 
   <!-- Inline Script to Prevent Theme Flash (FOUC) -->
   <script>
@@ -252,7 +252,7 @@
   </script>
 </head>
 <body>
-  <div class="container">
+  <div class="container has-sidebar">
 
     <!-- TOP NAVIGATION -->
     <header>
@@ -266,9 +266,122 @@
       </div>
     </header>
 
-    <!-- ARTICLE MAIN CONTENT -->
-    <main>
-      <article class="article-detail" itemscope itemtype="https://schema.org/TechArticle">
+    <!-- MOBILE STICKY TOC BAR (Visible on viewports < 58rem) -->
+    <div class="mobile-toc-bar" id="mobileTocBar">
+      <button type="button" class="mobile-toc-trigger" id="mobileTocTrigger" aria-expanded="false" aria-controls="mobileTocDrawer" aria-label="Open article table of contents">
+        <div class="mobile-toc-info">
+          <span class="mobile-toc-indicator-dot" aria-hidden="true"></span>
+          <span class="mobile-toc-label">Index //</span>
+          <span class="mobile-toc-current" id="mobileTocCurrent">Does GTM Hurt Page Speed?</span>
+        </div>
+        <div class="mobile-toc-action-hint">
+          <span class="mobile-toc-jump">Jump to</span>
+          <svg class="mobile-toc-chevron" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="3 4.5 6 7.5 9 4.5"></polyline>
+          </svg>
+        </div>
+      </button>
+    </div>
+
+    <!-- MOBILE TOC DRAWER MODAL -->
+    <div class="mobile-toc-drawer" id="mobileTocDrawer" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Table of Contents">
+      <div class="mobile-toc-backdrop" id="mobileTocBackdrop"></div>
+      <div class="mobile-toc-sheet">
+        <div class="mobile-toc-sheet-header">
+          <div class="mobile-toc-sheet-title">
+            <span class="toc-badge">Index //</span>
+            <span>Table of Contents</span>
+          </div>
+          <button type="button" class="mobile-toc-close" id="mobileTocClose" aria-label="Close table of contents">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+        
+        <div class="mobile-toc-sheet-body">
+          <ul class="mobile-toc-list">
+            <li><a href="#empirical-verdict" class="mobile-toc-link">Does GTM Hurt Page Speed?</a></li>
+            <li><a href="#critical-rendering-path" class="mobile-toc-link">Critical Rendering Path</a></li>
+            <li><a href="#container-bloat" class="mobile-toc-link">Cost of Container Bloat</a></li>
+            <li><a href="#trigger-timing" class="mobile-toc-link">Trigger Timing &amp; Data Loss</a></li>
+            <li><a href="#custom-html-dom" class="mobile-toc-link">Custom HTML &amp; DOM Penalty</a></li>
+            <li><a href="#measuring-gtm-impact" class="mobile-toc-link">Measure in Chrome DevTools</a></li>
+            <li><a href="#mitigating-damage" class="mobile-toc-link">Mitigating the Damage</a></li>
+            <li><a href="#faq" class="mobile-toc-link">Frequently Asked Questions</a></li>
+          </ul>
+        </div>
+
+        <div class="mobile-toc-sheet-footer">
+          <a href="https://www.linkedin.com/in/tyler-koshakow/" target="_blank" rel="noopener noreferrer" class="sidebar-btn sidebar-btn-primary">
+            <span>Connect on LinkedIn</span>
+            <svg class="btn-arrow" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="3" y1="8" x2="13" y2="8"></line>
+              <polyline points="9 4 13 8 9 12"></polyline>
+            </svg>
+          </a>
+          <button type="button" class="sidebar-btn sidebar-btn-secondary mobile-share-btn" aria-label="Share this signal or copy citation">
+            <svg class="share-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="18" cy="5" r="3"></circle>
+              <circle cx="6" cy="12" r="3"></circle>
+              <circle cx="18" cy="19" r="3"></circle>
+              <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+              <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+            </svg>
+            <span class="btn-text">Share Signal</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TWO-COLUMN ARTICLE LAYOUT -->
+    <div class="article-layout">
+      
+      <!-- DESKTOP STICKY SIDEBAR -->
+      <aside class="article-sidebar" aria-label="Article navigation">
+        <div class="sidebar-sticky-wrapper">
+          <nav class="sidebar-nav" aria-label="Article outline">
+            <div class="sidebar-header">
+              <span class="sidebar-label">Index //</span>
+            </div>
+            <ul class="sidebar-list">
+              <li><a href="#empirical-verdict" class="sidebar-link">Empirical Verdict</a></li>
+              <li><a href="#critical-rendering-path" class="sidebar-link">Critical Rendering Path</a></li>
+              <li><a href="#container-bloat" class="sidebar-link">Container Bloat</a></li>
+              <li><a href="#trigger-timing" class="sidebar-link">Trigger Timing &amp; Trade-Offs</a></li>
+              <li><a href="#custom-html-dom" class="sidebar-link">Custom HTML &amp; DOM Penalty</a></li>
+              <li><a href="#measuring-gtm-impact" class="sidebar-link">Measuring in DevTools</a></li>
+              <li><a href="#mitigating-damage" class="sidebar-link">Mitigating Damage</a></li>
+              <li><a href="#faq" class="sidebar-link">Frequently Asked Questions</a></li>
+            </ul>
+          </nav>
+
+          <div class="sidebar-actions">
+            <a href="https://www.linkedin.com/in/tyler-koshakow/" target="_blank" rel="noopener noreferrer" class="sidebar-btn sidebar-btn-primary">
+              <span>Connect on LinkedIn</span>
+              <svg class="btn-arrow" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="3" y1="8" x2="13" y2="8"></line>
+                <polyline points="9 4 13 8 9 12"></polyline>
+              </svg>
+            </a>
+            <button type="button" class="sidebar-btn sidebar-btn-secondary desktop-share-btn" aria-label="Share this signal or copy citation">
+              <svg class="share-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="18" cy="5" r="3"></circle>
+                <circle cx="6" cy="12" r="3"></circle>
+                <circle cx="18" cy="19" r="3"></circle>
+                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+              </svg>
+              <span class="btn-text">Share Signal</span>
+            </button>
+          </div>
+        </div>
+      </aside>
+
+      <!-- ARTICLE MAIN CONTENT -->
+      <main class="article-main">
+        <article class="article-detail" itemscope itemtype="https://schema.org/TechArticle">
 
         <header class="article-header">
           <div class="feed-meta">
@@ -297,7 +410,8 @@
             To establish ground truth, I ran an empirical benchmark testing Google Tag Manager across seven controlled architectural variants under Google's standard mobile auditing conditions (Moto G Power, 4x CPU slowdown, Slow 4G). Here is what the data actually proved, what happens to the browser&rsquo;s critical rendering path, and why standard client-side tag management fails modern performance standards.
           </p>
 
-          <h2>Does Google Tag Manager Hurt Page Speed?</h2>
+          <section id="empirical-verdict" class="article-section">
+            <h2>Does Google Tag Manager Hurt Page Speed?</h2>
 
           <p>
             Yes, significantly. And far more than standalone Google Analytics 4.
@@ -365,7 +479,10 @@
             <figcaption><strong>Standard Client-Side GTM:</strong> Mobile score drops to 82 with 430 ms of Total Blocking Time on an otherwise pristine baseline.</figcaption>
           </figure>
 
-          <h2>What Happens to the Critical Rendering Path</h2>
+          </section>
+
+          <section id="critical-rendering-path" class="article-section">
+            <h2>What Happens to the Critical Rendering Path</h2>
 
           <p>
             When you inspect the Chrome DevTools Performance timeline during a standard GTM load, the root cause of the score collapse becomes obvious: <strong>the Monolithic CPU Task</strong>.
@@ -401,7 +518,10 @@
             While lab tools like Lighthouse emphasize TBT, real-world users experience this bottleneck as poor <strong>Interaction to Next Paint (INP)</strong>. When a visitor taps a navigation menu or begins scrolling while GTM is evaluating scripts, their input is queued behind the running JavaScript. The browser cannot render visual feedback until the entire container execution cycle completes, resulting in noticeable UI lag and failing Core Web Vitals in Google&rsquo;s real-world Chrome User Experience Report (CrUX) dataset.
           </p>
 
-          <h2>The Real Cost of Container Bloat</h2>
+          </section>
+
+          <section id="container-bloat" class="article-section">
+            <h2>The Real Cost of Container Bloat</h2>
 
           <p>
             One of the most widespread misconceptions in web analytics is that the file size of the GTM container itself is what slows down the site. The empirical data proves otherwise.
@@ -439,7 +559,10 @@
             <figcaption><strong>GTM Marketing Bloat (Variant C):</strong> Adding Meta Pixel and LinkedIn Insight Tag pushes JS payload to 879 KiB and TBT to 500 ms.</figcaption>
           </figure>
 
-          <h2>Trigger Timing and the Data Loss Trade-Off</h2>
+          </section>
+
+          <section id="trigger-timing" class="article-section">
+            <h2>Trigger Timing and the Data Loss Trade-Off</h2>
 
           <p>
             When developers realize GTM is destroying their performance scores, their first instinct is usually to change the firing trigger. But shifting trigger execution introduces a brutal compromise that Julius Fedorovicius calls the <strong>Compromise Triangle: Balancing Speed, Data Accuracy, and Marketing Flexibility</strong>.
@@ -499,7 +622,10 @@
             Delaying tags arbitrarily fixes the lab audit by sacrificing business data integrity. That is an unacceptable engineering compromise.
           </p>
 
-          <h2>The Custom HTML and DOM Manipulation Penalty</h2>
+          </section>
+
+          <section id="custom-html-dom" class="article-section">
+            <h2>The Custom HTML and DOM Manipulation Penalty</h2>
 
           <p>
             Beyond tracking pixels, GTM is frequently misused as a visual content management system. Marketing teams inject promotional banners, exit-intent modals, notification bars, or A/B testing variations using <strong>Custom HTML tags</strong>.
@@ -519,7 +645,10 @@
             <strong>Practitioner Rule:</strong> GTM should never be used to modify the visual DOM. UI elements and experiments must be compiled natively into your application codebase or deployed via edge middleware before HTML is sent to the client.
           </p>
 
-          <h2>How to Measure GTM Impact in Chrome DevTools</h2>
+          </section>
+
+          <section id="measuring-gtm-impact" class="article-section">
+            <h2>How to Measure GTM Impact in Chrome DevTools</h2>
 
           <p>
             To determine the exact performance cost of your GTM container on your production site, do not rely on generic audit scores. Follow this five-step diagnostic profiling procedure using Chrome DevTools:
@@ -557,7 +686,10 @@
             Synthetic lab tests only show potential bottlenecks. Visit PageSpeed Insights (<code>pagespeed.web.dev</code>) and review the <strong>&ldquo;Discover what your real users are experiencing&rdquo;</strong> section (Chrome User Experience Report / CrUX). Compare your lab TBT against your field <strong>INP (Interaction to Next Paint)</strong>. If your lab score is 90+ but your 75th percentile mobile INP is &ldquo;Needs Improvement&rdquo; (&gt;200 ms) or &ldquo;Poor&rdquo; (&gt;500 ms), your site is suffering from the deferred tag trap.
           </p>
 
-          <h2>Mitigating the Performance Damage</h2>
+          </section>
+
+          <section id="mitigating-damage" class="article-section">
+            <h2>Mitigating the Performance Damage</h2>
 
           <p>
             If you're dealing with GTM-induced performance drops, simply cutting tags isn't always an option when marketing and sales depend on them for revenue attribution. But you don't have to accept failing Core Web Vitals or rely on naive timers that destroy your conversion tracking.
@@ -567,7 +699,10 @@
             I documented the exact mitigation architectures—from client-side interaction sequencing to zero-dollar serverless edge proxies that restore a true 100/100 mobile score—in my complete empirical benchmark report: <a href="/signals/an-in-the-wild-benchmark-of-gtm-speed.html">An In-The-Wild Benchmark of Client-Side GTM vs. Deferral Hacks vs. $0 Edge Proxying</a>. That guide breaks down how each architectural option performs under live network conditions and provides drop-in code for eliminating client-side execution overhead entirely.
           </p>
 
-          <h2>Frequently Asked Questions About GTM Performance</h2>
+          </section>
+
+          <section id="faq" class="article-section">
+            <h2>Frequently Asked Questions About GTM Performance</h2>
 
           <div class="faq-accordion">
             <div class="faq-item">
@@ -619,6 +754,7 @@
               </p>
             </div>
           </div>
+        </section>
 
           <!-- DEDICATED PROFESSIONAL BIO CARD -->
           <section class="bio-card" aria-labelledby="bio-heading">
@@ -645,6 +781,7 @@
 
       </article>
     </main>
+  </div>
 
     <!-- FOOTER NODE -->
     <footer>
@@ -812,9 +949,184 @@
       applyTheme(initialTheme, true);
 
 
+      // --------------------------------------------------------------------------
+      // Responsive Sticky Navigation, Scrollspy & Mobile Drawer
+      // --------------------------------------------------------------------------
+      const sections = document.querySelectorAll('.article-section');
+      const desktopLinks = document.querySelectorAll('.sidebar-link');
+      const mobileLinks = document.querySelectorAll('.mobile-toc-link');
+      const mobileCurrent = document.getElementById('mobileTocCurrent');
+      const mobileDrawer = document.getElementById('mobileTocDrawer');
+      const mobileTrigger = document.getElementById('mobileTocTrigger');
+      const mobileClose = document.getElementById('mobileTocClose');
+      const mobileBackdrop = document.getElementById('mobileTocBackdrop');
+
+      function setActiveSection(id) {
+        if (!id) return;
+        desktopLinks.forEach(link => {
+          const isMatch = link.getAttribute('href') === '#' + id;
+          link.classList.toggle('active', isMatch);
+          link.classList.toggle('\\:target-current', isMatch);
+          link.setAttribute('aria-current', isMatch ? 'true' : 'false');
+        });
+        mobileLinks.forEach(link => {
+          const isMatch = link.getAttribute('href') === '#' + id;
+          link.classList.toggle('active', isMatch);
+          link.classList.toggle('\\:target-current', isMatch);
+          link.setAttribute('aria-current', isMatch ? 'true' : 'false');
+          if (isMatch && mobileCurrent) {
+            mobileCurrent.textContent = link.textContent.trim();
+          }
+        });
+      }
+
+      if ('IntersectionObserver' in window && sections.length > 0) {
+        const observer = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const id = entry.target.getAttribute('id');
+              setActiveSection(id);
+            }
+          });
+        }, {
+          rootMargin: '-15% 0px -70% 0px',
+          threshold: 0
+        });
+
+        sections.forEach(sec => observer.observe(sec));
+      }
+
+      if (window.CSS && CSS.supports && CSS.supports('scroll-target-group: auto')) {
+        const syncCurrent = () => {
+          const currentLink = document.querySelector('.sidebar-link:target-current');
+          if (currentLink) {
+            const href = currentLink.getAttribute('href');
+            if (href && href.startsWith('#')) {
+              setActiveSection(href.substring(1));
+            }
+          }
+        };
+        document.addEventListener('scrollend', syncCurrent);
+      }
+
+      function openMobileDrawer() {
+        if (!mobileDrawer) return;
+        mobileDrawer.classList.add('open');
+        mobileDrawer.setAttribute('aria-hidden', 'false');
+        if (mobileTrigger) mobileTrigger.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeMobileDrawer() {
+        if (!mobileDrawer) return;
+        mobileDrawer.classList.remove('open');
+        mobileDrawer.setAttribute('aria-hidden', 'true');
+        if (mobileTrigger) mobileTrigger.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      }
+
+      function handleTocClick(e, link) {
+        const href = link.getAttribute('href');
+        if (!href || !href.startsWith('#')) return;
+        e.preventDefault();
+        const targetId = href.substring(1);
+        const targetEl = document.getElementById(targetId);
+        if (targetEl) {
+          closeMobileDrawer();
+          targetEl.scrollIntoView({ behavior: 'smooth' });
+          if (history.pushState) {
+            history.pushState(null, '', href);
+          } else {
+            location.hash = href;
+          }
+          setActiveSection(targetId);
+        }
+      }
+
+      desktopLinks.forEach(link => {
+        link.addEventListener('click', (e) => handleTocClick(e, link));
+      });
+      mobileLinks.forEach(link => {
+        link.addEventListener('click', (e) => handleTocClick(e, link));
+      });
+
+      if (mobileTrigger) {
+        mobileTrigger.addEventListener('click', () => {
+          const isOpen = mobileDrawer && mobileDrawer.classList.contains('open');
+          if (isOpen) {
+            closeMobileDrawer();
+          } else {
+            openMobileDrawer();
+          }
+        });
+      }
+      if (mobileClose) mobileClose.addEventListener('click', closeMobileDrawer);
+      if (mobileBackdrop) mobileBackdrop.addEventListener('click', closeMobileDrawer);
+
+      // Share Signal & Citation Copy
+      async function handleShareSignal(btn) {
+        const articleH1 = document.querySelector('h1.article-title, h1');
+        const articleTitle = articleH1 ? articleH1.textContent.trim() : document.title.split('—')[0].trim();
+        const url = window.location.href.split('#')[0];
+        const citation = `Tyler Koshakow (${articleTitle}) (${url})`;
+        
+        if (navigator.share && /mobile|android|iphone|ipad/i.test(navigator.userAgent.toLowerCase())) {
+          try {
+            await navigator.share({
+              title: articleTitle,
+              text: `Tyler Koshakow (${articleTitle})`,
+              url: url
+            });
+            return;
+          } catch (err) {
+            if (err.name !== 'AbortError') {
+              console.warn('Share failed, falling back to copy', err);
+            } else {
+              return;
+            }
+          }
+        }
+
+        try {
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            await navigator.clipboard.writeText(citation);
+          } else {
+            const ta = document.createElement('textarea');
+            ta.value = citation;
+            ta.style.position = 'fixed';
+            ta.style.opacity = '0';
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            document.body.removeChild(ta);
+          }
+
+          const btnText = btn.querySelector('.btn-text');
+          const originalText = btnText ? btnText.textContent : '';
+          if (btnText) btnText.textContent = 'Citation Copied!';
+          btn.classList.add('copied');
+          
+          setTimeout(() => {
+            if (btnText) btnText.textContent = originalText;
+            btn.classList.remove('copied');
+          }, 2500);
+        } catch (copyErr) {
+          console.error('Failed to copy citation', copyErr);
+        }
+      }
+
+      document.querySelectorAll('.desktop-share-btn, .mobile-share-btn').forEach(btn => {
+        btn.addEventListener('click', () => handleShareSignal(btn));
+      });
+
       document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && document.documentElement.getAttribute('data-theme') === 'goblin') {
-          applyTheme('dark', false);
+        if (e.key === 'Escape') {
+          if (mobileDrawer && mobileDrawer.classList.contains('open')) {
+            closeMobileDrawer();
+          }
+          if (document.documentElement.getAttribute('data-theme') === 'goblin') {
+            applyTheme('dark', false);
+          }
         }
       });
     });

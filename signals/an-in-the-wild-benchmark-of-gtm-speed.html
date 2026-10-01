@@ -64,7 +64,7 @@
   <meta name="twitter:title" content="An In-The-Wild Benchmark of Client-Side GTM vs. Deferral Hacks vs. $0 Edge Proxying">
   <meta name="twitter:description" content="An empirical in-the-wild benchmark across 8 live production tagging architectures: what marketing tags actually cost, why deferring them creates an INP trap, and how $0 edge proxying delivers a true 100/100 Core Web Vitals score.">
   
-  <link rel="stylesheet" href="../style.css?v=goblin20">
+  <link rel="stylesheet" href="../style.css?v=sidebar3">
   
   <!-- Inline Script to Prevent Theme Flash (FOUC) -->
   <script>
@@ -182,7 +182,7 @@
   </script>
 </head>
 <body>
-  <div class="container">
+  <div class="container has-sidebar">
     
     <!-- TOP NAVIGATION -->
     <header>
@@ -196,9 +196,118 @@
       </div>
     </header>
 
-    <!-- ARTICLE MAIN CONTENT -->
-    <main>
-      <article class="article-detail" itemscope itemtype="https://schema.org/TechArticle">
+    <!-- MOBILE STICKY TOC BAR (Visible on viewports < 58rem) -->
+    <div class="mobile-toc-bar" id="mobileTocBar">
+      <button type="button" class="mobile-toc-trigger" id="mobileTocTrigger" aria-expanded="false" aria-controls="mobileTocDrawer" aria-label="Open article table of contents">
+        <div class="mobile-toc-info">
+          <span class="mobile-toc-indicator-dot" aria-hidden="true"></span>
+          <span class="mobile-toc-label">Index //</span>
+          <span class="mobile-toc-current" id="mobileTocCurrent">Growth vs. Performance</span>
+        </div>
+        <div class="mobile-toc-action-hint">
+          <span class="mobile-toc-jump">Jump to</span>
+          <svg class="mobile-toc-chevron" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="3 4.5 6 7.5 9 4.5"></polyline>
+          </svg>
+        </div>
+      </button>
+    </div>
+
+    <!-- MOBILE TOC DRAWER MODAL -->
+    <div class="mobile-toc-drawer" id="mobileTocDrawer" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Table of Contents">
+      <div class="mobile-toc-backdrop" id="mobileTocBackdrop"></div>
+      <div class="mobile-toc-sheet">
+        <div class="mobile-toc-sheet-header">
+          <div class="mobile-toc-sheet-title">
+            <span class="toc-badge">Index //</span>
+            <span>Table of Contents</span>
+          </div>
+          <button type="button" class="mobile-toc-close" id="mobileTocClose" aria-label="Close table of contents">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+        
+        <div class="mobile-toc-sheet-body">
+          <ul class="mobile-toc-list">
+            <li><a href="#growth-vs-performance" class="mobile-toc-link">Growth vs. Performance</a></li>
+            <li><a href="#testing-in-the-wild" class="mobile-toc-link">Testing in the Wild</a></li>
+            <li><a href="#empirical-findings" class="mobile-toc-link">The Empirical Findings</a></li>
+            <li><a href="#analysis-and-takeaways" class="mobile-toc-link">Analysis &amp; Takeaways</a></li>
+            <li><a href="#when-speed-matters" class="mobile-toc-link">When Speed Matters</a></li>
+            <li><a href="#architectural-options" class="mobile-toc-link">Strategic Architectures</a></li>
+          </ul>
+        </div>
+
+        <div class="mobile-toc-sheet-footer">
+          <a href="https://www.linkedin.com/in/tyler-koshakow/" target="_blank" rel="noopener noreferrer" class="sidebar-btn sidebar-btn-primary">
+            <span>Connect on LinkedIn</span>
+            <svg class="btn-arrow" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="3" y1="8" x2="13" y2="8"></line>
+              <polyline points="9 4 13 8 9 12"></polyline>
+            </svg>
+          </a>
+          <button type="button" class="sidebar-btn sidebar-btn-secondary mobile-share-btn" aria-label="Share this signal or copy citation">
+            <svg class="share-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="18" cy="5" r="3"></circle>
+              <circle cx="6" cy="12" r="3"></circle>
+              <circle cx="18" cy="19" r="3"></circle>
+              <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+              <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+            </svg>
+            <span class="btn-text">Share Signal</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TWO-COLUMN ARTICLE LAYOUT -->
+    <div class="article-layout">
+      
+      <!-- DESKTOP STICKY SIDEBAR -->
+      <aside class="article-sidebar" aria-label="Article navigation">
+        <div class="sidebar-sticky-wrapper">
+          <nav class="sidebar-nav" aria-label="Article outline">
+            <div class="sidebar-header">
+              <span class="sidebar-label">Index //</span>
+            </div>
+            <ul class="sidebar-list">
+              <li><a href="#growth-vs-performance" class="sidebar-link">Growth vs. Performance</a></li>
+              <li><a href="#testing-in-the-wild" class="sidebar-link">Testing in the Wild</a></li>
+              <li><a href="#empirical-findings" class="sidebar-link">The Empirical Findings</a></li>
+              <li><a href="#analysis-and-takeaways" class="sidebar-link">Analysis &amp; Takeaways</a></li>
+              <li><a href="#when-speed-matters" class="sidebar-link">When Speed Matters</a></li>
+              <li><a href="#architectural-options" class="sidebar-link">Strategic Architectures</a></li>
+            </ul>
+          </nav>
+
+          <div class="sidebar-actions">
+            <a href="https://www.linkedin.com/in/tyler-koshakow/" target="_blank" rel="noopener noreferrer" class="sidebar-btn sidebar-btn-primary">
+              <span>Connect on LinkedIn</span>
+              <svg class="btn-arrow" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="3" y1="8" x2="13" y2="8"></line>
+                <polyline points="9 4 13 8 9 12"></polyline>
+              </svg>
+            </a>
+            <button type="button" class="sidebar-btn sidebar-btn-secondary desktop-share-btn" aria-label="Share this signal or copy citation">
+              <svg class="share-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="18" cy="5" r="3"></circle>
+                <circle cx="6" cy="12" r="3"></circle>
+                <circle cx="18" cy="19" r="3"></circle>
+                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+              </svg>
+              <span class="btn-text">Share Signal</span>
+            </button>
+          </div>
+        </div>
+      </aside>
+
+      <!-- ARTICLE MAIN CONTENT -->
+      <main class="article-main">
+        <article class="article-detail" itemscope itemtype="https://schema.org/TechArticle">
         
         <header class="article-header">
           <div class="feed-meta">
@@ -211,7 +320,8 @@
 
         <div class="article-content" itemprop="articleBody">
           
-          <h2>The Push and Pull: Growth vs. Performance</h2>
+          <section id="growth-vs-performance" class="article-section">
+            <h2>The Push and Pull: Growth vs. Performance</h2>
 
           <p>
             In almost every modern digital organization, there is an ongoing push and pull between growth marketing and frontend engineering:
@@ -277,7 +387,10 @@
             Here is what I tested and what the data proved.
           </p>
 
-          <h2>Testing in the Wild</h2>
+          </section>
+
+          <section id="testing-in-the-wild" class="article-section">
+            <h2>Testing in the Wild</h2>
 
           <p>
             Lab tests run on localhost or artificial staging servers fail to capture real-world CDN routing, TCP handshakes, TLS termination, and edge caching dynamics. To eliminate theoretical bias, I deployed all tests directly to production:
@@ -303,7 +416,10 @@
             <li><strong>Variant D4: Pure Interaction Full Bloat:</strong> GTM, Meta Pixel, and LinkedIn Insight Tag configured to fire strictly on user interaction with zero fallback timer.</li>
           </ul>
 
-          <h2>The Empirical Findings</h2>
+          </section>
+
+          <section id="empirical-findings" class="article-section">
+            <h2>The Empirical Findings</h2>
 
           <p>
             Here is the exact data captured from the live production runs on <code>tylerkoshakow.com</code>:
@@ -399,7 +515,10 @@
             </table>
           </div>
 
-          <h2>Analysis and Core Takeaways</h2>
+          </section>
+
+          <section id="analysis-and-takeaways" class="article-section">
+            <h2>Analysis and Core Takeaways</h2>
 
           <h3>1. GTM is a Client-Side Evaluation Engine</h3>
 
@@ -567,7 +686,10 @@
             You do not need to pay Google Cloud $120&ndash;$300/month for dedicated sGTM Cloud Run containers to achieve server-side tagging. A simple edge function delivers identical latency and attribution fidelity at zero cost.
           </p>
 
-          <h2>When Speed Actually Matters (and What Is Good Enough)</h2>
+          </section>
+
+          <section id="when-speed-matters" class="article-section">
+            <h2>When Speed Actually Matters (and What Is Good Enough)</h2>
 
           <p>
             Before choosing an architectural path, engineering and marketing teams must align on an uncomfortable truth: Speed does not matter equally for every website.
@@ -609,7 +731,10 @@
             Once a B2B site passes these thresholds in the green, shaving off another 200 milliseconds delivers diminishing algorithmic and commercial returns. If an engineering team spends three sprints optimizing a 90 score to a 99 score while breaking marketing&rsquo;s attribution pipeline or CRM lead routing, the business loses.
           </p>
 
-          <h2>Strategic Architectural Options</h2>
+          </section>
+
+          <section id="architectural-options" class="article-section">
+            <h2>Strategic Architectural Options</h2>
 
           <p>
             Based on your site&rsquo;s business model and technical maturity, here are the three pragmatic paths forward:
@@ -671,6 +796,7 @@
             <img src="../images/benchmarks/live-variant-a-baseline-lighthouse.png" alt="Lighthouse audit for Variant A Direct Sequenced GA4 showing 100 performance score" loading="lazy">
             <figcaption><strong>Option 3 (Variant A Direct Sequenced GA4):</strong> 100 Mobile Lighthouse score with 0 ms Total Blocking Time and 1.4s Speed Index.</figcaption>
           </figure>
+        </section>
 
           <!-- DEDICATED PROFESSIONAL BIO CARD -->
           <section class="bio-card" aria-labelledby="bio-heading">
@@ -697,6 +823,7 @@
 
       </article>
     </main>
+  </div>
 
     <!-- FOOTER NODE -->
     <footer>
@@ -885,9 +1012,184 @@
         });
       });
 
+      // --------------------------------------------------------------------------
+      // Responsive Sticky Navigation, Scrollspy & Mobile Drawer
+      // --------------------------------------------------------------------------
+      const sections = document.querySelectorAll('.article-section');
+      const desktopLinks = document.querySelectorAll('.sidebar-link');
+      const mobileLinks = document.querySelectorAll('.mobile-toc-link');
+      const mobileCurrent = document.getElementById('mobileTocCurrent');
+      const mobileDrawer = document.getElementById('mobileTocDrawer');
+      const mobileTrigger = document.getElementById('mobileTocTrigger');
+      const mobileClose = document.getElementById('mobileTocClose');
+      const mobileBackdrop = document.getElementById('mobileTocBackdrop');
+
+      function setActiveSection(id) {
+        if (!id) return;
+        desktopLinks.forEach(link => {
+          const isMatch = link.getAttribute('href') === '#' + id;
+          link.classList.toggle('active', isMatch);
+          link.classList.toggle('\\:target-current', isMatch);
+          link.setAttribute('aria-current', isMatch ? 'true' : 'false');
+        });
+        mobileLinks.forEach(link => {
+          const isMatch = link.getAttribute('href') === '#' + id;
+          link.classList.toggle('active', isMatch);
+          link.classList.toggle('\\:target-current', isMatch);
+          link.setAttribute('aria-current', isMatch ? 'true' : 'false');
+          if (isMatch && mobileCurrent) {
+            mobileCurrent.textContent = link.textContent.trim();
+          }
+        });
+      }
+
+      if ('IntersectionObserver' in window && sections.length > 0) {
+        const observer = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const id = entry.target.getAttribute('id');
+              setActiveSection(id);
+            }
+          });
+        }, {
+          rootMargin: '-15% 0px -70% 0px',
+          threshold: 0
+        });
+
+        sections.forEach(sec => observer.observe(sec));
+      }
+
+      if (window.CSS && CSS.supports && CSS.supports('scroll-target-group: auto')) {
+        const syncCurrent = () => {
+          const currentLink = document.querySelector('.sidebar-link:target-current');
+          if (currentLink) {
+            const href = currentLink.getAttribute('href');
+            if (href && href.startsWith('#')) {
+              setActiveSection(href.substring(1));
+            }
+          }
+        };
+        document.addEventListener('scrollend', syncCurrent);
+      }
+
+      function openMobileDrawer() {
+        if (!mobileDrawer) return;
+        mobileDrawer.classList.add('open');
+        mobileDrawer.setAttribute('aria-hidden', 'false');
+        if (mobileTrigger) mobileTrigger.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeMobileDrawer() {
+        if (!mobileDrawer) return;
+        mobileDrawer.classList.remove('open');
+        mobileDrawer.setAttribute('aria-hidden', 'true');
+        if (mobileTrigger) mobileTrigger.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      }
+
+      function handleTocClick(e, link) {
+        const href = link.getAttribute('href');
+        if (!href || !href.startsWith('#')) return;
+        e.preventDefault();
+        const targetId = href.substring(1);
+        const targetEl = document.getElementById(targetId);
+        if (targetEl) {
+          closeMobileDrawer();
+          targetEl.scrollIntoView({ behavior: 'smooth' });
+          if (history.pushState) {
+            history.pushState(null, '', href);
+          } else {
+            location.hash = href;
+          }
+          setActiveSection(targetId);
+        }
+      }
+
+      desktopLinks.forEach(link => {
+        link.addEventListener('click', (e) => handleTocClick(e, link));
+      });
+      mobileLinks.forEach(link => {
+        link.addEventListener('click', (e) => handleTocClick(e, link));
+      });
+
+      if (mobileTrigger) {
+        mobileTrigger.addEventListener('click', () => {
+          const isOpen = mobileDrawer && mobileDrawer.classList.contains('open');
+          if (isOpen) {
+            closeMobileDrawer();
+          } else {
+            openMobileDrawer();
+          }
+        });
+      }
+      if (mobileClose) mobileClose.addEventListener('click', closeMobileDrawer);
+      if (mobileBackdrop) mobileBackdrop.addEventListener('click', closeMobileDrawer);
+
+      // Share Signal & Citation Copy
+      async function handleShareSignal(btn) {
+        const articleH1 = document.querySelector('h1.article-title, h1');
+        const articleTitle = articleH1 ? articleH1.textContent.trim() : document.title.split('—')[0].trim();
+        const url = window.location.href.split('#')[0];
+        const citation = `Tyler Koshakow (${articleTitle}) (${url})`;
+        
+        if (navigator.share && /mobile|android|iphone|ipad/i.test(navigator.userAgent.toLowerCase())) {
+          try {
+            await navigator.share({
+              title: articleTitle,
+              text: `Tyler Koshakow (${articleTitle})`,
+              url: url
+            });
+            return;
+          } catch (err) {
+            if (err.name !== 'AbortError') {
+              console.warn('Share failed, falling back to copy', err);
+            } else {
+              return;
+            }
+          }
+        }
+
+        try {
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            await navigator.clipboard.writeText(citation);
+          } else {
+            const ta = document.createElement('textarea');
+            ta.value = citation;
+            ta.style.position = 'fixed';
+            ta.style.opacity = '0';
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            document.body.removeChild(ta);
+          }
+
+          const btnText = btn.querySelector('.btn-text');
+          const originalText = btnText ? btnText.textContent : '';
+          if (btnText) btnText.textContent = 'Citation Copied!';
+          btn.classList.add('copied');
+          
+          setTimeout(() => {
+            if (btnText) btnText.textContent = originalText;
+            btn.classList.remove('copied');
+          }, 2500);
+        } catch (copyErr) {
+          console.error('Failed to copy citation', copyErr);
+        }
+      }
+
+      document.querySelectorAll('.desktop-share-btn, .mobile-share-btn').forEach(btn => {
+        btn.addEventListener('click', () => handleShareSignal(btn));
+      });
+
       document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && document.documentElement.getAttribute('data-theme') === 'goblin') {
-          applyTheme('dark', false);
+        if (e.key === 'Escape') {
+          if (mobileDrawer && mobileDrawer.classList.contains('open')) {
+            closeMobileDrawer();
+          }
+          if (document.documentElement.getAttribute('data-theme') === 'goblin') {
+            applyTheme('dark', false);
+          }
         }
       });
     });

@@ -70,7 +70,7 @@
   <meta name="twitter:image" content="https://tylerkoshakow.com/images/tricholomopsis-sulphureoides.jpg">
   <meta name="twitter:image:alt" content="Tricholomopsis sulphureoides: Yellowish gilled mushrooms fruiting on decaying downed wood">
   
-  <link rel="stylesheet" href="../style.css?v=goblin20">
+  <link rel="stylesheet" href="../style.css?v=sidebar3">
   
   <!-- Inline Script to Prevent Theme Flash & Handle Persistent Theme -->
   <script>
@@ -223,7 +223,7 @@
   </script>
 </head>
 <body>
-  <div class="container">
+  <div class="container has-sidebar">
     
     <!-- TOP NAVIGATION -->
     <header>
@@ -237,9 +237,112 @@
       </div>
     </header>
 
-    <!-- ARTICLE MAIN CONTENT -->
-    <main>
-      <article class="article-detail" itemscope itemtype="https://schema.org/TechArticle">
+    <!-- MOBILE STICKY TOC BAR (Visible on viewports < 58rem) -->
+    <div class="mobile-toc-bar" id="mobileTocBar">
+      <button type="button" class="mobile-toc-trigger" id="mobileTocTrigger" aria-expanded="false" aria-controls="mobileTocDrawer" aria-label="Open article table of contents">
+        <div class="mobile-toc-info">
+          <span class="mobile-toc-indicator-dot" aria-hidden="true"></span>
+          <span class="mobile-toc-label">Index //</span>
+          <span class="mobile-toc-current" id="mobileTocCurrent">AI Is the Worst Thing</span>
+        </div>
+        <div class="mobile-toc-action-hint">
+          <span class="mobile-toc-jump">Jump to</span>
+          <svg class="mobile-toc-chevron" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="3 4.5 6 7.5 9 4.5"></polyline>
+          </svg>
+        </div>
+      </button>
+    </div>
+
+    <!-- MOBILE TOC DRAWER MODAL -->
+    <div class="mobile-toc-drawer" id="mobileTocDrawer" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Table of Contents">
+      <div class="mobile-toc-backdrop" id="mobileTocBackdrop"></div>
+      <div class="mobile-toc-sheet">
+        <div class="mobile-toc-sheet-header">
+          <div class="mobile-toc-sheet-title">
+            <span class="toc-badge">Index //</span>
+            <span>Table of Contents</span>
+          </div>
+          <button type="button" class="mobile-toc-close" id="mobileTocClose" aria-label="Close table of contents">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+        
+        <div class="mobile-toc-sheet-body">
+          <ul class="mobile-toc-list">
+            <li><a href="#worst-thing-for-amateurs" class="mobile-toc-link">AI Is the Worst Thing</a></li>
+            <li><a href="#best-thing-for-amateurs" class="mobile-toc-link">AI Is the Best Thing</a></li>
+            <li><a href="#my-takeaway" class="mobile-toc-link">My Takeaway</a></li>
+          </ul>
+        </div>
+
+        <div class="mobile-toc-sheet-footer">
+          <a href="https://www.linkedin.com/in/tyler-koshakow/" target="_blank" rel="noopener noreferrer" class="sidebar-btn sidebar-btn-primary">
+            <span>Connect on LinkedIn</span>
+            <svg class="btn-arrow" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="3" y1="8" x2="13" y2="8"></line>
+              <polyline points="9 4 13 8 9 12"></polyline>
+            </svg>
+          </a>
+          <button type="button" class="sidebar-btn sidebar-btn-secondary mobile-share-btn" aria-label="Share this field log or copy citation">
+            <svg class="share-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="18" cy="5" r="3"></circle>
+              <circle cx="6" cy="12" r="3"></circle>
+              <circle cx="18" cy="19" r="3"></circle>
+              <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+              <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+            </svg>
+            <span class="btn-text">Share Field Log</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TWO-COLUMN ARTICLE LAYOUT -->
+    <div class="article-layout">
+      
+      <!-- DESKTOP STICKY SIDEBAR -->
+      <aside class="article-sidebar" aria-label="Article navigation">
+        <div class="sidebar-sticky-wrapper">
+          <nav class="sidebar-nav" aria-label="Article outline">
+            <div class="sidebar-header">
+              <span class="sidebar-label">Index //</span>
+            </div>
+            <ul class="sidebar-list">
+              <li><a href="#worst-thing-for-amateurs" class="sidebar-link">AI Is the Worst Thing</a></li>
+              <li><a href="#best-thing-for-amateurs" class="sidebar-link">AI Is the Best Thing</a></li>
+              <li><a href="#my-takeaway" class="sidebar-link">My Takeaway</a></li>
+            </ul>
+          </nav>
+
+          <div class="sidebar-actions">
+            <a href="https://www.linkedin.com/in/tyler-koshakow/" target="_blank" rel="noopener noreferrer" class="sidebar-btn sidebar-btn-primary">
+              <span>Connect on LinkedIn</span>
+              <svg class="btn-arrow" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="3" y1="8" x2="13" y2="8"></line>
+                <polyline points="9 4 13 8 9 12"></polyline>
+              </svg>
+            </a>
+            <button type="button" class="sidebar-btn sidebar-btn-secondary desktop-share-btn" aria-label="Share this field log or copy citation">
+              <svg class="share-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="18" cy="5" r="3"></circle>
+                <circle cx="6" cy="12" r="3"></circle>
+                <circle cx="18" cy="19" r="3"></circle>
+                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+              </svg>
+              <span class="btn-text">Share Field Log</span>
+            </button>
+          </div>
+        </div>
+      </aside>
+
+      <!-- ARTICLE MAIN CONTENT -->
+      <main class="article-main">
+        <article class="article-detail" itemscope itemtype="https://schema.org/TechArticle">
         
         <header class="article-header">
           <div class="feed-meta">
@@ -283,7 +386,8 @@
             The entire experience left me with a conclusion that I&rsquo;ve come to many times before: mushrooms are amazing.
           </p>
 
-          <h2>AI Is the Worst Thing for Amateur Mycologists</h2>
+          <section id="worst-thing-for-amateurs" class="article-section">
+            <h2>AI Is the Worst Thing for Amateur Mycologists</h2>
 
           <p>
             When I got home, I did what any self-respecting amateur mycologist would do: I took a spore print.
@@ -426,7 +530,10 @@
             Nothing matched.
           </p>
 
-          <h2>AI Is the Best Thing for Amateur Mycologists</h2>
+          </section>
+
+          <section id="best-thing-for-amateurs" class="article-section">
+            <h2>AI Is the Best Thing for Amateur Mycologists</h2>
 
           <p>
             In addition to being an amateur mycologist, I also work with AI professionally, and so have a pretty good idea of how to coax meaningful information from AI systems.
@@ -450,7 +557,10 @@
             </blockquote>
           </figure>
 
-          <h2>My Takeaway</h2>
+          </section>
+
+          <section id="my-takeaway" class="article-section">
+            <h2>My Takeaway</h2>
 
           <p>
             This shouldn&rsquo;t be a surprise, but AI, as it pertains to mushroom identification, is basically a &ldquo;best of times/worst of times&rdquo; kind of deal. Like I mentioned above, the traditional process of mushroom ID involves a literal algorithm, albeit a simple, analog one, with very simple logic. Something that machines are very good at.
@@ -463,6 +573,7 @@
           <p>
             Maybe a bit on the nose, but I think this is another good example of why a human in the loop is a must have for any critical system&mdash;especially, to borrow from <a href="https://en.wikipedia.org/wiki/The_Princess_Bride_(film)" target="_blank" rel="noopener noreferrer">Vizzini</a>, <em>&ldquo;when death is on the line!&rdquo;</em>
           </p>
+        </section>
 
           <!-- DEDICATED PROFESSIONAL BIO CARD -->
           <section class="bio-card" aria-labelledby="bio-heading">
@@ -488,6 +599,7 @@
 
       </article>
     </main>
+  </div>
 
     <!-- FOOTER NODE -->
     <footer>
@@ -676,9 +788,184 @@
         });
       });
 
+      // --------------------------------------------------------------------------
+      // Responsive Sticky Navigation, Scrollspy & Mobile Drawer
+      // --------------------------------------------------------------------------
+      const sections = document.querySelectorAll('.article-section');
+      const desktopLinks = document.querySelectorAll('.sidebar-link');
+      const mobileLinks = document.querySelectorAll('.mobile-toc-link');
+      const mobileCurrent = document.getElementById('mobileTocCurrent');
+      const mobileDrawer = document.getElementById('mobileTocDrawer');
+      const mobileTrigger = document.getElementById('mobileTocTrigger');
+      const mobileClose = document.getElementById('mobileTocClose');
+      const mobileBackdrop = document.getElementById('mobileTocBackdrop');
+
+      function setActiveSection(id) {
+        if (!id) return;
+        desktopLinks.forEach(link => {
+          const isMatch = link.getAttribute('href') === '#' + id;
+          link.classList.toggle('active', isMatch);
+          link.classList.toggle('\\:target-current', isMatch);
+          link.setAttribute('aria-current', isMatch ? 'true' : 'false');
+        });
+        mobileLinks.forEach(link => {
+          const isMatch = link.getAttribute('href') === '#' + id;
+          link.classList.toggle('active', isMatch);
+          link.classList.toggle('\\:target-current', isMatch);
+          link.setAttribute('aria-current', isMatch ? 'true' : 'false');
+          if (isMatch && mobileCurrent) {
+            mobileCurrent.textContent = link.textContent.trim();
+          }
+        });
+      }
+
+      if ('IntersectionObserver' in window && sections.length > 0) {
+        const observer = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const id = entry.target.getAttribute('id');
+              setActiveSection(id);
+            }
+          });
+        }, {
+          rootMargin: '-15% 0px -70% 0px',
+          threshold: 0
+        });
+
+        sections.forEach(sec => observer.observe(sec));
+      }
+
+      if (window.CSS && CSS.supports && CSS.supports('scroll-target-group: auto')) {
+        const syncCurrent = () => {
+          const currentLink = document.querySelector('.sidebar-link:target-current');
+          if (currentLink) {
+            const href = currentLink.getAttribute('href');
+            if (href && href.startsWith('#')) {
+              setActiveSection(href.substring(1));
+            }
+          }
+        };
+        document.addEventListener('scrollend', syncCurrent);
+      }
+
+      function openMobileDrawer() {
+        if (!mobileDrawer) return;
+        mobileDrawer.classList.add('open');
+        mobileDrawer.setAttribute('aria-hidden', 'false');
+        if (mobileTrigger) mobileTrigger.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeMobileDrawer() {
+        if (!mobileDrawer) return;
+        mobileDrawer.classList.remove('open');
+        mobileDrawer.setAttribute('aria-hidden', 'true');
+        if (mobileTrigger) mobileTrigger.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      }
+
+      function handleTocClick(e, link) {
+        const href = link.getAttribute('href');
+        if (!href || !href.startsWith('#')) return;
+        e.preventDefault();
+        const targetId = href.substring(1);
+        const targetEl = document.getElementById(targetId);
+        if (targetEl) {
+          closeMobileDrawer();
+          targetEl.scrollIntoView({ behavior: 'smooth' });
+          if (history.pushState) {
+            history.pushState(null, '', href);
+          } else {
+            location.hash = href;
+          }
+          setActiveSection(targetId);
+        }
+      }
+
+      desktopLinks.forEach(link => {
+        link.addEventListener('click', (e) => handleTocClick(e, link));
+      });
+      mobileLinks.forEach(link => {
+        link.addEventListener('click', (e) => handleTocClick(e, link));
+      });
+
+      if (mobileTrigger) {
+        mobileTrigger.addEventListener('click', () => {
+          const isOpen = mobileDrawer && mobileDrawer.classList.contains('open');
+          if (isOpen) {
+            closeMobileDrawer();
+          } else {
+            openMobileDrawer();
+          }
+        });
+      }
+      if (mobileClose) mobileClose.addEventListener('click', closeMobileDrawer);
+      if (mobileBackdrop) mobileBackdrop.addEventListener('click', closeMobileDrawer);
+
+      // Share Signal / Field Log & Citation Copy
+      async function handleShareSignal(btn) {
+        const articleH1 = document.querySelector('h1.article-title, h1');
+        const articleTitle = articleH1 ? articleH1.textContent.trim() : document.title.split('—')[0].trim();
+        const url = window.location.href.split('#')[0];
+        const citation = `Tyler Koshakow (${articleTitle}) (${url})`;
+        
+        if (navigator.share && /mobile|android|iphone|ipad/i.test(navigator.userAgent.toLowerCase())) {
+          try {
+            await navigator.share({
+              title: articleTitle,
+              text: `Tyler Koshakow (${articleTitle})`,
+              url: url
+            });
+            return;
+          } catch (err) {
+            if (err.name !== 'AbortError') {
+              console.warn('Share failed, falling back to copy', err);
+            } else {
+              return;
+            }
+          }
+        }
+
+        try {
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            await navigator.clipboard.writeText(citation);
+          } else {
+            const ta = document.createElement('textarea');
+            ta.value = citation;
+            ta.style.position = 'fixed';
+            ta.style.opacity = '0';
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            document.body.removeChild(ta);
+          }
+
+          const btnText = btn.querySelector('.btn-text');
+          const originalText = btnText ? btnText.textContent : '';
+          if (btnText) btnText.textContent = 'Citation Copied!';
+          btn.classList.add('copied');
+          
+          setTimeout(() => {
+            if (btnText) btnText.textContent = originalText;
+            btn.classList.remove('copied');
+          }, 2500);
+        } catch (copyErr) {
+          console.error('Failed to copy citation', copyErr);
+        }
+      }
+
+      document.querySelectorAll('.desktop-share-btn, .mobile-share-btn').forEach(btn => {
+        btn.addEventListener('click', () => handleShareSignal(btn));
+      });
+
       document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && document.documentElement.getAttribute('data-theme') === 'goblin') {
-          applyTheme('dark', false);
+        if (e.key === 'Escape') {
+          if (mobileDrawer && mobileDrawer.classList.contains('open')) {
+            closeMobileDrawer();
+          }
+          if (document.documentElement.getAttribute('data-theme') === 'goblin') {
+            applyTheme('dark', false);
+          }
         }
       });
     });
